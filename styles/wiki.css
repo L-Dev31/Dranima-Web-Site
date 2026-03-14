@@ -235,7 +235,7 @@
 }
 
 .wiki-page-toc {
-    background-color: var(--light-orange);
+    background: linear-gradient(to bottom, var(--light-orange), var(--bright-orange));
     border: 3px solid var(--bright-orange);
     border-radius: var(--radius);
     box-shadow: var(--shadow);

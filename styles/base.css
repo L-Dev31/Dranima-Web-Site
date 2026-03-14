@@ -59,11 +59,6 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'NerkoOne', sans-serif;
 }
 
-p, li {
-    -webkit-text-stroke: 1.5px #000;
-    paint-order: stroke fill;
-}
-
 strong {
     color: var(--light-orange);
 }
