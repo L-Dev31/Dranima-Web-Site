@@ -24,19 +24,19 @@
             "name": "Base",
             "category": "how-to-play",
             "icon": "images/character1.png",
-            "preview": "Your Base is your home in Dranima. It's where you manage resources, train Dranimae, and prepare for your adventures across the land.",
+            "preview": "Dranima is a JRPG retaking the bases of older games and making new content out of them by totally reworking them. You may advance in the game by collecting monsters called Dranima (Dranimae in plural) in the world of Gonwind, and train them, evolve them and unlock new attacks and abilities",
             "sections": [
                 {
-                    "title": "Base Overview",
-                    "content": "Your Base serves as your personal headquarters in the world of Dranima. It's a safe space where you can organize your team, craft items, and plan your next moves. As you progress through the game, you can upgrade and expand your Base with new buildings and features."
+                    "title": "Starter selection",
+                    "content": "The game has four starters based on the four elemental. Vinny, the earth starter, Birdage, the wind, Snassic, the water, and Embamb, the fire. You'll be questionned at the start of the game, and depending of your answers, your starter will be chosen."
                 },
                 {
-                    "title": "Building and Upgrading",
-                    "content": "You can construct various buildings within your Base to unlock new features:<br>- <strong>Training Grounds</strong>: Increase your Dranimae's experience gain<br>- <strong>Crafting Workshop</strong>: Create healing items and useful tools<br>- <strong>Sleep Quarters</strong>: Restore full health to your team<br>- <strong>Storage Facility</strong>: Increase your inventory capacity<br>Each building can be upgraded multiple times for better results."
+                    "title": "Team Building",
+                    "content": "Your team can go up to 8 Dranimae. 4 Dranimae in battlefield, and 4 can be in backup / reserve. You can create any kind of team you want, from the weakest to the most broken possible, there is no limit your imagination. Whenever a Dranima evolves, it has the choice to select a new ability in a tree brench. It also have the possibility to unlock new moves and upgrade them further, sometimes from level 0 to 4, then 0 to 7, and finally 0 to 10. Choose well the abilities for your Dranimae, because you won't be able to change them later. (Or maybe reset them somewhere? Who knows...)"
                 },
                 {
-                    "title": "Daily Activities",
-                    "content": "Visit your Base regularly to take advantage of its features. You can feed your Dranimae, repair equipment, and organize your bag here. Many players like to visit their Base between adventures to ensure their team is in peak condition before heading out into the world."
+                    "title": "Drealm",
+                    "content": "The Drealm allows you to stock Dranimae in a magical place which you can improve as you advance in your quest. By improving this place, you'll be able to improve your number of Dranimae you can stock in there, have a vendor selling more goods, a gym to train your Dranimae not currently in your team, gardens to grow your own vegetables, and a guild to send your Dranimae to their own adventures on places you already discovered to get loot and resources. Improving the Drealm will ease your life and save you a lot of hours of grinding. However, improving the place will take time, as some resources can only be obtainable late game."
                 }
             ]
         },
