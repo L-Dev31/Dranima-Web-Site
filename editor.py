@@ -435,6 +435,11 @@ class UltimateEditor(tk.Tk):
             self.refresh_tree()
 
     def save_all(self):
+        if self.pending_updates:
+            should_update = messagebox.askyesno("Pending updates", "There are pending changes. Apply them before saving? (Yes will update all pending changes)")
+            if should_update:
+                self.update_all_changes()
+
         for fname, content in self.data_store.items():
             path = os.path.join(DATA_DIR, fname)
             with open(path, 'w', encoding='utf-8') as f:
