@@ -97,7 +97,8 @@
                         "UI / UX Designer",
                         "Level Design",
                         "World Designer",
-                        "Dranimae Artist"
+                        "Dranimae Artist",
+                        "French Translator"
                     ]
                 }
             ]
@@ -108,13 +109,15 @@
                 {
                     "id": "veldanveylan",
                     "roles": [
-                        "Battle Programmer"
+                        "Battle Programmer",
+                        "English Translator"
                     ]
                 },
                 {
                     "id": "jollenbell",
                     "roles": [
-                        "Overworld Programmer"
+                        "Overworld Programmer",
+                        "Spanish - Latin America Translator"
                     ]
                 },
                 {
