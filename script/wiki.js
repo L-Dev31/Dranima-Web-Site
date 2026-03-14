@@ -10,7 +10,8 @@ function normalizeWikiData(data) {
     return {
         ...data,
         categories: data.categories || [],
-        groups: data.groups || [],
+        // Keep group logic working even if groups is absent or empty
+        groups: (Array.isArray(data.groups) && data.groups.length) ? data.groups : null,
         entries: (data.entries || []).map(entry => ({
             ...defaultEntry,
             ...entry,
@@ -21,12 +22,21 @@ function normalizeWikiData(data) {
     };
 }
 
+function chunkArray(arr, size) {
+    const out = [];
+    for (let i = 0; i < arr.length; i += size) {
+        out.push(arr.slice(i, i + size));
+    }
+    return out;
+}
+
 async function initWiki() {
     const container = document.getElementById('wiki-container');
     if (!container) return;
 
     const data = normalizeWikiData(await fetch('datas/wiki.json').then(r => r.json()));
-    const { categories, groups, entries } = data;
+    const { categories, groups: originalGroups, entries } = data;
+    const groups = originalGroups || chunkArray(categories.map(c => c.id), 4);
 
     function createEntryLink(entry) {
         const link = document.createElement('a');
