@@ -270,7 +270,7 @@ class UltimateEditor(tk.Tk):
         file = path[0]
 
         if file == "credits.json" and key == "id":
-            if "members" in path or "team" in path:
+            if "members" in path:
                 team = self.data_store.get("credits.json", {}).get("team", [])
                 return [m.get("id") for m in team if isinstance(m, dict) and "id" in m]
 
