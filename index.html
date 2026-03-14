@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dranima</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <script src="script/common.js" defer></script>
+    <script src="script/news.js" defer></script>
+    <script src="script/faq.js" defer></script>
+    <script src="script/credits.js" defer></script>
+    <script src="script/wiki.js" defer></script>
+    <script src="script/main.js" defer></script>
+</head>
+<body>
+
+    <!-- ====== LOADER ====== -->
+    <div id="loader-container"></div>
+
+    <!-- ====== NAVBAR ====== -->
+    <div id="navbar-container"></div>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero" id="hero">
+        <div class="hero-info">
+            <span class="hero-label">Phase:</span>
+            <span class="hero-value">Prototype</span>
+            <hr class="hero-divider">
+            <span class="hero-label">Release Date:</span>
+            <span class="hero-value">TBA</span>
+        </div>
+        <!--<img class="hero-icon" src="images/character.png" alt="">-->
+    </section>
+
+    <!-- ====== NEWS ====== -->
+    <section class="section-news bg-pattern spiked" id="news">
+        <h2>Major Announcements</h2>
+        <div id="major-news-container"></div>
+
+        <!-- Two columns: Updates & Announcements -->
+        <div class="news-columns">
+            <!-- Left: Updates -->
+            <div class="news-column">
+                <h2>Updates</h2>
+                <div id="update-card-container"></div>
+                <div class="news-list-card">
+                    <h3 class="news-list-title">Other Updates</h3>
+                    <ul class="news-list" id="update-list"></ul>
+                    <a href="#" class="news-show-more" id="update-show-more">Show More</a>
+                </div>
+            </div>
+            <!-- Right: Announcements -->
+            <div class="news-column">
+                <h2>Announcements</h2>
+                <div id="announcement-card-container"></div>
+                <div class="news-list-card">
+                    <h3 class="news-list-title">Other Announcements</h3>
+                    <ul class="news-list" id="announcement-list"></ul>
+                    <a href="#" class="news-show-more" id="announcement-show-more">Show More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SCREENSHOTS ====== -->
+    <section class="section-screenshots" id="screenshots">
+        <article class="screenshot-showcase">
+            <h2 class="screenshot-title">Discover the mysterious world of Conwind!</h2>
+            <div class="screenshot-content">
+                <div class="screenshot-character-wrap">
+                    <img class="screenshot-character" src="images/character1.png" alt="Dranima character companion">
+                </div>
+                <div class="screenshot-card">
+                    <img src="images/template.png" alt="Gameplay screenshot showing the world of Conwind">
+                </div>
+            </div>
+        </article>
+
+        <article class="screenshot-showcase screenshot-showcase--reverse">
+            <h2 class="screenshot-title">Meet and Drame all Dranimaes! <br> Create a powerful party of up to 8 team members.</h2>
+            <div class="screenshot-content">
+                <div class="screenshot-character-wrap">
+                    <img class="screenshot-character screenshot-character--flip" src="images/character2.png" alt="Dranima character artwork">
+                </div>
+                <div class="screenshot-card">
+                    <img src="images/template.png" alt="Gameplay screenshot featuring a Dranimoe party">
+                </div>
+            </div>
+        </article>
+
+        <article class="screenshot-showcase">
+            <h2 class="screenshot-title">Befriend the world and learn more about each character!</h2>
+            <div class="screenshot-content">
+                <div class="screenshot-character-wrap">
+                    <img class="screenshot-character" src="images/character3.png" alt="Friendly Dranima character portrait">
+                </div>
+                <div class="screenshot-card">
+                    <img src="images/template.png" alt="Screenshot highlighting characters and exploration">
+                </div>
+            </div>
+        </article>
+
+        <article class="screenshot-showcase screenshot-showcase--reverse">
+            <h2 class="screenshot-title">Construct the Drealm of your Dreams!</h2>
+            <div class="screenshot-content">
+                <div class="screenshot-character-wrap">
+                    <img class="screenshot-character screenshot-character--flip" src="images/character4.png" alt="Dranima builder character artwork">
+                </div>
+                <div class="screenshot-card">
+                    <img src="images/template.png" alt="Screenshot showing building and customization features">
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ====== STEAM SECTION ====== -->
+    <section class="steam-section" id="steam">
+        <h2>It will be playable on</h2>
+        <img class="steam-section-logo" src="images/steam.png" alt="Steam">
+        <div class="steam-section-flags">
+            <img class="steam-section-flag" src="images/flags/en.png" alt="English" title="English">
+            <img class="steam-section-flag" src="images/flags/fr.png" alt="French" title="French">
+            <img class="steam-section-flag" src="images/flags/pt.png" alt="Portuguese" title="Portuguese">
+            <img class="steam-section-flag" src="images/flags/es.png" alt="Spanish" title="Spanish">
+        </div>
+    </section>
+
+    <!-- ====== FAQ ====== -->
+    <section class="section-faq bg-pattern spiked" id="faq">
+        <h2>FAQ</h2>
+        <div class="faq-list" id="faq-list"></div>
+        <p class="faq-signature creator-signature">— Alex Bourbon, creator of Dranima</p>
+    </section>
+
+    <!-- Templates -->
+    <template id="faq-item-template">
+        <details class="faq-item">
+            <summary class="faq-question"></summary>
+            <p class="faq-answer"></p>
+        </details>
+    </template>
+
+    <template id="news-popup-template">
+        <div class="news-popup-overlay">
+            <div class="news-popup">
+                <button class="news-popup-close"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span class="sr-only">Close</span></button>
+                <div class="news-popup-image"><img src="" alt=""></div>
+                <div class="news-popup-body">
+                    <div class="news-popup-header">
+                        <div class="news-popup-icon"><img src="" alt=""></div>
+                        <h2 class="news-popup-title"></h2>
+                    </div>
+                    <p class="news-popup-date"></p>
+                    <p class="news-popup-desc"></p>
+                    <div class="news-popup-content"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="news-card-template">
+        <div class="news-card">
+            <div class="news-card-image"><img src="" alt=""></div>
+            <div class="news-card-text">
+                <h3 class="news-card-title"></h3>
+                <span class="news-card-date"></span>
+                <p class="news-card-desc"></p>
+            </div>
+            <div class="news-card-circle"><img src="" alt=""></div>
+        </div>
+    </template>
+
+    <template id="news-list-item-template">
+        <li>
+            <a href="#">
+                <span class="news-list-title"></span>
+                <span class="news-list-date"></span>
+            </a>
+        </li>
+    </template>
+
+    <!-- ====== CONTACT INVITE ====== -->
+    <section class="section-wiki-invite info-section" id="wiki-invite">
+        <h2>Want to collaborate or stream Dranima?</h2>
+        <p>If you’re a streamer, creator, or just want to get in touch, send us an email and we’ll get back to you.</p>
+        <a href="mailto:booksofdranima@gmail.com" class="btn">Email Us</a>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <div id="footer-container"></div>
+
+</body>
+</html>

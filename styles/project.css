@@ -1,0 +1,64 @@
+/* ====== PROJECT PAGE ====== */
+.section-project {
+    padding-block: 120px;
+}
+
+.section-project article {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(30px, 5vw, 80px);
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.section-project article.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Replaces .project-article__text and .project-article__body wrappers */
+.section-project article > div {
+    flex: 1 1 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px; 
+    font-size: clamp(16px, 1.5vw, 20px);
+    color: #fff;
+    text-shadow: var(--shadow);
+    line-height: 1.55;
+}
+
+.section-project article h2 {
+    text-align: left;
+    margin-bottom: 6px; 
+}
+
+/* Replaces .project-article__image wrapper */
+.section-project article > img {
+    flex: 0 0 clamp(260px, 35%, 480px);
+    align-self: flex-start;
+    position: sticky;
+    top: 30px;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 2px solid var(--orange);
+    box-shadow: var(--shadow);
+    background-color: var(--light-orange);
+    display: block;
+}
+
+/* What to expect section */
+.project-expect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/* Closing section */
+
+.creator-signature {
+    margin-top: 4px;
+}

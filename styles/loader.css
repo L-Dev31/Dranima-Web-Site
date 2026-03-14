@@ -1,0 +1,106 @@
+/* ====== LOADER ====== */
+#loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+
+    /* background pattern + spikes */
+    background-image: url('../images/pattern.png');
+    background-size: 300px 400px;
+}
+
+
+#loader.loader-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#loader .loader-bg {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    transform: translateY(-75%);
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+#loader .loader-bg img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 0 #0006);
+}
+
+#loader.loader-exit {
+    animation: loader-fade-out 0.9s ease forwards;
+}
+
+@keyframes loader-fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+#loader .loader-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+#loader.loader-exit .loader-content {
+    animation: loader-content-out 0.4s ease forwards;
+}
+
+@keyframes loader-content-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.loader-spinner {
+    position: relative;
+    width: 130px;
+    height: 130px;
+}
+
+.loader-dot {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background-color: var(--light-orange);
+    box-shadow: var(--shadow), var(--inset-shadow);
+    outline: solid 2px #fff;
+    border-radius: var(--radius-small);
+    animation: loader-dot-pulse 1s ease calc(var(--i) * -0.125s) infinite;
+}
+
+.loader-dot[style*="--i:0"] { top: 0px; left: 54px; }
+.loader-dot[style*="--i:1"] { top: 15px; left: 93px; }
+.loader-dot[style*="--i:2"] { top: 54px; left: 108px; }
+.loader-dot[style*="--i:3"] { top: 93px; left: 93px; }
+.loader-dot[style*="--i:4"] { top: 108px; left: 54px; }
+.loader-dot[style*="--i:5"] { top: 93px; left: 15px; }
+.loader-dot[style*="--i:6"] { top: 54px; left: 0px; }
+.loader-dot[style*="--i:7"] { top: 15px; left: 15px; }
+
+@keyframes loader-dot-pulse {
+    0%, 100% { background-color: var(--light-orange); transform: scale(.8); }
+    50% { background-color: var(--orange); transform: scale(1); }
+}
+
+.loader-text {
+    font-family: 'NerkoOne', cursive;
+    font-size: 3rem;
+    color: #000;
+    text-shadow: var(--shadow);
+}

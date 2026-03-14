@@ -1,0 +1,90 @@
+{
+    "defaults": {
+        "entry": {
+            "icon": "images/template.png",
+            "image": "images/template.png",
+            "preview": "",
+            "sections": []
+        }
+    },
+    "categories": [
+        { "id": "how-to-play", "name": "How to play" },
+        { "id": "drealm", "name": "Drealm" },
+        { "id": "dranima", "name": "Dranima" },
+        { "id": "gameplay", "name": "Gameplay" },
+        { "id": "bag", "name": "Bag" }
+    ],
+    "groups": [
+        ["how-to-play", "drealm", "dranima", "gameplay"],
+        ["bag"]
+    ],
+    "entries": [
+        {
+            "id": "base",
+            "name": "Base",
+            "category": "how-to-play",
+            "icon": "images/character1.png",
+            "preview": "Your Base is your home in Dranima. It's where you manage resources, train Dranimae, and prepare for your adventures across the land.",
+            "sections": [
+                {
+                    "title": "Base Overview",
+                    "content": "Your Base serves as your personal headquarters in the world of Dranima. It's a safe space where you can organize your team, craft items, and plan your next moves. As you progress through the game, you can upgrade and expand your Base with new buildings and features."
+                },
+                {
+                    "title": "Building and Upgrading",
+                    "content": "You can construct various buildings within your Base to unlock new features:<br>- <strong>Training Grounds</strong>: Increase your Dranimae's experience gain<br>- <strong>Crafting Workshop</strong>: Create healing items and useful tools<br>- <strong>Sleep Quarters</strong>: Restore full health to your team<br>- <strong>Storage Facility</strong>: Increase your inventory capacity<br>Each building can be upgraded multiple times for better results."
+                },
+                {
+                    "title": "Daily Activities",
+                    "content": "Visit your Base regularly to take advantage of its features. You can feed your Dranimae, repair equipment, and organize your bag here. Many players like to visit their Base between adventures to ensure their team is in peak condition before heading out into the world."
+                }
+            ]
+        },
+        { "id": "the-player", "name": "The player", "category": "how-to-play" },
+        { "id": "controls-and-configuration", "name": "Controls and Configuration", "category": "how-to-play" },
+        { "id": "health", "name": "Health", "category": "how-to-play" },
+        { "id": "skills", "name": "Skills", "category": "how-to-play" },
+        { "id": "time-cycle", "name": "Time Cycle", "category": "how-to-play" },
+        { "id": "ethergy", "name": "Ethergy", "category": "how-to-play" },
+        { "id": "game-mods", "name": "Game Mods", "category": "how-to-play" },
+        { "id": "reconstruction", "name": "Reconstruction", "category": "drealm" },
+        { "id": "dueling", "name": "Dueling", "category": "drealm" },
+        { "id": "farming", "name": "Farming", "category": "drealm" },
+        { "id": "gym", "name": "Gym", "category": "drealm" },
+        { "id": "junk-shop", "name": "Junk Shop", "category": "drealm" },
+        { "id": "adventures", "name": "Adventures", "category": "drealm" },
+        { "id": "temple", "name": "Temple", "category": "drealm" },
+        { "id": "resources-list", "name": "Resources List", "category": "drealm" },
+        { "id": "completion", "name": "Completion", "category": "drealm" },
+        { "id": "battle-base", "name": "Battle Base", "category": "dranima" },
+        { "id": "dradeck", "name": "Dradeck", "category": "dranima" },
+        { "id": "drawing", "name": "Drawing", "category": "dranima" },
+        { "id": "classes", "name": "Classes", "category": "dranima" },
+        { "id": "table-of-types", "name": "Table of Types", "category": "dranima" },
+        { "id": "moves-families", "name": "Moves' Families", "category": "dranima" },
+        { "id": "abilities", "name": "Abilities", "category": "dranima" },
+        { "id": "status", "name": "Status", "category": "dranima" },
+        { "id": "weather", "name": "Weather", "category": "dranima" },
+        { "id": "characters", "name": "Characters", "category": "gameplay" },
+        { "id": "friendship", "name": "Friendship", "category": "gameplay" },
+        { "id": "trade", "name": "Trade", "category": "gameplay" },
+        { "id": "quests", "name": "Quests", "category": "gameplay" },
+        { "id": "password", "name": "Password", "category": "gameplay" },
+        { "id": "routes", "name": "Routes", "category": "gameplay" },
+        { "id": "achievements", "name": "Achievements", "category": "gameplay" },
+        { "id": "post-game", "name": "Post-Game", "category": "gameplay" },
+        { "id": "modding", "name": "Modding", "category": "gameplay" },
+        { "id": "healing", "name": "Healing", "category": "bag" },
+        { "id": "booster", "name": "Booster", "category": "bag" },
+        { "id": "ammo", "name": "Ammo", "category": "bag" },
+        { "id": "dranials", "name": "Dranials", "category": "bag" },
+        { "id": "ingredients", "name": "Ingredients", "category": "bag" },
+        { "id": "cooking", "name": "Cooking", "category": "bag" },
+        { "id": "resources", "name": "Resources", "category": "bag" },
+        { "id": "accessories", "name": "Accessories", "category": "bag" },
+        { "id": "learning-scrolls", "name": "Learning Scrolls", "category": "bag" },
+        { "id": "books", "name": "Books", "category": "bag" },
+        { "id": "duffles", "name": "Duffles", "category": "bag" },
+        { "id": "key-items", "name": "Key Items", "category": "bag" }
+    ]
+}

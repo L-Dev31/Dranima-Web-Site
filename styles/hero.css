@@ -1,0 +1,120 @@
+/* ====== HERO ====== */
+.hero {
+    min-height: 850px;
+    width: 100%;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    background: url('../images/bg.png') no-repeat center center / cover;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero.hero-credits {
+    justify-content: center;
+    padding: 20px;
+    overflow: visible;
+    flex-direction: column;
+}
+
+.hero-info {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 420px;
+    max-width: 100%;
+    color: #fff;
+    text-align: center;
+    padding-inline-start: var(--section-side-padding);
+    z-index: 2;
+}
+
+.hero-label {
+    font-size: clamp(0.75rem, 2.2vw, 1.1rem);
+    letter-spacing: 0.25em;
+    opacity: 0.75;
+    text-shadow: var(--shadow);
+}
+
+.hero-value {
+    font-family: 'NerkoOne', cursive;
+    font-size: clamp(1.75rem, 5vw, 2.4rem);
+    margin-bottom: 8px;
+    text-shadow: var(--shadow);
+}
+
+.hero-divider {
+    width: 100%;
+    max-width: 300px;
+    border: none;
+    border-top: 3px solid #ffffff;
+    margin: 15px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+}
+
+
+.title-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: clamp(200px, 55vw, 260px);
+    height: clamp(200px, 55vw, 260px);
+    transform: translateY(10%);
+    filter: drop-shadow(var(--shadow));
+}
+
+.title-box h1 {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    -webkit-text-stroke: 5px #000;
+    paint-order: stroke fill;
+    margin: 0;
+    font-size: clamp(75px, 8vw, 104px);
+}
+
+.title-star {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    animation: star-spin 30s linear infinite;
+}
+
+@keyframes star-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+    .hero {
+        min-height: 500px;
+    }
+
+    .hero-info {        
+        left: 50%;
+        transform: translate(-50%, -50%);      
+        top: 60%;  
+        width: 100%;
+        padding-inline-start: 0;
+    }
+
+    /* Font sizes are handled with clamp() for better scaling */
+
+    .hero-divider {
+        max-width: 200px;
+    }
+
+    .title-star {
+        height: 80%;
+    }
+}

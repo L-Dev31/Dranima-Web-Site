@@ -1,0 +1,260 @@
+{
+    "team": [
+        {
+            "id": "alexcbourbon",
+            "name": "Alex C. Bourbon",
+            "image": "images/image_users/credit_alex.png"
+        },
+        {
+            "id": "veldanveylan",
+            "name": "Veldan Veylan",
+            "image": "images/image_users/credit_veylan.png"
+        },
+        {
+            "id": "jollenbell",
+            "name": "Jollenbell",
+            "image": "images/image_users/credit_jollenbell.png"
+        },
+        {
+            "id": "andr",
+            "name": "ANDR",
+            "image": "images/image_users/credit_andr.png"
+        },
+        {
+            "id": "leo",
+            "name": "Léo Tosku (L-Dev)",
+            "image": "images/image_users/credit_leo.png",
+            "link": "https://l-dev31.github.io/"
+        },
+        {
+            "id": "bastionphoenix",
+            "name": "BastionPhoenix",
+            "image": "images/image_users/credit_bastion.png"
+        },
+        {
+            "id": "carnekvt",
+            "name": "CarnekVT",
+            "image": "images/image_users/credit_carnek.png"
+        },
+        {
+            "id": "galleom",
+            "name": "galleom",
+            "image": "images/image_users/credit_galleom.png",
+            "link": "https://twitter.com/galleom"
+        },
+        {
+            "id": "charliemckenzie",
+            "name": "Charlie McKenzie",
+            "image": "images/image_users/credit_solargress.png",
+            "alias": "Solargress"
+        },
+        {
+            "id": "ethanbillet",
+            "name": "Ethan Billet",
+            "image": "images/image_users/credit_ethan.png",
+            "alias": "TheSmillingNoob"
+        },
+        {
+            "id": "lxnnabxss",
+            "name": "LxnnaBxss",
+            "image": "images/image_users/credit_lxna.png"
+        },
+        {
+            "id": "pedro",
+            "name": "Pedro",
+            "image": "images/image_users/credit_pedro.png"
+        },
+        {
+            "id": "tirochocco",
+            "name": "Tirochocco",
+            "image": "images/image_users/credit_tirochocco.png"
+        },
+        {
+            "id": "faebae",
+            "name": "Faebae",
+            "image": "images/image_users/credit_faebae.png"
+        },
+        {
+            "id": "mazenta",
+            "name": "Mazenta",
+            "image": "images/image_users/credit_mazenta.png"
+        },
+        {
+            "id": "yorudwn",
+            "name": "Yorudwn",
+            "image": "images/image_users/credit_yorudwn.png"
+        }
+    ],
+    "categories": [
+        {
+            "title": "Founder",
+            "members": [
+                {
+                    "id": "alexcbourbon",
+                    "roles": [
+                        "Gameplay Designer",
+                        "Story / Side Quest Designer",
+                        "UI / UX Designer",
+                        "Level Design",
+                        "World Designer",
+                        "Dranimae Artist"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Programmers",
+            "members": [
+                {
+                    "id": "veldanveylan",
+                    "roles": [
+                        "Battle Programmer"
+                    ]
+                },
+                {
+                    "id": "jollenbell",
+                    "roles": [
+                        "Overworld Programmer"
+                    ]
+                },
+                {
+                    "id": "andr",
+                    "roles": [
+                        "Overworld Programmer"
+                    ]
+                },
+                {
+                    "id": "leo",
+                    "roles": [
+                        "Web Designer"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "World Designer",
+            "members": [
+                {
+                    "id": "bastionphoenix"
+                }
+            ]
+        },
+        {
+            "title": "2D Artists",
+            "members": [
+                {
+                    "id": "carnekvt"
+                }
+            ]
+        },
+        {
+            "title": "3D Artist",
+            "members": [
+                {
+                    "id": "veldanveylan",
+                    "roles": [
+                        "Battle Programmer"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "VFX",
+            "members": [
+                {
+                    "id": "galleom"
+                }
+            ]
+        },
+        {
+            "title": "Musicians",
+            "members": [
+                {
+                    "id": "charliemckenzie"
+                },
+                {
+                    "id": "ethanbillet"
+                },
+                {
+                    "id": "lxnnabxss"
+                }
+            ]
+        },
+        {
+            "title": "General Artists",
+            "members": [
+                {
+                    "id": "pedro"
+                },
+                {
+                    "id": "bastionphoenix"
+                }
+            ]
+        },
+        {
+            "title": "Logo Artist",
+            "members": [
+                {
+                    "id": "tirochocco"
+                }
+            ]
+        },
+        {
+            "title": "Character Artists",
+            "members": [
+                {
+                    "id": "pedro"
+                },
+                {
+                    "id": "tirochocco"
+                }
+            ]
+        },
+        {
+            "title": "Dranimae Artists",
+            "members": [
+                {
+                    "id": "pedro"
+                },
+                {
+                    "id": "bastionphoenix"
+                },
+                {
+                    "id": "faebae"
+                },
+                {
+                    "id": "mazenta"
+                },
+                {
+                    "id": "yorudwn"
+                }
+            ]
+        }
+    ],
+    "guests": [
+        "SnowyMoomin",
+        "Ghostanimation",
+        "Babyrfrog",
+        "BatPenguin",
+        "Boogiewoogie",
+        "ComicKidFrog",
+        "+B.Emotions",
+        "St.Elmo",
+        "CosComics_comic",
+        "Fight_0",
+        "Giovanni Jones",
+        "Ghostyboo",
+        "MadZoom!",
+        "HamsterGaming",
+        "Tanaboo_art",
+        "Tunderdonkey.art",
+        "Rabbit Raccoon",
+        "Pigkin_Shoy",
+        "Hyfen.Trainer",
+        "Les Artists",
+        "Jims Arctis",
+        "Prince_Artsy_",
+        "Lupas.23",
+        "Simone"
+    ]
+}

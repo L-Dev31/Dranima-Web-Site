@@ -1,0 +1,38 @@
+[
+    {
+        "type": "announcement",
+        "important": true,
+        "title": "Website Launched !",
+        "image": "images/news/announcement/body_image_websiteopening.png",
+        "description": "The website was designed and developed by Léo Tosku (L-DEV). Stay tuned for regular updates.",
+        "content": "<p>Welcome to the official Dranima website — a place to follow development progress, view screenshots, and read the latest news.</p>",
+        "date": "2026-03-14"
+    },
+    {
+        "type": "update",
+        "important": false,
+        "title": "Prototype - January 2025",
+        "image": "images/news/announcement/body_image_prototype2025january.png",
+        "description": "The first prototype: battle foundations, UI, and Dranimae data.",
+        "content": "<ul>\n  <li>Started battle programming.</li>\n  <li>Created a UI for the battle system.</li>\n  <li>Started creating and inserting Dranimae, their stats and moves.</li>\n</ul>\n<div class=\"news-update-images\">\n  <img src=\"images/news/updates/january_2026_0.gif\" alt=\"Battle setup screen (Jan 2026)\" />\n</div>",
+        "date": "2025-01-14"
+    },
+    {
+        "type": "update",
+        "important": false,
+        "title": "Prototype - July 2025",
+        "image": "images/news/announcement/body_image_prototype2025july.png",
+        "description": "Battle loop, Dranimae roster, and combat systems take shape.",
+        "content": "<ul>\n  <li>Created the turn-by-turn system.</li>\n  <li>The turn order depends on the speed of Dranimae and their attack priority.</li>\n  <li>Added the 10 prototype Dranimae.</li>\n  <li>Added primitive icons for Dranimae faces.</li>\n  <li>Added moves, basic damage, stats, etc.</li>\n  <li>Added physical and magic moves.</li>\n  <li>Added the first area (might still receive changes).</li>\n  <li>Added sprites of Dranimae and move icons.</li>\n  <li>Added text at left for each action of your Dranimae.</li>\n  <li>Added a confirmation button when your Dranimae are ready to execute orders.</li>\n  <li>Added health bars that empty when taking damage.</li>\n  <li>Added a primitive music system.</li>\n  <li>Added a primitive camera system.</li>\n  <li>Sprites of trees randomly spawn on the battlefield in a round.</li>\n  <li>Can switch Dranimae at any moment or when they faint.</li>\n  <li>Can run away (depending on the speed of each team, your chances change).</li>\n</ul>\n<div class=\"news-update-images\">\n  <img src=\"images/news/updates/july_2025.gif\" alt=\"Battle prototype demo (July 2025)\" />\n</div>",
+        "date": "2025-07-01"
+    },
+    {
+        "type": "update",
+        "important": false,
+        "title": "Prototype - January 2026",
+        "image": "images/news/announcement/body_image_prototype2026january.png",
+        "description": "Big quality-of-life improvements plus debug tools and VFX polish.",
+        "content": "<ul>\n  <li>Slightly improved graphics and UI.</li>\n  <li>Created a debug menu allowing the creation of any allied team at any level.</li>\n</ul>\n<div class=\"news-update-images\">\n  <img src=\"images/news/updates/january_2026_0.gif\" alt=\"Debug menu in action (Jan 2026)\" />\n</div>\n<ul>\n  <li>Added a 1v2 system that is not working properly yet.</li>\n  <li>Added stats variations for attack, magic attack, defense, magic defense, speed, luck and aiming.</li>\n  <li>Added more songs.</li>\n  <li>Added primitive icons for moves.</li>\n  <li>Added primitive status effects.</li>\n  <li>Added primitive SFX.</li>\n  <li>Added primitive VFX for moves.</li>\n</ul>\n<div class=\"news-update-images\">\n  <img src=\"images/news/updates/january_2026_1.gif\" alt=\"Basic attack turn sequence (Jan 2026)\" />\n</div>\n<ul>\n  <li>Added primitive victory screen and pass to the debug menu again.</li>\n  <li>Added TP (Talent Points) and SP (Skill Points) for Dranimae stats variation.</li>\n  <li>Added a better camera system, now being able to rotate and reset position.</li>\n  <li>Running away also brings back to the debug menu.</li>\n  <li>Fixed issues with the UI not working correctly when switching Dranimae.</li>\n  <li>Fixed many (12) issues making the game crash.</li>\n  <li>Fixed issues causing fainted Dranimae to keep battling.</li>\n  <li>Fixed issues causing the game to softlock if switching between menus too fast.</li>\n  <li>Optimized spriting animation to take less place on the player's disk.</li>\n  <li>Optimized VFX animation to take less place on the player's disk.</li>\n</ul>\n<div class=\"news-update-images\">\n  <img src=\"images/news/updates/january_2026_2.gif\" alt=\"Victory screen (Jan 2026)\" />\n</div>",
+        "date": "2026-01-15"
+    }
+]
