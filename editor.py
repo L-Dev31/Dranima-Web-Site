@@ -29,7 +29,10 @@ class UltimateEditor(tk.Tk):
         self.geometry("1100x700")
         self.data_store = {}
         self.current_path = None
-        
+        self.current_editor = None
+        self.pending_updates = []
+        self._batch_mode = False
+
         self.setup_styles()
         self.setup_ui()
         self.load_all_files()
@@ -70,7 +73,8 @@ class UltimateEditor(tk.Tk):
 
         bottom = ttk.Frame(self)
         bottom.pack(fill=tk.X, pady=5)
-        ttk.Button(bottom, text="💾 SAVE ALL CHANGES", command=self.save_all).pack(side=tk.RIGHT, padx=10)
+        ttk.Button(bottom, text="💾 SAVE FILES", command=self.save_all).pack(side=tk.RIGHT, padx=10)
+        ttk.Button(bottom, text="🔄 UPDATE ALL CHANGES", command=self.update_all_changes).pack(side=tk.RIGHT, padx=10)
 
     def load_all_files(self):
         for fname in FILES:
@@ -155,6 +159,8 @@ class UltimateEditor(tk.Tk):
         path = []
         curr = node_id
         while curr:
+            if not self.tree.exists(curr):
+                raise KeyError(f"Tree node {curr} does not exist")
             path.append(self.tree.item(curr))
             curr = self.tree.parent(curr)
         path.reverse()
@@ -202,6 +208,9 @@ class UltimateEditor(tk.Tk):
         
         node_id = selected[0]
 
+        if not getattr(self, "_batch_mode", False):
+            self.pending_updates.clear()
+
         parent_id = self.tree.parent(node_id)
         can_delete = False
         if parent_id:
@@ -229,6 +238,7 @@ class UltimateEditor(tk.Tk):
             self.render_dict_editor(target, node_id)
         else:
             ttk.Label(self.prop_container, text=f"Container: {type(target).__name__}\nUse '{self.dup_button['text']}' to duplicate.").pack()
+            self.current_editor = None
 
     def render_scalar_editor(self, value, node_id):
         ttk.Label(self.prop_container, text="Value:").pack(anchor=tk.W)
@@ -238,11 +248,20 @@ class UltimateEditor(tk.Tk):
             txt.insert("1.0", value)
             txt.pack(fill=tk.BOTH, expand=True)
             ttk.Button(self.prop_container, text="Update Text", command=lambda: self.update_val(node_id, txt.get("1.0", tk.END).strip())).pack(pady=5)
+            updater = lambda: self.update_val(node_id, txt.get("1.0", tk.END).strip())
         else:
             var = tk.StringVar(value=str(value))
             ent = ttk.Entry(self.prop_container, textvariable=var, width=60)
             ent.pack(fill=tk.X, pady=5)
             ttk.Button(self.prop_container, text="Update Value", command=lambda: self.update_val(node_id, var.get())).pack(pady=5)
+            updater = lambda: self.update_val(node_id, var.get())
+
+        self.current_editor = {
+            "type": "scalar",
+            "node_id": node_id,
+            "updater": updater
+        }
+        self.pending_updates.append(updater)
 
         if isinstance(value, str) and _looks_like_image(value):
             image_path = value
@@ -284,51 +303,12 @@ class UltimateEditor(tk.Tk):
         return None
 
     def render_dict_editor(self, target, node_id):
-        ttk.Label(self.prop_container, text="Keys in this object:").pack(anchor=tk.W)
-
-        path = self.get_data_at_node(node_id)[2]
-        fields = []
-
-        def make_string_field(f, key, value):
-            var = tk.StringVar(value=str(value))
-            ttk.Entry(f, textvariable=var).pack(side=tk.LEFT, fill=tk.X, expand=True)
-            return var
-
-        def make_bool_field(f, key, value):
-            var = tk.BooleanVar(value=bool(value))
-            cb = ttk.Checkbutton(f, variable=var)
-            cb.pack(side=tk.LEFT, fill=tk.X)
-            return var
-
-        def make_dropdown_field(f, key, value, options):
-            var = tk.StringVar(value=str(value))
-            combo = ttk.Combobox(f, values=options, textvariable=var, state="readonly")
-            combo.pack(side=tk.LEFT, fill=tk.X, expand=True)
-            return var
-
-        for k, v in target.items():
-            if not isinstance(v, (dict, list)):
-                f = ttk.Frame(self.prop_container)
-                f.pack(fill=tk.X)
-                ttk.Label(f, text=f"{k}:", width=15).pack(side=tk.LEFT)
-
-                options = self._get_dropdown_options(path, k)
-                if isinstance(v, bool):
-                    var = make_bool_field(f, k, v)
-                elif options is not None:
-                    var = make_dropdown_field(f, k, v, options)
-                else:
-                    var = make_string_field(f, k, v)
-
-                fields.append((k, var))
-
-        def update_all():
-            for key, var in fields:
-                self.update_dict_key(node_id, key, var.get())
-            messagebox.showinfo("Success", "All values updated!")
-
-        if fields:
-            ttk.Button(self.prop_container, text="Update All", command=update_all).pack(pady=5)
+        ttk.Label(self.prop_container, text="Preview:").pack(anchor=tk.W)
+        txt = tk.Text(self.prop_container, height=20, width=80)
+        txt.insert("1.0", json.dumps(target, indent=2, ensure_ascii=False))
+        txt.configure(state="disabled")
+        txt.pack(fill=tk.BOTH, expand=True)
+        self.current_editor = None
 
     def update_val(self, node_id, new_val):
         parent_node = self.tree.parent(node_id)
@@ -344,10 +324,27 @@ class UltimateEditor(tk.Tk):
         if isinstance(target[key], bool): target[key] = new_val.lower() in ('true', 'yes', '1')
         elif isinstance(target[key], int): target[key] = int(new_val)
         else: target[key] = new_val
-        
+
+        if not self._batch_mode:
+            self.refresh_tree()
+            self.on_tree_select(None)
+            messagebox.showinfo("Success", "Value updated in memory!")
+
+    def update_all_changes(self):
+        if not self.pending_updates:
+            messagebox.showinfo("Nothing to update", "No pending changes to apply.")
+            return
+        self._batch_mode = True
+        for updater in list(self.pending_updates):
+            try:
+                updater()
+            except Exception:
+                pass
+        self._batch_mode = False
+        self.pending_updates.clear()
         self.refresh_tree()
         self.on_tree_select(None)
-        messagebox.showinfo("Success", "Value updated in memory!")
+        messagebox.showinfo("Success", "All pending changes have been applied.")
 
     def update_dict_key(self, node_id, key, new_val):
         target, _, _ = self.get_data_at_node(node_id)
