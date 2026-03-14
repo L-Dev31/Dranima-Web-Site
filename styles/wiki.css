@@ -100,11 +100,11 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    text-decoration: underline;
     color: #0055bb!important;
     font-size: clamp(14px, 1.5vw, 18px);
     padding: 2px 0;
     transition: color 0.2s;
+    text-decoration: none;
 }
 
 .wiki-entry-link span {
@@ -113,6 +113,7 @@
 
 .wiki-entry-link:hover {
     color: #003d8a!important;
+    text-decoration: underline;
 }
 
 .wiki-entry-icon {
@@ -235,7 +236,7 @@
 }
 
 .wiki-page-toc {
-    background: linear-gradient(to bottom, var(--light-orange), var(--bright-orange));
+    background-color: var(--light-orange);
     border: 3px solid var(--bright-orange);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -263,14 +264,11 @@
 }
 
 .wiki-page-toc li::before {
-    content: "- ";
-    position: absolute;
-    left: 0;
-    color: var(--orange);
+    visibility: hidden;
 }
 
 .wiki-page-toc a {
-    color: var(--orange);
+    color: #0055bb;
     text-decoration: none;
     font-size: clamp(14px, 1.5vw, 18px);
     transition: text-decoration 0.2s;
@@ -278,6 +276,7 @@
 
 .wiki-page-toc a:hover {
     text-decoration: underline;
+    color: #003d8a;
 }
 
 .wiki-page-section {
