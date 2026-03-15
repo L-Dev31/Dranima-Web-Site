@@ -54,232 +54,370 @@
         {
             "id": "the-player",
             "name": "The player",
-            "category": "how-to-play"
+            "category": "how-to-play",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "controls-and-configuration",
             "name": "Controls and Configuration",
-            "category": "how-to-play"
+            "category": "how-to-play",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "health",
             "name": "Health",
-            "category": "how-to-play"
+            "category": "how-to-play",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "skills",
             "name": "Skills",
-            "category": "how-to-play"
+            "category": "how-to-play",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "time-cycle",
             "name": "Time Cycle",
-            "category": "how-to-play"
+            "category": "how-to-play",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "ethergy",
             "name": "Ethergy",
-            "category": "how-to-play"
+            "category": "how-to-play",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "game-mods",
             "name": "Game Mods",
-            "category": "how-to-play"
+            "category": "how-to-play",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "reconstruction",
             "name": "Reconstruction",
-            "category": "drealm"
+            "category": "drealm",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "dueling",
             "name": "Dueling",
-            "category": "drealm"
+            "category": "drealm",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "farming",
             "name": "Farming",
-            "category": "drealm"
+            "category": "drealm",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "gym",
             "name": "Gym",
-            "category": "drealm"
+            "category": "drealm",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "junk-shop",
             "name": "Junk Shop",
-            "category": "drealm"
+            "category": "drealm",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "adventures",
             "name": "Adventures",
-            "category": "drealm"
+            "category": "drealm",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "temple",
             "name": "Temple",
-            "category": "drealm"
+            "category": "drealm",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "resources-list",
             "name": "Resources List",
-            "category": "drealm"
+            "category": "drealm",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "completion",
             "name": "Completion",
-            "category": "drealm"
+            "category": "drealm",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "battle-base",
             "name": "Battle Base",
-            "category": "dranima"
+            "category": "dranima",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "dradeck",
             "name": "Dradeck",
-            "category": "dranima"
+            "category": "dranima",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "drawing",
             "name": "Drawing",
-            "category": "dranima"
+            "category": "dranima",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "classes",
             "name": "Classes",
-            "category": "dranima"
+            "category": "dranima",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "table-of-types",
             "name": "Table of Types",
-            "category": "dranima"
+            "category": "dranima",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "moves-families",
             "name": "Moves' Families",
-            "category": "dranima"
+            "category": "dranima",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "abilities",
             "name": "Abilities",
-            "category": "dranima"
+            "category": "dranima",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "status",
             "name": "Status",
-            "category": "dranima"
+            "category": "dranima",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "weather",
             "name": "Weather",
-            "category": "dranima"
+            "category": "dranima",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "characters",
             "name": "Characters",
-            "category": "gameplay"
+            "category": "gameplay",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "friendship",
             "name": "Friendship",
-            "category": "gameplay"
+            "category": "gameplay",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "trade",
             "name": "Trade",
-            "category": "gameplay"
+            "category": "gameplay",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "quests",
             "name": "Quests",
-            "category": "gameplay"
+            "category": "gameplay",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "password",
             "name": "Password",
-            "category": "gameplay"
+            "category": "gameplay",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "routes",
             "name": "Routes",
-            "category": "gameplay"
+            "category": "gameplay",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "achievements",
             "name": "Achievements",
-            "category": "gameplay"
+            "category": "gameplay",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "post-game",
             "name": "Post-Game",
-            "category": "gameplay"
+            "category": "gameplay",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "modding",
             "name": "Modding",
-            "category": "gameplay"
+            "category": "gameplay",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "healing",
             "name": "Healing",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "booster",
             "name": "Booster",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "ammo",
             "name": "Ammo",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "dranials",
             "name": "Dranials",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "ingredients",
             "name": "Ingredients",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "cooking",
             "name": "Cooking",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "resources",
             "name": "Resources",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "accessories",
             "name": "Accessories",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "learning-scrolls",
             "name": "Learning Scrolls",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "books",
             "name": "Books",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "duffles",
             "name": "Duffles",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         },
         {
             "id": "key-items",
             "name": "Key Items",
-            "category": "bag"
+            "category": "bag",
+            "icon": null,
+            "preview": null,
+            "sections": null
         }
     ]
 }

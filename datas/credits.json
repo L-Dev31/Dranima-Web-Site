@@ -3,86 +3,114 @@
         {
             "id": "alexcbourbon",
             "name": "Alex C. Bourbon",
-            "image": "images/image_users/credit_alex.png"
+            "image": "images/image_users/credit_alex.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "veldanveylan",
             "name": "Veldan Veylan",
-            "image": "images/image_users/credit_veylan.png"
+            "image": "images/image_users/credit_veylan.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "jollenbell",
             "name": "Jollenbell",
-            "image": "images/image_users/credit_jollenbell.png"
+            "image": "images/image_users/credit_jollenbell.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "andr",
             "name": "ANDR",
-            "image": "images/image_users/credit_andr.png"
+            "image": "images/image_users/credit_andr.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "leo",
             "name": "Léo Tosku (L-Dev)",
             "image": "images/image_users/credit_leo.png",
-            "link": "https://l-dev31.github.io/"
+            "link": "https://l-dev31.github.io/",
+            "alias": null
         },
         {
             "id": "bastionphoenix",
             "name": "BastionPhoenix",
-            "image": "images/image_users/credit_bastion.png"
+            "image": "images/image_users/credit_bastion.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "carnekvt",
             "name": "CarnekVT",
-            "image": "images/image_users/credit_carnek.png"
+            "image": "images/image_users/credit_carnek.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "galleom",
             "name": "galleom",
             "image": "images/image_users/credit_galleom.png",
-            "link": "https://twitter.com/galleom"
+            "link": "https://twitter.com/galleom",
+            "alias": null
         },
         {
             "id": "charliemckenzie",
             "name": "Charlie McKenzie",
             "image": "images/image_users/credit_solargress.png",
+            "link": null,
             "alias": "Solargress"
         },
         {
             "id": "ethanbillet",
             "name": "Ethan Billet",
             "image": "images/image_users/credit_ethan.png",
+            "link": null,
             "alias": "TheSmillingNoob"
         },
         {
             "id": "lxnnabxss",
             "name": "LxnnaBxss",
-            "image": "images/image_users/credit_lxna.png"
+            "image": "images/image_users/credit_lxna.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "pedro",
             "name": "Pedro",
-            "image": "images/image_users/credit_pedro.png"
+            "image": "images/image_users/credit_pedro.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "tirochocco",
             "name": "Tirochocco",
-            "image": "images/image_users/credit_tirochocco.png"
+            "image": "images/image_users/credit_tirochocco.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "faebae",
             "name": "Faebae",
-            "image": "images/image_users/credit_faebae.png"
+            "image": "images/image_users/credit_faebae.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "mazenta",
             "name": "Mazenta",
-            "image": "images/image_users/credit_mazenta.png"
+            "image": "images/image_users/credit_mazenta.png",
+            "link": null,
+            "alias": null
         },
         {
             "id": "yorudwn",
             "name": "Yorudwn",
-            "image": "images/image_users/credit_yorudwn.png"
+            "image": "images/image_users/credit_yorudwn.png",
+            "link": null,
+            "alias": null
         }
     ],
     "categories": [
