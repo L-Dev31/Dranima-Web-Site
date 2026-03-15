@@ -120,7 +120,6 @@ body::before {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    filter: blur(5px);
     z-index: -1;
 }
 
