@@ -103,6 +103,8 @@
 .wiki-table-header {
     border-radius: var(--radius-small) var(--radius-small) 0 0 !important;
     box-shadow: none !important;
+    background: linear-gradient(180deg, #555, #333) !important;
+    border: 3px solid #bbb !important;
 }
 
 .wiki-group-multi .wiki-category-header {
