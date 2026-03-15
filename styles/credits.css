@@ -57,16 +57,11 @@
 .credit-name {
     font-family: 'NerkoOne', sans-serif;
     font-size: clamp(20px, 1.5vw, 26px);
-    color: inherit;
+    color: #000;
     text-align: center;
     -webkit-text-stroke: 3px #000;
     paint-order: stroke fill;
     text-shadow: var(--shadow);
-    text-decoration: none;
-}
-
-.credit-card:hover .credit-name {
-    color: #ff9800; /* Example: orange accent, adjust as needed */
     text-decoration: none;
 }
 
@@ -86,4 +81,13 @@
     color: #fff;
     text-shadow: var(--shadow);
     text-align: left;
+}
+
+.guest-item a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.guest-item a:hover {
+    color: var(--light-orange);
 }

@@ -1,7 +1,7 @@
 {
     "team": [
         {
-            "id": "alexcbourbons",
+            "id": "alexcbourbon",
             "name": "Alex C. Bourbon",
             "image": "images/image_users/credit_alex.png"
         },
@@ -235,40 +235,145 @@
         }
     ],
     "guests": [
-        {"name": "Devesa_Illustration", "link": "https://example.com"},
-        {"name": "Allef Alexandre", "link": "none"},
-        {"name": "Saltyringpops", "link": "none"},
-        {"name": "DualDragons", "link": "none"},
-        {"name": "Crisdotpng", "link": "none"},
-        {"name": "Ed Ferreira", "link": "none"},
-        {"name": "Le_fimbo", "link": "none"},
-        {"name": "Pirestro_mons", "link": "none"},
-        {"name": "Kipio_u", "link": "none"},
-        {"name": "Giovanni Flores", "link": "none"},
-        {"name": "Mimilytical", "link": "none"},
-        {"name": "Beelzeart", "link": "none"},
-        {"name": "ItoSilva", "link": "none"},
-        {"name": "MasutaKanary", "link": "none"},
-        {"name": "Okoma", "link": "none"},
-        {"name": "Thesterminator_art", "link": "none"},
-        {"name": "Karel Barreau", "link": "none"},
-        {"name": "Hydra_Trainer", "link": "none"},
-        {"name": "An_artist_astray", "link": "none"},
-        {"name": "Mathdex12", "link": "none"},
-        {"name": "Luan Alves Pires", "link": "none"},
-        {"name": "luis.brain", "link": "none"},
-        {"name": "theartistfromspace", "link": "none"},
-        {"name": "Zoro_ofc", "link": "none"},
-        {"name": "Zitto_dex", "link": "none"},
-        {"name": "Maumesart", "link": "none"},
-        {"name": "lepetit.arts", "link": "none"},
-        {"name": "Formigaartz", "link": "none"},
-        {"name": "KlareLovesHam", "link": "none"},
-        {"name": "Pigeon_Chop", "link": "none"},
-        {"name": "Doktop_TaXa", "link": "none"},
-        {"name": "_prime_entity_", "link": "none"},
-        {"name": "rjamez.the.v", "link": "none"},
-        {"name": "sparts_23", "link": "none"},
-        {"name": "hikoku", "link": "none"}
+        {
+            "name": "Devesa_Illustration",
+            "link": "https://example.com"
+        },
+        {
+            "name": "Allef Alexandre",
+            "link": "none"
+        },
+        {
+            "name": "Saltyringpops",
+            "link": "none"
+        },
+        {
+            "name": "DualDragons",
+            "link": "none"
+        },
+        {
+            "name": "Crisdotpng",
+            "link": "none"
+        },
+        {
+            "name": "Ed Ferreira",
+            "link": "none"
+        },
+        {
+            "name": "Le_fimbo",
+            "link": "none"
+        },
+        {
+            "name": "Pirestro_mons",
+            "link": "none"
+        },
+        {
+            "name": "Kipio_u",
+            "link": "none"
+        },
+        {
+            "name": "Giovanni Flores",
+            "link": "none"
+        },
+        {
+            "name": "Mimilytical",
+            "link": "none"
+        },
+        {
+            "name": "Beelzeart",
+            "link": "none"
+        },
+        {
+            "name": "ItoSilva",
+            "link": "none"
+        },
+        {
+            "name": "MasutaKanary",
+            "link": "none"
+        },
+        {
+            "name": "Okoma",
+            "link": "none"
+        },
+        {
+            "name": "Thesterminator_art",
+            "link": "none"
+        },
+        {
+            "name": "Karel Barreau",
+            "link": "none"
+        },
+        {
+            "name": "Hydra_Trainer",
+            "link": "none"
+        },
+        {
+            "name": "An_artist_astray",
+            "link": "none"
+        },
+        {
+            "name": "Mathdex12",
+            "link": "none"
+        },
+        {
+            "name": "Luan Alves Pires",
+            "link": "none"
+        },
+        {
+            "name": "luis.brain",
+            "link": "none"
+        },
+        {
+            "name": "theartistfromspace",
+            "link": "none"
+        },
+        {
+            "name": "Zoro_ofc",
+            "link": "none"
+        },
+        {
+            "name": "Zitto_dex",
+            "link": "none"
+        },
+        {
+            "name": "Maumesart",
+            "link": "none"
+        },
+        {
+            "name": "lepetit.arts",
+            "link": "none"
+        },
+        {
+            "name": "Formigaartz",
+            "link": "none"
+        },
+        {
+            "name": "KlareLovesHam",
+            "link": "none"
+        },
+        {
+            "name": "Pigeon_Chop",
+            "link": "none"
+        },
+        {
+            "name": "Doktop_TaXa",
+            "link": "none"
+        },
+        {
+            "name": "_prime_entity_",
+            "link": "none"
+        },
+        {
+            "name": "rjamez.the.v",
+            "link": "none"
+        },
+        {
+            "name": "sparts_23",
+            "link": "none"
+        },
+        {
+            "name": "hikoku",
+            "link": "none"
+        }
     ]
 }
