@@ -18,7 +18,8 @@
         {
             "id": "andr",
             "name": "ANDR",
-            "image": "images/image_users/credit_andr.png"
+            "image": "images/image_users/credit_andr.png",
+            "link": "https://andrewharn.carrd.co/"
         },
         {
             "id": "leo",
@@ -29,30 +30,34 @@
         {
             "id": "bastionphoenix",
             "name": "BastionPhoenix",
-            "image": "images/image_users/credit_bastion.png"
+            "image": "images/image_users/credit_bastion.png",
+            "link": "https://x.com/BastionPhoenix"
         },
         {
             "id": "carnekvt",
             "name": "CarnekVT",
-            "image": "images/image_users/credit_carnek.png"
+            "image": "images/image_users/credit_carnek.png",
+            "link": "https://x.com/CarnekVT"
         },
         {
             "id": "galleom",
             "name": "galleom",
             "image": "images/image_users/credit_galleom.png",
-            "link": "https://twitter.com/galleom"
+            "link": "https://www.fiverr.com/galleom"
         },
         {
             "id": "charliemckenzie",
             "name": "Charlie McKenzie",
             "image": "images/image_users/credit_solargress.png",
-            "alias": "Solargress"
+            "alias": "Solargress",
+            "link": "https://www.charliemckenziemusic.com/"
         },
         {
             "id": "ethanbillet",
             "name": "Ethan Billet",
             "image": "images/image_users/credit_ethan.png",
-            "alias": "TheSmillingNoob"
+            "alias": "TheSmillingNoob",
+            "link": "https://www.youtube.com/@TheSmilingNoob"
         },
         {
             "id": "lxnnabxss",
@@ -62,27 +67,33 @@
         {
             "id": "pedro",
             "name": "Pedro",
-            "image": "images/image_users/credit_pedro.png"
+            "image": "images/image_users/credit_pedro.png",
+            "link": "https://www.instagram.com/pedrofakemons"
         },
         {
             "id": "tirochocco",
             "name": "Tirochocco",
-            "image": "images/image_users/credit_tirochocco.png"
+            "image": "images/image_users/credit_tirochocco.png",
+            "link": "https://www.instagram.com/tirochocco"
         },
         {
             "id": "faebae",
             "name": "Faebae",
-            "image": "images/image_users/credit_faebae.png"
+            "image": "images/image_users/credit_faebae.png",
+            "link": "https://www.instagram.com/faekmon"
         },
         {
             "id": "mazenta",
             "name": "Mazenta",
-            "image": "images/image_users/credit_mazenta.png"
+            "image": "images/image_users/credit_mazenta.png",
+            "link": "https://www.instagram.com/mazenta_inku"
+
         },
         {
             "id": "yorudwn",
             "name": "Yorudwn",
-            "image": "images/image_users/credit_yorudwn.png"
+            "image": "images/image_users/credit_yorudwn.png",
+            "link": "https://www.instagram.com/yorudwn"
         }
     ],
     "categories": [
