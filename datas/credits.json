@@ -108,6 +108,8 @@
                 {
                     "id": "Alex C. Bourbon",
                     "roles": [
+                        "2D Battle Spriter",
+                        "2D Overworld Spriter",
                         "Gameplay Designer",
                         "Story / Side Quest Designer",
                         "UI / UX Designer",
@@ -127,7 +129,8 @@
                     "id": "veldanveylan",
                     "roles": [
                         "Battle Programmer",
-                        "English Translator"
+                        "English Translator",
+                        "3D Artist"
                     ]
                 },
                 {
@@ -164,17 +167,6 @@
             "members": [
                 {
                     "id": "carnekvt"
-                }
-            ]
-        },
-        {
-            "title": "3D Artist",
-            "members": [
-                {
-                    "id": "veldanveylan",
-                    "roles": [
-                        "Battle Programmer"
-                    ]
                 }
             ]
         },
@@ -231,6 +223,14 @@
                         "Character Artist",
                         "Dranimae Artist",
                         "Logo Artist"
+                    ]
+                },
+                {
+                    "id": "carnekvt",
+                    "roles": [
+                        "2D Battle Spriter",
+                        "Dranimae Artist"
+                        
                     ]
                 }
             ]
