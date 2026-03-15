@@ -50,9 +50,24 @@ async function initCredits() {
     }
 
     if (guestContainer) {
-        guests.forEach(name => {
+        guests.forEach(guest => {
+            const name = typeof guest === 'string' ? guest : guest.name || '';
+            const link = typeof guest === 'object' && guest.link ? guest.link : null;
+
             const span = document.createElement('span');
-            span.textContent = `- ${name}`;
+            span.className = 'guest-item';
+
+            if (link && link !== 'none') {
+                const a = document.createElement('a');
+                a.href = link;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.textContent = `- ${name}`;
+                span.appendChild(a);
+            } else {
+                span.textContent = `- ${name}`;
+            }
+
             guestContainer.appendChild(span);
         });
     }

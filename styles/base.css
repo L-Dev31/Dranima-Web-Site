@@ -54,12 +54,10 @@ body {
     z-index: 0;
 }
 
-/* Titles should keep the display font */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'NerkoOne', sans-serif;
 }
 
-/* Utility for screen-reader-only text (keeps DOM headings for SEO/accessibility) */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -73,7 +71,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 strong {
-    color: var(--light-orange);
+    background-color: var(--orange);
+    padding: 0 5px;
+    border-radius: var(--radius-small);
+    outline: 2px solid var(--light-orange);
+    margin: 0 5px;
+    box-shadow: var(--shadow);
+    color: #fff;
+    text-shadow: none!important;
+
 }
 
 em {
@@ -156,6 +162,10 @@ h2 {
     text-shadow: none;
     -webkit-text-stroke: 0;
     text-stroke: 0;
+}
+
+.bg-pattern strong {
+    box-shadow: none!important;
 }
 
 /* Shared style for “info” sections (wiki invite/disclaimer, project closing, etc.) */
