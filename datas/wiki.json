@@ -29,6 +29,7 @@
             "name": "Base",
             "category": "how-to-play",
             "icon": "images/wiki/base/base_box.png",
+            "image": null,
             "intro": "Dranima is a JRPG inspired by classic games, reimagining their core mechanics with new ideas and systems. Players explore the world of Gonwind, collecting creatures known as Dranima (plural: Dranimae). These creatures can be trained, evolved, and strengthened by unlocking new attacks and abilities as you progress through the adventure.",
             "sections": [
                 {
@@ -57,6 +58,7 @@
             "name": "Base",
             "category": "how-to-play",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -66,6 +68,7 @@
             "name": "The Player",
             "category": "how-to-play",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -75,6 +78,7 @@
             "name": "Controls and Configuration",
             "category": "how-to-play",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -84,6 +88,7 @@
             "name": "Controls and Configuration",
             "category": "how-to-play",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -93,6 +98,7 @@
             "name": "Controls and Configuration",
             "category": "how-to-play",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -101,6 +107,7 @@
             "name": "Health",
             "category": "how-to-play",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -109,6 +116,7 @@
             "name": "Skills",
             "category": "how-to-play",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -117,6 +125,7 @@
             "name": "Time Cycle",
             "category": "how-to-play",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -125,6 +134,7 @@
             "name": "Ethergy",
             "category": "how-to-play",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -133,6 +143,7 @@
             "name": "Game Mods",
             "category": "how-to-play",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -141,6 +152,7 @@
             "name": "Reconstruction",
             "category": "drealm",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -149,6 +161,7 @@
             "name": "Dueling",
             "category": "drealm",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -157,6 +170,7 @@
             "name": "Farming",
             "category": "drealm",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -165,6 +179,7 @@
             "name": "Gym",
             "category": "drealm",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -173,6 +188,7 @@
             "name": "Junk Shop",
             "category": "drealm",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -181,6 +197,7 @@
             "name": "Adventures",
             "category": "drealm",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -189,6 +206,7 @@
             "name": "Temple",
             "category": "drealm",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -197,6 +215,7 @@
             "name": "Resources List",
             "category": "drealm",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -205,6 +224,7 @@
             "name": "Completion",
             "category": "drealm",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -213,6 +233,7 @@
             "name": "Battle Base",
             "category": "dranima",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -221,6 +242,7 @@
             "name": "Dradeck",
             "category": "dranima",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -229,6 +251,7 @@
             "name": "Drawing",
             "category": "dranima",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -237,6 +260,7 @@
             "name": "Classes",
             "category": "dranima",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -245,6 +269,7 @@
             "name": "Table of Types",
             "category": "dranima",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -253,6 +278,7 @@
             "name": "Moves' Families",
             "category": "dranima",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -261,6 +287,7 @@
             "name": "Abilities",
             "category": "dranima",
             "icon": null,
+            "image": null,
             "intro": null,
             "sections": null
         },
@@ -333,6 +360,7 @@
             "name": "Achievements",
             "category": "gameplay",
             "icon": null,
+            "image": null,
             "preview": null,
             "sections": null
         },

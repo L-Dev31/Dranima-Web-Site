@@ -12,11 +12,11 @@
     text-decoration: none !important;
 }
 .wiki-ref-icon {
-    width: 20px;
-    height: 20px;
+    height: 1.5em;
     object-fit: contain;
-    margin-right: 4px;
+    margin: 0 4px;
     vertical-align: text-bottom;
+    line-height: 1;
 }
 /* ====== WIKI ====== */
 .wiki-search-box {
