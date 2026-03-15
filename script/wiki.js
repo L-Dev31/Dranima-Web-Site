@@ -1,23 +1,24 @@
+function renderWikiReferences(html, entries) {
+    return html.replace(/@([\w-]+)/g, (match, refId) => {
+        const entry = entries.find(e => e.id === refId);
+        if (!entry) return match;
+            const icon = entry.icon;
+        const name = entry.name || refId;
+        return `<a class="wiki-ref-link" href="wiki-page.html?id=${entry.id}"><img class="wiki-ref-icon" src="${icon}" alt="">${name}</a>`;
+    });
+}
 function normalizeWikiData(data) {
-    const defaultEntry = {
-        icon: 'images/template.png',
-        image: 'images/template.png',
-        preview: '',
-        sections: [],
-        ...(data.defaults?.entry || {})
-    };
-
     return {
         ...data,
         categories: data.categories || [],
-        // Keep group logic working even if groups is absent or empty
         groups: (Array.isArray(data.groups) && data.groups.length) ? data.groups : null,
         entries: (data.entries || []).map(entry => ({
-            ...defaultEntry,
             ...entry,
+            id: entry.id,
+            intro: entry.intro || entry.preview || '',
             sections: Array.isArray(entry.sections)
                 ? entry.sections
-                : [...defaultEntry.sections]
+                : []
         }))
     };
 }
@@ -132,6 +133,7 @@ async function initWikiPage() {
 
     document.title = `${entry.name} - Wiki - Dranima`;
 
+
     const tocHTML = entry.sections.map((section, index) => 
         `<li><a href="#section-${index}">${section.title}</a></li>`
     ).join('');
@@ -139,7 +141,7 @@ async function initWikiPage() {
     const sectionsHTML = entry.sections.map((section, index) => `
         <div class="wiki-page-section" id="section-${index}">
             <h2>${section.title}</h2>
-            <div class="wiki-page-section-content">${section.content}</div>
+            <div class="wiki-page-section-content">${renderWikiReferences(section.content, data.entries)}</div>
         </div>
     `).join('');
 
@@ -151,7 +153,7 @@ async function initWikiPage() {
             </div>
             <img class="wiki-page-image" src="${entry.image}" alt="${entry.name}">
         </div>
-        <p class="wiki-page-preview">${entry.preview}</p>
+        <p class="wiki-page-intro">${entry.intro || ''}</p>
         <div class="wiki-page-toc">
             <h3>Summary</h3>
             <ul>${tocHTML}</ul>

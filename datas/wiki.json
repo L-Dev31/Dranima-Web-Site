@@ -1,12 +1,4 @@
 {
-    "defaults": {
-        "entry": {
-            "icon": "images/template.png",
-            "image": "images/template.png",
-            "preview": "",
-            "sections": []
-        }
-    },
     "categories": [
         {
             "id": "how-to-play",
@@ -35,11 +27,11 @@
             "name": "Base",
             "category": "how-to-play",
             "icon": "images/wiki/base/base_box.png",
-            "preview": "Dranima is a JRPG inspired by classic games, reimagining their core mechanics with new ideas and systems. Players explore the world of Gonwind, collecting creatures known as Dranima (plural: Dranimae). These creatures can be trained, evolved, and strengthened by unlocking new attacks and abilities as you progress through the adventure.",
+            "intro": "Dranima is a JRPG inspired by classic games, reimagining their core mechanics with new ideas and systems. Players explore the world of Gonwind, collecting creatures known as Dranima (plural: Dranimae). These creatures can be trained, evolved, and strengthened by unlocking new attacks and abilities as you progress through the adventure.",
             "sections": [
                 {
                     "title": "Starter selection",
-                    "content": "The game features four starter Dranima, each representing one of the four elements: Vinny (Earth), Birdage (Wind), Snassic (Water), and Embamb (Fire) (Note that these are only four types; many more can be discovered throughout the game.) At the beginning of the game, the player is asked a series of questions. Based on the answers given, one of these starters will be selected."
+                    "content": "The game features four starter Dranima, each representing one of the four elements: Vinny (Earth), Birdage (Wind), Snassic (Water), and Embamb (Fire) (Note that these are only four types; many more can be discovered throughout the game.) At the beginning of the game, @the-player is asked a series of questions. Based on the answers given, one of these starters will be selected."
                 },
                 {
                     "title": "Team Building",
@@ -60,7 +52,7 @@
             "name": "The player",
             "category": "how-to-play",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -68,7 +60,7 @@
             "name": "Controls and Configuration",
             "category": "how-to-play",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -76,7 +68,7 @@
             "name": "Health",
             "category": "how-to-play",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -84,7 +76,7 @@
             "name": "Skills",
             "category": "how-to-play",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -92,7 +84,7 @@
             "name": "Time Cycle",
             "category": "how-to-play",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -100,7 +92,7 @@
             "name": "Ethergy",
             "category": "how-to-play",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -108,7 +100,7 @@
             "name": "Game Mods",
             "category": "how-to-play",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -116,7 +108,7 @@
             "name": "Reconstruction",
             "category": "drealm",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -124,7 +116,7 @@
             "name": "Dueling",
             "category": "drealm",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -132,7 +124,7 @@
             "name": "Farming",
             "category": "drealm",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -140,7 +132,7 @@
             "name": "Gym",
             "category": "drealm",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -148,7 +140,7 @@
             "name": "Junk Shop",
             "category": "drealm",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -156,7 +148,7 @@
             "name": "Adventures",
             "category": "drealm",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -164,7 +156,7 @@
             "name": "Temple",
             "category": "drealm",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -172,7 +164,7 @@
             "name": "Resources List",
             "category": "drealm",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -180,7 +172,7 @@
             "name": "Completion",
             "category": "drealm",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -188,7 +180,7 @@
             "name": "Battle Base",
             "category": "dranima",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -196,7 +188,7 @@
             "name": "Dradeck",
             "category": "dranima",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -204,7 +196,7 @@
             "name": "Drawing",
             "category": "dranima",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -212,7 +204,7 @@
             "name": "Classes",
             "category": "dranima",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -220,7 +212,7 @@
             "name": "Table of Types",
             "category": "dranima",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -228,7 +220,7 @@
             "name": "Moves' Families",
             "category": "dranima",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -236,7 +228,7 @@
             "name": "Abilities",
             "category": "dranima",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -244,7 +236,7 @@
             "name": "Status",
             "category": "dranima",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -252,7 +244,7 @@
             "name": "Weather",
             "category": "dranima",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -260,7 +252,7 @@
             "name": "Characters",
             "category": "gameplay",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -268,7 +260,7 @@
             "name": "Friendship",
             "category": "gameplay",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -276,7 +268,7 @@
             "name": "Trade",
             "category": "gameplay",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -284,7 +276,7 @@
             "name": "Quests",
             "category": "gameplay",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -292,7 +284,7 @@
             "name": "Password",
             "category": "gameplay",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
@@ -300,7 +292,7 @@
             "name": "Routes",
             "category": "gameplay",
             "icon": null,
-            "preview": null,
+            "intro": null,
             "sections": null
         },
         {
