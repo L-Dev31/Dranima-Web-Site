@@ -77,6 +77,12 @@
             "link": "https://www.instagram.com/tirochocco"
         },
         {
+            "id": "karelbarreau",
+            "name": "Karel Barreau",
+            "image": "images/image_users/credit_karel.png",
+            "link": "https://www.instagram.com/karelbsl/"
+        },
+        {
             "id": "faebae",
             "name": "Faebae",
             "image": "images/image_users/credit_faebae.png",
@@ -87,7 +93,6 @@
             "name": "Mazenta",
             "image": "images/image_users/credit_mazenta.png",
             "link": "https://www.instagram.com/mazenta_inku"
-
         },
         {
             "id": "yorudwn",
@@ -199,41 +204,40 @@
             "title": "General Artists",
             "members": [
                 {
-                    "id": "pedro"
+                    "id": "pedro",
+                    "roles": [
+                        "Artwork Artist",
+                        "Character Artist",
+                        "Dranimae Artist"
+                    ]
                 },
                 {
-                    "id": "bastionphoenix"
-                }
-            ]
-        },
-        {
-            "title": "Logo Artist",
-            "members": [
-                {
-                    "id": "tirochocco"
-                }
-            ]
-        },
-        {
-            "title": "Character Artists",
-            "members": [
-                {
-                    "id": "pedro"
+                    "id": "bastionphoenix",
+                    "roles": [
+                        "World Designer",
+                        "Dranimae Artist"
+                    ]
                 },
                 {
-                    "id": "tirochocco"
+                    "id": "karelbarreau",
+                    "roles": [
+                        "Artwork Artist",
+                        "Dranimae Artist"
+                    ]
+                },
+                {
+                    "id": "tirochocco",
+                    "roles": [
+                        "Character Artist",
+                        "Dranimae Artist",
+                        "Logo Artist"
+                    ]
                 }
             ]
         },
         {
             "title": "Dranimae Artists",
             "members": [
-                {
-                    "id": "pedro"
-                },
-                {
-                    "id": "bastionphoenix"
-                },
                 {
                     "id": "faebae"
                 },
@@ -263,7 +267,6 @@
         "MasutaKanary",
         "Okoma",
         "Thesterminator_art",
-        "Karel Barreau",
         "Hydra_Trainer",
         "An_artist_astray",
         "Mathdex12",
