@@ -22,12 +22,256 @@
         },
         {
             "id": "dradeck",
-            "name": "Dradeck"
+            "name": "Dradeck",
+            "is_table": true,
+            "columns": [
+                "Hex",
+                "Dranima",
+                "Type"
+            ]
+        },
+        {
+            "id": "type",
+            "name": "Type"
         }
-
-        
     ],
     "entries": [
+        {
+            "id": "vinny",
+            "name": "Vinny",
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_vinny.png",
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": [
+                "no.0001",
+                "vinny",
+                "earth"
+            ]
+        },
+        {
+            "id": "birdage",
+            "name": "Birdage",
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_birdage.png",
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": [
+                "no.0002",
+                "birdage",
+                "wind"
+            ]
+        },
+        {
+            "id": "snassic",
+            "name": "Snassic",
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_snassic.png",
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": [
+                "no.0003",
+                "snassic",
+                "water"
+            ]
+        },
+        {
+            "id": "embamb",
+            "name": "Embamb",
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_embamb.png",
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": [
+                "no.0004",
+                "embamb",
+                "fire"
+            ]
+        },
+        {
+            "id": "basic",
+            "name": "Basic",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "fire",
+            "name": "Fire",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "plant",
+            "name": "Plant",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "water",
+            "name": "Water",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "electric",
+            "name": "Electric",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "wind",
+            "name": "Wind",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "earth",
+            "name": "Earth",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "ice",
+            "name": "Ice",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "brawl",
+            "name": "Brawl",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "darkness",
+            "name": "Darkness",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "psyko",
+            "name": "Psyko",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "phantom",
+            "name": "Phantom",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "poison-bio",
+            "name": "Poison / Bio",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "metal",
+            "name": "Metal",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "beast",
+            "name": "Beast",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "lux",
+            "name": "Lux",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "cosmic",
+            "name": "Cosmic",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "rainbow",
+            "name": "Rainbow",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
         {
             "id": "base",
             "name": "Base",
@@ -52,21 +296,9 @@
                     "title": "Ethergy and Field Effects",
                     "content": "Ethergies (provisional name) are a form of magic used by a few people in the world of Gonwind. This magic allows you to create your own path, such as burning a tree trunk blocking the road, growing plants tall enough to climb a wall, or creating water in hot places to cool down your body. Since you do not possess any at the start of the game, you can instead ask your Dranimae to use specific field effects if they know how to handle them."
                 }
-            ]
-        
-            
+            ],
+            "table_data": null
         },
-
-        {
-            "id": "base",
-            "name": "Base",
-            "category": "how-to-play",
-            "icon": null,
-            "image": null,
-            "intro": null,
-            "sections": null
-        },
-
         {
             "id": "the-player",
             "name": "The Player",
@@ -74,9 +306,9 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
-
         {
             "id": "controls-and-configuration",
             "name": "Controls and Configuration",
@@ -84,27 +316,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
-        },
-
-        {
-            "id": "controls-and-configuration",
-            "name": "Controls and Configuration",
-            "category": "how-to-play",
-            "icon": null,
-            "image": null,
-            "intro": null,
-            "sections": null
-        },
-        
-        {
-            "id": "controls-and-configuration",
-            "name": "Controls and Configuration",
-            "category": "how-to-play",
-            "icon": null,
-            "image": null,
-            "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "health",
@@ -113,7 +326,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "skills",
@@ -122,7 +336,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "time-cycle",
@@ -131,7 +346,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "ethergy",
@@ -140,7 +356,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "game-mods",
@@ -149,7 +366,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "reconstruction",
@@ -158,7 +376,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "dueling",
@@ -167,7 +386,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "farming",
@@ -176,7 +396,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "gym",
@@ -185,7 +406,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "junk-shop",
@@ -194,7 +416,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "adventures",
@@ -203,7 +426,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "temple",
@@ -212,7 +436,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "resources-list",
@@ -221,7 +446,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "completion",
@@ -230,7 +456,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "battle-base",
@@ -239,7 +466,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "dradeck",
@@ -248,7 +476,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "drawing",
@@ -257,7 +486,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "classes",
@@ -266,7 +496,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "table-of-types",
@@ -275,7 +506,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "moves-families",
@@ -284,7 +516,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "abilities",
@@ -293,7 +526,8 @@
             "icon": null,
             "image": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null
         },
         {
             "id": "status",
@@ -301,7 +535,9 @@
             "category": "dranima",
             "icon": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null
         },
         {
             "id": "weather",
@@ -309,7 +545,9 @@
             "category": "dranima",
             "icon": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null
         },
         {
             "id": "characters",
@@ -317,7 +555,9 @@
             "category": "gameplay",
             "icon": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null
         },
         {
             "id": "friendship",
@@ -325,7 +565,9 @@
             "category": "gameplay",
             "icon": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null
         },
         {
             "id": "trade",
@@ -333,7 +575,9 @@
             "category": "gameplay",
             "icon": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null
         },
         {
             "id": "quests",
@@ -341,7 +585,9 @@
             "category": "gameplay",
             "icon": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null
         },
         {
             "id": "password",
@@ -349,7 +595,9 @@
             "category": "gameplay",
             "icon": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null
         },
         {
             "id": "routes",
@@ -357,7 +605,9 @@
             "category": "gameplay",
             "icon": null,
             "intro": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null
         },
         {
             "id": "achievements",
@@ -366,7 +616,9 @@
             "icon": null,
             "image": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "intro": null
         },
         {
             "id": "post-game",
@@ -374,7 +626,10 @@
             "category": "gameplay",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "modding",
@@ -382,7 +637,10 @@
             "category": "gameplay",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "healing",
@@ -390,7 +648,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "booster",
@@ -398,7 +659,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "ammo",
@@ -406,7 +670,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "dranials",
@@ -414,7 +681,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "ingredients",
@@ -422,7 +692,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "cooking",
@@ -430,7 +703,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "resources",
@@ -438,7 +714,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "accessories",
@@ -446,7 +725,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "learning-scrolls",
@@ -454,7 +736,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "books",
@@ -462,7 +747,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "duffles",
@@ -470,7 +758,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
         },
         {
             "id": "key-items",
@@ -478,44 +769,10 @@
             "category": "bag",
             "icon": null,
             "preview": null,
-            "sections": null
-        },
-
-        {
-            "id": "vinny",
-            "name": "Vinny",
-            "category": "dradeck",
-            "icon": "images/wiki/base/base_vinny.png",
+            "sections": null,
+            "table_data": null,
             "image": null,
-            "intro": null,
-            "sections": null
-        },
-        {
-            "id": "birdage",
-            "name": "Birdage",
-            "category": "dradeck",
-            "icon": "images/wiki/base/base_birdage.png",
-            "image": null,
-            "intro": null,
-            "sections": null
-        },
-        {
-            "id": "snassic",
-            "name": "Snassic",
-            "category": "dradeck",
-            "icon": "images/wiki/base/base_snassic.png",
-            "image": null,
-            "intro": null,
-            "sections": null
-        },
-        {
-            "id": "embamb",
-            "name": "Embamb",
-            "category": "dradeck",
-            "icon": "images/wiki/base/base_embamb.png",
-            "image": null,
-            "intro": null,
-            "sections": null
+            "intro": null
         }
     ]
 }
