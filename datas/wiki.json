@@ -35,19 +35,19 @@
             "name": "Base",
             "category": "how-to-play",
             "icon": "images/wiki/base/base_box.png",
-            "preview": "Dranima is a JRPG retaking the bases of older games and making new content out of them by totally reworking them. You may advance in the game by collecting monsters called Dranima (Dranimae in plural) in the world of Gonwind, and train them, evolve them and unlock new attacks and abilities",
+            "preview": "Dranima is a JRPG inspired by classic games, reimagining their core mechanics with new ideas and systems. Players explore the world of Gonwind, collecting creatures known as Dranima (plural: Dranimae). These creatures can be trained, evolved, and strengthened by unlocking new attacks and abilities as you progress through the adventure.",
             "sections": [
                 {
                     "title": "Starter selection",
-                    "content": "The game has four starters based on the four elemental. Vinny, the earth starter, Birdage, the wind, Snassic, the water, and Embamb, the fire. You'll be questionned at the start of the game, and depending of your answers, your starter will be chosen."
+                    "content": "The game features four starter Dranima, each representing one of the four elements: Vinny (Earth), Birdage (Wind), Snassic (Water), and Embamb (Fire) (Note that these are only four types; many more can be discovered throughout the game.) At the beginning of the game, the player is asked a series of questions. Based on the answers given, one of these starters will be selected."
                 },
                 {
                     "title": "Team Building",
-                    "content": "Your team can go up to 8 Dranimae. 4 Dranimae in battlefield, and 4 can be in backup / reserve. You can create any kind of team you want, from the weakest to the most broken possible, there is no limit your imagination. Whenever a Dranima evolves, it has the choice to select a new ability in a tree brench. It also have the possibility to unlock new moves and upgrade them further, sometimes from level 0 to 4, then 0 to 7, and finally 0 to 10. Choose well the abilities for your Dranimae, because you won't be able to change them later. (Or maybe reset them somewhere? Who knows...)"
+                    "content": "A team can contain up to eight Dranimae. During battle, four Dranimae fight on the battlefield while the other four remain in reserve.Players are free to create any type of team composition, from simple strategies to highly optimized combinations. Whenever a Dranima evolves, it can select a new ability from a branching ability tree. Dranimae can also unlock new moves and upgrade them over time. Some moves can be improved through several tiers, for example from level 0 to 4, then 0 to 7, and finally 0 to 10. Abilities must be chosen carefully, as they cannot normally be changed once selected. (It may be possible to reset them later in the game.)"
                 },
                 {
                     "title": "Drealm",
-                    "content": "The Drealm allows you to stock Dranimae in a magical place which you can improve as you advance in your quest. By improving this place, you'll be able to improve your number of Dranimae you can stock in there, have a vendor selling more goods, a gym to train your Dranimae not currently in your team, gardens to grow your own vegetables, and a guild to send your Dranimae to their own adventures on places you already discovered to get loot and resources. Improving the Drealm will ease your life and save you a lot of hours of grinding. However, improving the place will take time, as some resources can only be obtainable late game."
+                    "content": "The Drealm is a magical place where players can store their Dranimae. As the adventure progresses, this location can be expanded and improved. Upgrading the Drealm unlocks several facilities. Players can increase the number of Dranimae that can be stored, access a vendor selling additional goods, build a gym where Dranimae not currently in the team can train, create gardens to grow vegetables, and establish a guild that sends Dranimae on expeditions to previously discovered locations to gather loot and resources. Improving the Drealm greatly reduces grinding and makes managing Dranimae more efficient. However, expanding it takes time, as some required resources can only be obtained later in the game."
                 }
             ]
         },
