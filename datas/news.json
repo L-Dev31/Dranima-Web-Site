@@ -14,7 +14,7 @@
         "title": "Prototype - January 2025",
         "image": "images/news/announcement/body_image_prototype2025january.png",
         "description": "The first prototype: battle foundations, UI, and Dranimae data.",
-        "content": "<ul>\n  <li>Started battle programming.</li>\n  <li>Created a UI for the battle system.</li>\n  <li>Started creating and inserting Dranimae, their stats and moves.</li>\n</ul>\n<div class=\"news-update-images\">\n  <img src=\"images/news/updates/january_2026_0.gif\" alt=\"Battle setup screen (Jan 2026)\" />\n</div>",
+        "content": "<ul>\n  <li>Started battle programming.</li>\n  <li>Created a UI for the battle system.</li>\n  <li>Started creating and inserting Dranimae, their stats and moves.</li>\n</ul>\n<div class=\"news-update-images\">\n  <img src=\"images/news/updates/january_2025_0.gif\" alt=\"Battle setup screen (Jan 2026)\" />\n</div>",
         "date": "2025-01-14"
     },
     {
