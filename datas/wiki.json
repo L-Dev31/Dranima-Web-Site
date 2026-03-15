@@ -19,6 +19,10 @@
         {
             "id": "bag",
             "name": "Bag"
+        },
+        {
+            "id": "dradeck",
+            "name": "Dradeck"
         }
 
         
@@ -478,26 +482,40 @@
         },
 
         {
-            "id": "base_vinny",
+            "id": "vinny",
             "name": "Vinny",
-            "icon": "images/wiki/base/base_vinny.png"
-    
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_vinny.png",
+            "image": null,
+            "intro": null,
+            "sections": null
         },
         {
-            "id": "base_birdage",
+            "id": "birdage",
             "name": "Birdage",
-            "icon": "images/wiki/base/base_birdage.png"
-        
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_birdage.png",
+            "image": null,
+            "intro": null,
+            "sections": null
         },
         {
-            "id": "base_snassic",
+            "id": "snassic",
             "name": "Snassic",
-            "icon": "images/wiki/base/base_snassic.png"
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_snassic.png",
+            "image": null,
+            "intro": null,
+            "sections": null
         },
         {
-            "id": "base_embamb",
+            "id": "embamb",
             "name": "Embamb",
-            "icon": "images/wiki/base/base_embamb.png"
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_embamb.png",
+            "image": null,
+            "intro": null,
+            "sections": null
         }
     ]
 }
