@@ -31,7 +31,7 @@
             "sections": [
                 {
                     "title": "Starter selection",
-                    "content": "The game features four starter Dranima, each representing one of the four elements: @base_vinny (Earth), Birdage (Wind), Snassic (Water), and Embamb (Fire) (Note that these are only four types; many more can be discovered throughout the game.) At the beginning of the game, the player is asked a series of questions. Based on the answers given, one of these starters will be selected."
+                    "content": "The game features four starter Dranima, each representing one of the four elements: @base_vinny (Earth), @base_birdage (Wind), @base_snassic (Water), and @base_embamb (Fire) (Note that these are only four types; many more can be discovered throughout the game.) At the beginning of the game, the player is asked a series of questions. Based on the answers given, one of these starters will be selected."
                 },
                 {
                     "title": "Team Building",
@@ -52,6 +52,30 @@
             "name": "Vinny",
             "category": "how-to-play",
             "icon": "images/wiki/base/base_vinny.png",
+            "intro": null,
+            "sections": null
+        },
+        {
+            "id": "base_birdage",
+            "name": "Birdage",
+            "category": "how-to-play",
+            "icon": "images/wiki/base/base_birdage.png",
+            "intro": null,
+            "sections": null
+        },
+        {
+            "id": "base_snassic",
+            "name": "Snassic",
+            "category": "how-to-play",
+            "icon": "images/wiki/base/base_snassic.png",
+            "intro": null,
+            "sections": null
+        },
+        {
+            "id": "base_embamb",
+            "name": "Embamb",
+            "category": "how-to-play",
+            "icon": "images/wiki/base/base_embamb.png",
             "intro": null,
             "sections": null
         },
