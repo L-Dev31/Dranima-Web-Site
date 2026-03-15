@@ -264,7 +264,7 @@
 }
 
 .wiki-page-toc li::before {
-    visibility: hidden;
+    color: #0055bb;
 }
 
 .wiki-page-toc a {
