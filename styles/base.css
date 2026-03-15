@@ -115,6 +115,7 @@ body::before {
     width: 100%;
     max-width: var(--content-max);
     height: 100vh;
+    filter: blur(5px);
     background-image: url("../images/bg.png");
     background-size: min(100%, var(--content-max)) auto;
     background-position: center;
