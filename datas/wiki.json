@@ -48,6 +48,10 @@
                 {
                     "title": "Drealm",
                     "content": "The Drealm is a magical place where players can store their Dranimae. As the adventure progresses, this location can be expanded and improved. Upgrading the Drealm unlocks several facilities. Players can increase the number of Dranimae that can be stored, access a vendor selling additional goods, build a gym where Dranimae not currently in the team can train, create gardens to grow vegetables, and establish a guild that sends Dranimae on expeditions to previously discovered locations to gather loot and resources. Improving the Drealm greatly reduces grinding and makes managing Dranimae more efficient. However, expanding it takes time, as some required resources can only be obtained later in the game."
+                },
+                {
+                    "title": "Ethergy and Field Effects",
+                    "content": "Ethergies (provisional name) are a form of magic used by a few people in the world of Gonwind. This magic allows you to create your own path, such as burning a tree trunk blocking the road, growing plants tall enough to climb a wall, or creating water in hot places to cool down your body. Since you do not possess any at the start of the game, you can instead ask your Dranimae to use specific field effects if they know how to handle them."
                 }
             ]
         },
