@@ -20,6 +20,8 @@
             "id": "bag",
             "name": "Bag"
         }
+
+        
     ],
     "entries": [
         {
@@ -46,39 +48,46 @@
                     "content": "Ethergies (provisional name) are a form of magic used by a few people in the world of Gonwind. This magic allows you to create your own path, such as burning a tree trunk blocking the road, growing plants tall enough to climb a wall, or creating water in hot places to cool down your body. Since you do not possess any at the start of the game, you can instead ask your Dranimae to use specific field effects if they know how to handle them."
                 }
             ]
+        
+            
         },
+
         {
-            "id": "base_vinny",
-            "name": "Vinny",
+            "id": "base",
+            "name": "Base",
             "category": "how-to-play",
-            "icon": "images/wiki/base/base_vinny.png",
+            "icon": null,
             "intro": null,
             "sections": null
         },
+
         {
-            "id": "base_birdage",
-            "name": "Birdage",
+            "id": "the-player",
+            "name": "The Player",
             "category": "how-to-play",
-            "icon": "images/wiki/base/base_birdage.png",
+            "icon": null,
             "intro": null,
             "sections": null
         },
+
         {
-            "id": "base_snassic",
-            "name": "Snassic",
+            "id": "controls-and-configuration",
+            "name": "Controls and Configuration",
             "category": "how-to-play",
-            "icon": "images/wiki/base/base_snassic.png",
+            "icon": null,
             "intro": null,
             "sections": null
         },
+
         {
-            "id": "base_embamb",
-            "name": "Embamb",
+            "id": "controls-and-configuration",
+            "name": "Controls and Configuration",
             "category": "how-to-play",
-            "icon": "images/wiki/base/base_embamb.png",
+            "icon": null,
             "intro": null,
             "sections": null
         },
+        
         {
             "id": "controls-and-configuration",
             "name": "Controls and Configuration",
@@ -438,6 +447,29 @@
             "icon": null,
             "preview": null,
             "sections": null
+        },
+
+        {
+            "id": "base_vinny",
+            "name": "Vinny",
+            "icon": "images/wiki/base/base_vinny.png"
+    
+        },
+        {
+            "id": "base_birdage",
+            "name": "Birdage",
+            "icon": "images/wiki/base/base_birdage.png"
+        
+        },
+        {
+            "id": "base_snassic",
+            "name": "Snassic",
+            "icon": "images/wiki/base/base_snassic.png"
+        },
+        {
+            "id": "base_embamb",
+            "name": "Embamb",
+            "icon": "images/wiki/base/base_embamb.png"
         }
     ]
 }
