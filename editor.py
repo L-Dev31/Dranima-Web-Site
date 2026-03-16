@@ -3,8 +3,6 @@ import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 import json
 import os
-import shutil
-from datetime import datetime
 
 try:
     from PIL import Image, ImageTk

@@ -2,9 +2,10 @@ function renderWikiReferences(html, entries) {
     return html.replace(/@([\w-]+)/g, (match, refId) => {
         const entry = entries.find(e => e.id === refId);
         if (!entry) return match;
-            const icon = entry.icon;
+        const icon = entry.icon;
         const name = entry.name || refId;
-        return `<a class="wiki-ref-link" href="wiki-page.html?id=${entry.id}"><img class="wiki-ref-icon" src="${icon}" alt="">${name}</a>`;
+        const iconHTML = icon ? `<img class="wiki-ref-icon" src="${icon}" alt="">` : '';
+        return `<a class="wiki-ref-link" href="wiki-page.html?id=${entry.id}">${iconHTML}${name}</a>`;
     });
 }
 function normalizeWikiData(data) {

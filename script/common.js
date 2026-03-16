@@ -9,8 +9,15 @@ function getCurrentPage() {
 async function loadFragment(src, container) {
     if (typeof container === 'string') container = document.getElementById(container);
     if (!container) return;
-    const html = await fetch(src).then(r => r.text());
-    container.innerHTML = html;
+
+    try {
+        const response = await fetch(src);
+        if (!response.ok) return;
+        const html = await response.text();
+        container.innerHTML = html;
+    } catch (err) {
+        console.warn('Failed to load fragment', src, err);
+    }
 }
 
 async function loadNavbar() {
@@ -133,7 +140,8 @@ function initLoader() {
 }
 
 function formatDate(iso) {
-    const d = new Date(iso + 'T00:00:00');
+    const d = new Date(iso);
+    if (Number.isNaN(d.valueOf())) return iso;
     return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
 }
 
