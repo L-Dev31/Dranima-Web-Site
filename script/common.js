@@ -207,5 +207,11 @@ function initBackToTop() {
 
     window.addEventListener('scroll', updateVisibility, { passive: true });
     btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    btn.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            btn.click();
+        }
+    });
     updateVisibility();
 }

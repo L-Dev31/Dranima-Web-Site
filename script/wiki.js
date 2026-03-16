@@ -8,7 +8,7 @@ function renderWikiReferences(html, entries) {
         const escapedName = escapeHtml(name);
         const escapedIcon = icon ? escapeHtml(icon) : '';
 
-        const iconHTML = escapedIcon ? `<img class="wiki-ref-icon" src="${escapedIcon}" alt="">` : '';
+        const iconHTML = escapedIcon ? `<img class="wiki-ref-icon" src="${escapedIcon}" alt="${escapedName} icon">` : '';
         const safeId = encodeURIComponent(entry.id);
 
         return `<a class="wiki-ref-link" href="wiki-page.html?id=${safeId}">${iconHTML}${escapedName}</a>`;
@@ -63,7 +63,7 @@ async function initWiki() {
             const img = document.createElement('img');
             img.className = 'wiki-entry-icon';
             img.src = entry.icon;
-            img.alt = '';
+            img.alt = `${entry.name} icon`;
             link.appendChild(img);
         }
 
@@ -250,7 +250,7 @@ async function initWikiPage() {
     const titleIcon = document.createElement('img');
     titleIcon.className = 'wiki-page-title-icon';
     titleIcon.src = entry.icon || '';
-    titleIcon.alt = '';
+    titleIcon.alt = `${entry.name} icon`;
 
     const titleH1 = document.createElement('h1');
     titleH1.textContent = entry.name;

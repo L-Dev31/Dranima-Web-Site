@@ -216,9 +216,12 @@ h2 {
 }
 
 .btn.disabled {
-    opacity: 0.4;
+    background-color: #b0b0b0;
+    color: #3c3c3c;
     cursor: not-allowed;
     pointer-events: none;
+    box-shadow: none;
+    border-color: #888;
 }
 
 .creator-signature {
@@ -226,7 +229,7 @@ h2 {
     font-size: clamp(18px, 2vw, 28px)!important;
     color: var(--light-orange)!important;
     text-shadow: var(--shadow)!important;
-    -webkit-text-stroke: 1.5px #000!important;
+    -webkit-text-stroke: 2px #000!important;
     paint-order: stroke fill!important;
 }
 

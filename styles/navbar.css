@@ -50,6 +50,7 @@
     border-radius: var(--radius-pill) 0 0 var(--radius-pill);
     outline: solid 3px #000;
     box-shadow: var(--shadow), var(--inset-shadow);
+    color: #fff;
     z-index: 10003 !important;
 }
 

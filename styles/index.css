@@ -211,7 +211,7 @@
 
 .faq-question:hover {
     background-color: var(--bright-orange);
-    color: var(--orange);
+    color: #000;
 }
 
 .faq-answer {
