@@ -153,8 +153,7 @@ h2 {
 .bg-pattern {
     background-image: url('../images/pattern.png');
     background-size: 300px 400px;
-    position: relative;
-    z-index: 2;
+    background-repeat: repeat;
     padding: 80px var(--section-side-padding);
 }
 

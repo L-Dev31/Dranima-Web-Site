@@ -2,10 +2,16 @@ function renderWikiReferences(html, entries) {
     return html.replace(/@([\w-]+)/g, (match, refId) => {
         const entry = entries.find(e => e.id === refId);
         if (!entry) return match;
+
         const icon = entry.icon;
         const name = entry.name || refId;
-        const iconHTML = icon ? `<img class="wiki-ref-icon" src="${icon}" alt="">` : '';
-        return `<a class="wiki-ref-link" href="wiki-page.html?id=${entry.id}">${iconHTML}${name}</a>`;
+        const escapedName = escapeHtml(name);
+        const escapedIcon = icon ? escapeHtml(icon) : '';
+
+        const iconHTML = escapedIcon ? `<img class="wiki-ref-icon" src="${escapedIcon}" alt="">` : '';
+        const safeId = encodeURIComponent(entry.id);
+
+        return `<a class="wiki-ref-link" href="wiki-page.html?id=${safeId}">${iconHTML}${escapedName}</a>`;
     });
 }
 function normalizeWikiData(data) {
@@ -48,12 +54,20 @@ async function initWiki() {
     function createEntryLink(entry) {
         const link = document.createElement('a');
         link.className = 'wiki-entry-link';
-        link.href = `wiki-page.html?id=${entry.id}`;
+        link.href = `wiki-page.html?id=${encodeURIComponent(entry.id)}`;
+
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = entry.name;
+
         if (entry.icon) {
-            link.innerHTML = `<img class="wiki-entry-icon" src="${entry.icon}" alt=""><span>${entry.name}</span>`;
-        } else {
-            link.textContent = entry.name;
+            const img = document.createElement('img');
+            img.className = 'wiki-entry-icon';
+            img.src = entry.icon;
+            img.alt = '';
+            link.appendChild(img);
         }
+
+        link.appendChild(nameSpan);
         return link;
     }
 
@@ -65,7 +79,9 @@ async function initWiki() {
             col.className = 'wiki-column';
             const header = document.createElement('div');
             header.className = `wiki-category-header${cat.is_table ? ' wiki-table-header' : ''}`;
-            header.innerHTML = `<h2>${cat.name}</h2>`;
+            const heading = document.createElement('h2');
+            heading.textContent = cat.name;
+            header.appendChild(heading);
             col.appendChild(header);
 
             if (cat.is_table) {
@@ -166,12 +182,21 @@ async function initWikiPage() {
     const entryId = params.get('id');
 
     if (!entryId) {
-        container.innerHTML = `
-            <div class="wiki-page-notfound">
-                <h2>No entry specified</h2>
-                <a href="wiki.html" class="wiki-page-back">← Back to Wiki</a>
-            </div>
-        `;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'wiki-page-notfound';
+
+        const heading = document.createElement('h2');
+        heading.textContent = 'No entry specified';
+        wrapper.appendChild(heading);
+
+        const backLink = document.createElement('a');
+        backLink.href = 'wiki.html';
+        backLink.className = 'wiki-page-back';
+        backLink.textContent = '← Back to Wiki';
+        wrapper.appendChild(backLink);
+
+        container.innerHTML = '';
+        container.appendChild(wrapper);
         return;
     }
 
@@ -179,44 +204,106 @@ async function initWikiPage() {
     const entry = data.entries.find(e => e.id === entryId);
 
     if (!entry) {
-        container.innerHTML = `
-            <div class="wiki-page-notfound">
-                <h2>Entry not found</h2>
-                <p style="color: #fff; margin-bottom: 20px;">The wiki entry "${entryId}" does not exist.</p>
-                <a href="wiki.html" class="wiki-page-back">← Back to Wiki</a>
-            </div>
-        `;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'wiki-page-notfound';
+
+        const heading = document.createElement('h2');
+        heading.textContent = 'Entry not found';
+        wrapper.appendChild(heading);
+
+        const msg = document.createElement('p');
+        msg.style.color = '#fff';
+        msg.style.marginBottom = '20px';
+        msg.textContent = `The wiki entry "${entryId}" does not exist.`;
+        wrapper.appendChild(msg);
+
+        const backLink = document.createElement('a');
+        backLink.href = 'wiki.html';
+        backLink.className = 'wiki-page-back';
+        backLink.textContent = '← Back to Wiki';
+        wrapper.appendChild(backLink);
+
+        container.innerHTML = '';
+        container.appendChild(wrapper);
         return;
     }
 
     document.title = `${entry.name} - Wiki - Dranima`;
 
 
-    const tocHTML = entry.sections.map((section, index) => 
-        `<li><a href="#section-${index}">${section.title}</a></li>`
-    ).join('');
+    const tocList = document.createElement('ul');
+    entry.sections.forEach((section, index) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#section-${index}`;
+        a.textContent = section.title;
+        li.appendChild(a);
+        tocList.appendChild(li);
+    });
 
-    const sectionsHTML = entry.sections.map((section, index) => `
-        <div class="wiki-page-section" id="section-${index}">
-            <h2>${section.title}</h2>
-            <div class="wiki-page-section-content">${renderWikiReferences(section.content, data.entries)}</div>
-        </div>
-    `).join('');
+    const pageHeader = document.createElement('div');
+    pageHeader.className = 'wiki-page-header';
 
-    container.innerHTML = `
-        <div class="wiki-page-header">
-            <div class="wiki-page-title-row">
-                <img class="wiki-page-title-icon" src="${entry.icon}" alt="">
-                <h1>${entry.name}</h1>
-            </div>
-            <img class="wiki-page-image" src="${entry.image}" alt="${entry.name}">
-        </div>
-        <p class="wiki-page-intro">${entry.intro || ''}</p>
-        <div class="wiki-page-toc">
-            <h3>Summary</h3>
-            <ul>${tocHTML}</ul>
-        </div>
-        ${sectionsHTML}
-        <a href="wiki.html" class="wiki-page-back">← Back to Wiki</a>
-    `;
+    const titleRow = document.createElement('div');
+    titleRow.className = 'wiki-page-title-row';
+
+    const titleIcon = document.createElement('img');
+    titleIcon.className = 'wiki-page-title-icon';
+    titleIcon.src = entry.icon || '';
+    titleIcon.alt = '';
+
+    const titleH1 = document.createElement('h1');
+    titleH1.textContent = entry.name;
+
+    titleRow.appendChild(titleIcon);
+    titleRow.appendChild(titleH1);
+
+    const headerImage = document.createElement('img');
+    headerImage.className = 'wiki-page-image';
+    headerImage.src = entry.image || '';
+    headerImage.alt = entry.name;
+
+    pageHeader.appendChild(titleRow);
+    pageHeader.appendChild(headerImage);
+
+    const introP = document.createElement('p');
+    introP.className = 'wiki-page-intro';
+    introP.textContent = entry.intro || '';
+
+    const tocWrapper = document.createElement('div');
+    tocWrapper.className = 'wiki-page-toc';
+    const tocTitle = document.createElement('h3');
+    tocTitle.textContent = 'Summary';
+    tocWrapper.appendChild(tocTitle);
+    tocWrapper.appendChild(tocList);
+
+    const sectionsContainer = document.createElement('div');
+    entry.sections.forEach((section, index) => {
+        const sectionEl = document.createElement('div');
+        sectionEl.className = 'wiki-page-section';
+        sectionEl.id = `section-${index}`;
+
+        const sectionTitle = document.createElement('h2');
+        sectionTitle.textContent = section.title;
+
+        const sectionContent = document.createElement('div');
+        sectionContent.className = 'wiki-page-section-content';
+        sectionContent.innerHTML = sanitizeHtml(renderWikiReferences(section.content, data.entries));
+
+        sectionEl.appendChild(sectionTitle);
+        sectionEl.appendChild(sectionContent);
+        sectionsContainer.appendChild(sectionEl);
+    });
+
+    const backLink = document.createElement('a');
+    backLink.href = 'wiki.html';
+    backLink.className = 'wiki-page-back';
+    backLink.textContent = '← Back to Wiki';
+
+    container.innerHTML = '';
+    container.appendChild(pageHeader);
+    container.appendChild(introP);
+    container.appendChild(tocWrapper);
+    container.appendChild(sectionsContainer);
+    container.appendChild(backLink);
 }

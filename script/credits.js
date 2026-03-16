@@ -12,7 +12,10 @@ async function initCredits() {
         categories.forEach(({ title, members }) => {
             const category = document.createElement('div');
             category.className = 'credits-category';
-            category.innerHTML = `<h2>${title}</h2>`;
+
+            const heading = document.createElement('h2');
+            heading.textContent = title;
+            category.appendChild(heading);
 
             const row = document.createElement('div');
             row.className = 'credits-row';
@@ -34,13 +37,25 @@ async function initCredits() {
                     card.style.textDecoration = 'none';
                     card.style.color = 'inherit';
                 }
-                const displayName = alias ? `${name}<br>(${alias})` : name;
-                const rolesHTML = (roles || []).map(r => `<span class="credit-role">${r}</span>`).join('');
-                card.innerHTML = `
-                    <img class="credit-pfp" src="${image || 'images/template.png'}" alt="${name}">
-                    <span class="credit-name">${displayName}</span>
-                    ${rolesHTML}
-                `;
+
+                const img = document.createElement('img');
+                img.className = 'credit-pfp';
+                img.src = image || 'images/template.png';
+                img.alt = name;
+                card.appendChild(img);
+
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'credit-name';
+                nameSpan.innerHTML = alias ? `${escapeHtml(name)}<br>(${escapeHtml(alias)})` : escapeHtml(name);
+                card.appendChild(nameSpan);
+
+                (roles || []).forEach(role => {
+                    const roleSpan = document.createElement('span');
+                    roleSpan.className = 'credit-role';
+                    roleSpan.textContent = role;
+                    card.appendChild(roleSpan);
+                });
+
                 row.appendChild(card);
             });
 

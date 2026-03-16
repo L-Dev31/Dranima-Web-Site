@@ -2,6 +2,41 @@ const LOADER_THRESHOLD = 200;
 const NEWS_LIST_MAX = 5;
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function sanitizeHtml(html) {
+    const template = document.createElement('template');
+    template.innerHTML = String(html);
+
+    const disallowedTags = new Set(['script', 'style', 'iframe', 'object', 'embed', 'link']);
+    const walker = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT, null);
+
+    while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (disallowedTags.has(node.nodeName.toLowerCase())) {
+            node.remove();
+            continue;
+        }
+
+        for (const attr of Array.from(node.attributes)) {
+            const name = attr.name.toLowerCase();
+            const value = (attr.value || '').trim();
+            if (name.startsWith('on') || value.toLowerCase().startsWith('javascript:') || value.toLowerCase().startsWith('vbscript:')) {
+                node.removeAttribute(attr.name);
+            }
+        }
+    }
+
+    return template.innerHTML;
+}
+
 function getCurrentPage() {
     return location.pathname.split('/').pop() || 'index.html';
 }
@@ -14,7 +49,7 @@ async function loadFragment(src, container) {
         const response = await fetch(src);
         if (!response.ok) return;
         const html = await response.text();
-        container.innerHTML = html;
+        container.innerHTML = sanitizeHtml(html);
     } catch (err) {
         console.warn('Failed to load fragment', src, err);
     }
@@ -63,14 +98,20 @@ function initNavbar() {
         if (!menuSection) return;
         menuSection.classList.remove('open');
         menuSection.setAttribute('aria-hidden', 'true');
-        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        if (toggle) {
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'Open menu');
+        }
     };
 
     const openMenu = () => {
         if (!menuSection) return;
         menuSection.classList.add('open');
         menuSection.setAttribute('aria-hidden', 'false');
-        if (toggle) toggle.setAttribute('aria-expanded', 'true');
+        if (toggle) {
+            toggle.setAttribute('aria-expanded', 'true');
+            toggle.setAttribute('aria-label', 'Close menu');
+        }
     };
 
     if (navbar && toggle && menuSection) {

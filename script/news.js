@@ -1,7 +1,7 @@
 function renderNewsPopupContent(item) {
     const contentEl = document.querySelector('.news-popup-content');
     if (!contentEl) return;
-    contentEl.innerHTML = item.content || '';
+    contentEl.innerHTML = sanitizeHtml(item.content || '');
 }
 
 function initNewsPopup() {
@@ -64,9 +64,10 @@ function createNewsCard(item, small = false) {
     if (date) date.textContent = formatDate(item.date);
     if (circleImg) {
         circleImg.src = icon;
-        circleImg.alt = '';
+        circleImg.alt = item.type === 'update' ? 'Update icon' : 'Announcement icon';
     }
 
+    card.setAttribute('aria-label', `Open news item: ${item.title}`);
     card.addEventListener('click', () => openNewsPopup(item));
     return card;
 }
