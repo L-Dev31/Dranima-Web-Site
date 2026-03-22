@@ -238,15 +238,23 @@
     flex-direction: column;
     transform: scale(0.9) translateY(20px);
     transition: transform 0.3s ease;
-
-    /* hide native scrollbar while keeping scroll functionality */
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--bright-orange) var(--light-orange);
 }
 
 .news-popup::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+    width: 10px;
+    background: var(--light-orange);
+}
+
+.news-popup::-webkit-scrollbar-thumb {
+    background: var(--bright-orange);
+    border-radius: var(--radius);
+    border: 2px solid var(--light-orange);
+}
+
+.news-popup::-webkit-scrollbar-thumb:hover {
+    background: var(--orange);
 }
 
 .news-popup-overlay.active .news-popup {
