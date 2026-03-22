@@ -49,7 +49,7 @@ async function initWiki() {
     const { categories, groups: originalGroups, entries } = data;
     const tableCategories = categories.filter(c => c.is_table);
     const normalCategories = categories.filter(c => !c.is_table);
-    const groups = originalGroups || chunkArray(normalCategories.map(c => c.id), 4);
+    const groups = originalGroups || chunkArray(normalCategories.map(c => c.id), 5);
 
     function createEntryLink(entry) {
         const link = document.createElement('a');
