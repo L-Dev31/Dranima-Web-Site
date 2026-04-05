@@ -1,6 +1,7 @@
 (() => {
     function renderWikiReferences(html, entries) {
-        return html.replace(/@([\w-]+)/g, (match, refId) => {
+        return html.replace(/@\{([\w-]+)\}|@([\w-]+)/g, (match, bracedRefId, plainRefId) => {
+            const refId = bracedRefId || plainRefId;
             const entry = entries.find(e => e.id === refId);
             if (!entry) return match;
 
@@ -11,6 +12,19 @@
 
             return `<a class="wiki-ref-link" href="wiki-page.html?id=${encodeURIComponent(entry.id)}">${iconHTML}${escapedName}</a>`;
         });
+    }
+
+    function renderWikiRichContent(rawHtml, entries) {
+        const withRefs = renderWikiReferences(rawHtml || '', entries);
+        const sanitized = sanitizeHtml(withRefs);
+
+        const template = document.createElement('template');
+        template.innerHTML = sanitized;
+        template.content.querySelectorAll('table').forEach(table => {
+            table.classList.add('wiki-table');
+        });
+
+        return template.innerHTML;
     }
 
     function normalizeWikiData(data) {
@@ -26,9 +40,7 @@
                 icon: entry.icon || null,
                 image: entry.image || null,
                 intro: entry.intro || entry.preview || null,
-                sections: Array.isArray(entry.sections) ? entry.sections : [],
-                table_data: Array.isArray(entry.table_data) ? entry.table_data : null,
-                table: entry.table || null
+                sections: Array.isArray(entry.sections) ? entry.sections : []
             }))
         };
     }
@@ -57,40 +69,6 @@
         nameSpan.textContent = entry.name;
         link.appendChild(nameSpan);
         return link;
-    }
-
-    // Shared between initWiki (table categories) and initWikiPage (entry.table)
-    function buildTable(columns, rows, allEntries) {
-        const table = document.createElement('table');
-        table.className = 'wiki-table';
-
-        const thead = document.createElement('thead');
-        const headerRow = document.createElement('tr');
-        columns.forEach(colTitle => {
-            const th = document.createElement('th');
-            th.textContent = colTitle;
-            headerRow.appendChild(th);
-        });
-        thead.appendChild(headerRow);
-        table.appendChild(thead);
-
-        const tbody = document.createElement('tbody');
-        rows.forEach(entry => {
-            const row = document.createElement('tr');
-            entry.table_data.forEach(cellValue => {
-                const cell = document.createElement('td');
-                if (typeof cellValue === 'string') {
-                    const refEntry = allEntries.find(e => e.id === cellValue);
-                    cell.appendChild(refEntry ? createEntryLink(refEntry) : document.createTextNode(cellValue));
-                } else {
-                    cell.textContent = cellValue ?? '';
-                }
-                row.appendChild(cell);
-            });
-            tbody.appendChild(row);
-        });
-        table.appendChild(tbody);
-        return table;
     }
 
     async function initWiki() {
@@ -213,10 +191,10 @@
 
         // Intro
         if (entry.intro) {
-            const introP = document.createElement('p');
-            introP.className = 'wiki-page-intro';
-            introP.textContent = entry.intro;
-            container.appendChild(introP);
+            const introBlock = document.createElement('div');
+            introBlock.className = 'wiki-page-intro';
+            introBlock.innerHTML = renderWikiRichContent(entry.intro, data.entries);
+            container.appendChild(introBlock);
         }
 
         // TOC + Sections
@@ -249,24 +227,13 @@
 
                 const sectionContent = document.createElement('div');
                 sectionContent.className = 'wiki-page-section-content';
-                sectionContent.innerHTML = sanitizeHtml(renderWikiReferences(section.content, data.entries));
+                sectionContent.innerHTML = renderWikiRichContent(section.content, data.entries);
 
                 sectionEl.appendChild(sectionTitle);
                 sectionEl.appendChild(sectionContent);
                 sectionsContainer.appendChild(sectionEl);
             });
             container.appendChild(sectionsContainer);
-        }
-
-        // Embedded table (e.g. Dradeck page shows all dradeck entries as a table)
-        if (entry.table) {
-            const rows = data.entries.filter(e => e.category === entry.table.source_category && Array.isArray(e.table_data));
-            if (rows.length > 0) {
-                const tableWrapper = document.createElement('div');
-                tableWrapper.className = 'wiki-page-table';
-                tableWrapper.appendChild(buildTable(entry.table.columns || [], rows, data.entries));
-                container.appendChild(tableWrapper);
-            }
         }
 
         const backLink = document.createElement('a');

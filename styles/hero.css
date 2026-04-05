@@ -108,8 +108,6 @@
         padding-inline-start: 0;
     }
 
-    /* Font sizes are handled with clamp() for better scaling */
-
     .hero-divider {
         max-width: 200px;
     }

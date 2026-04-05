@@ -126,9 +126,6 @@ function initNavbar() {
         menuSection.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', closeMenu);
         });
-
-        // keep menu sticky until the toggle is pressed; links still close it
-        // (no outside-click or Escape auto-close so it behaves like a persistent top menu)
     }
 }
 
@@ -151,7 +148,7 @@ function initLoader() {
     const dismiss = () => {
         const el = document.getElementById('loader');
         if (!el) return;
-        // If the loader was never shown, just remove it immediately to avoid a flash
+
         if (!el.classList.contains('loader-visible')) {
             el.remove();
             return;

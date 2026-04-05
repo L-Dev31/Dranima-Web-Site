@@ -245,7 +245,6 @@ h2 {
 }
 
 
-/* Shared helper for inserting images in text content sections */
 .content-img {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

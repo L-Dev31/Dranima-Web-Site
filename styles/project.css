@@ -16,7 +16,6 @@
     flex-direction: row-reverse;
 }
 
-/* Replaces .project-article__text and .project-article__body wrappers */
 .section-project article > div {
     flex: 1 1 400px;
     display: flex;
@@ -33,7 +32,6 @@
     margin-bottom: 6px; 
 }
 
-/* Replaces .project-article__image wrapper */
 .section-project article > img {
     flex: 0 0 clamp(260px, 35%, 480px);
     align-self: flex-start;
@@ -58,7 +56,6 @@
 }
 
 /* Closing section */
-
 .creator-signature {
     margin-top: 4px;
 }
