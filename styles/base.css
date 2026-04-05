@@ -1,15 +1,5 @@
 /* ====== BASE & VARIABLES ====== */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
-@import url("navbar.css");
-@import url("hero.css");
-@import url("footer.css");
-@import url("loader.css");
-@import url("news.css");
-@import url("credits.css");
-@import url("project.css");
-@import url("wiki.css");
-@import url("index.css");
-@import url("legal.css");
 
 @font-face {
     font-family: 'NerkoOne';
@@ -273,4 +263,9 @@ h2 {
     width: 100%;
     height: auto;
     object-fit: cover;
+}
+
+/* When a modal/popup is active, prevent the body from scrolling */
+.body--modal-open {
+    overflow: hidden;
 }
