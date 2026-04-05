@@ -4,7 +4,7 @@
         const template = document.getElementById('faq-item-template');
         if (!list || !template) return;
 
-        const items = await fetch('datas/faq.json').then(r => r.json());
+        const items = await fetch('data/faq.json').then(r => r.json());
 
         items.forEach(({ question, answer }) => {
             const details = template.content.firstElementChild.cloneNode(true);

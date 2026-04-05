@@ -4,7 +4,7 @@
         const guestContainer = document.getElementById('credits-guest-container');
         if (!container && !guestContainer) return;
 
-        const creditsData = await fetch('datas/credits.json').then(r => r.json());
+        const creditsData = await fetch('data/credits.json').then(r => r.json());
         const { categories, guests, team } = creditsData;
 
         const teamMap = new Map((team || []).map(member => [member.id, member]));

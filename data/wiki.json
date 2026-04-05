@@ -1,0 +1,761 @@
+{
+    "categories": [
+        {
+            "id": "how-to-play",
+            "name": "How to play"
+        },
+        {
+            "id": "drealm",
+            "name": "Drealm"
+        },
+        {
+            "id": "dranima",
+            "name": "Dranima"
+        },
+        {
+            "id": "gameplay",
+            "name": "Gameplay"
+        },
+        {
+            "id": "bag",
+            "name": "Bag"
+        },
+        {
+            "id": "type",
+            "name": "Type"
+        }
+    ],
+    "entries": [
+        {
+            "id": "vinny",
+            "name": "Vinny",
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_vinny.png",
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": [
+                "no.0001",
+                "vinny",
+                "earth"
+            ]
+        },
+        {
+            "id": "birdage",
+            "name": "Birdage",
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_birdage.png",
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": [
+                "no.0002",
+                "birdage",
+                "wind"
+            ]
+        },
+        {
+            "id": "snassic",
+            "name": "Snassic",
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_snassic.png",
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": [
+                "no.0003",
+                "snassic",
+                "water"
+            ]
+        },
+        {
+            "id": "embamb",
+            "name": "Embamb",
+            "category": "dradeck",
+            "icon": "images/wiki/base/base_embamb.png",
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": [
+                "no.0004",
+                "embamb",
+                "fire"
+            ]
+        },
+        {
+            "id": "basic",
+            "name": "Basic",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "fire",
+            "name": "Fire",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "plant",
+            "name": "Plant",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "water",
+            "name": "Water",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "electric",
+            "name": "Electric",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "wind",
+            "name": "Wind",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "earth",
+            "name": "Earth",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "ice",
+            "name": "Ice",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "brawl",
+            "name": "Brawl",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "darkness",
+            "name": "Darkness",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "psyko",
+            "name": "Psyko",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "phantom",
+            "name": "Phantom",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "poison-bio",
+            "name": "Poison / Bio",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "metal",
+            "name": "Metal",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "beast",
+            "name": "Beast",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "lux",
+            "name": "Lux",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "cosmic",
+            "name": "Cosmic",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "rainbow",
+            "name": "Rainbow",
+            "category": "type",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "base",
+            "name": "Base",
+            "category": "how-to-play",
+            "icon": "images/wiki/base/base_box.png",
+            "image": null,
+            "intro": "Dranima is a JRPG inspired by classic games, reimagining their core mechanics with new ideas and systems. Players explore the world of Gonwind, collecting creatures known as Dranima (plural: Dranimae). These creatures can be trained, evolved, and strengthened by unlocking new attacks and abilities as you progress through the adventure.",
+            "sections": [
+                {
+                    "title": "Starter selection",
+                    "content": "The game features four starter Dranima, each representing one of the four elements: @base_vinny (Earth), @base_birdage (Wind), @base_snassic (Water), and @base_embamb (Fire) (Note that these are only four types; many more can be discovered throughout the game.) At the beginning of the game, the player is asked a series of questions. Based on the answers given, one of these starters will be selected."
+                },
+                {
+                    "title": "Team Building",
+                    "content": "A team can contain up to eight Dranimae. During battle, four Dranimae fight on the battlefield while the other four remain in reserve.Players are free to create any type of team composition, from simple strategies to highly optimized combinations. Whenever a Dranima evolves, it can select a new ability from a branching ability tree. Dranimae can also unlock new moves and upgrade them over time. Some moves can be improved through several tiers, for example from level 0 to 4, then 0 to 7, and finally 0 to 10. Abilities must be chosen carefully, as they cannot normally be changed once selected. (It may be possible to reset them later in the game.)"
+                },
+                {
+                    "title": "Drealm",
+                    "content": "The Drealm is a magical place where players can store their Dranimae. As the adventure progresses, this location can be expanded and improved. Upgrading the Drealm unlocks several facilities. Players can increase the number of Dranimae that can be stored, access a vendor selling additional goods, build a gym where Dranimae not currently in the team can train, create gardens to grow vegetables, and establish a guild that sends Dranimae on expeditions to previously discovered locations to gather loot and resources. Improving the Drealm greatly reduces grinding and makes managing Dranimae more efficient. However, expanding it takes time, as some required resources can only be obtained later in the game."
+                },
+                {
+                    "title": "Ethergy and Field Effects",
+                    "content": "Ethergies (provisional name) are a form of magic used by a few people in the world of Gonwind. This magic allows you to create your own path, such as burning a tree trunk blocking the road, growing plants tall enough to climb a wall, or creating water in hot places to cool down your body. Since you do not possess any at the start of the game, you can instead ask your Dranimae to use specific field effects if they know how to handle them."
+                }
+            ],
+            "table_data": null
+        },
+        {
+            "id": "the-player",
+            "name": "The Player",
+            "category": "how-to-play",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "controls-and-configuration",
+            "name": "Controls and Configuration",
+            "category": "how-to-play",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "health",
+            "name": "Health",
+            "category": "how-to-play",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "skills",
+            "name": "Skills",
+            "category": "how-to-play",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "time-cycle",
+            "name": "Time Cycle",
+            "category": "how-to-play",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "ethergy",
+            "name": "Ethergy",
+            "category": "how-to-play",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "game-mods",
+            "name": "Game Mods",
+            "category": "how-to-play",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "reconstruction",
+            "name": "Reconstruction",
+            "category": "drealm",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "dueling",
+            "name": "Dueling",
+            "category": "drealm",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "farming",
+            "name": "Farming",
+            "category": "drealm",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "gym",
+            "name": "Gym",
+            "category": "drealm",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "junk-shop",
+            "name": "Junk Shop",
+            "category": "drealm",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "adventures",
+            "name": "Adventures",
+            "category": "drealm",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "temple",
+            "name": "Temple",
+            "category": "drealm",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "resources-list",
+            "name": "Resources List",
+            "category": "drealm",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "completion",
+            "name": "Completion",
+            "category": "drealm",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "battle-base",
+            "name": "Battle Base",
+            "category": "dranima",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "dradeck",
+            "name": "Dradeck",
+            "category": "dranima",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null,
+            "table": {
+                "source_category": "dradeck",
+                "columns": [
+                    "Hex",
+                    "Dranima",
+                    "Type"
+                ]
+            }
+        },
+        {
+            "id": "drawing",
+            "name": "Drawing",
+            "category": "dranima",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "classes",
+            "name": "Classes",
+            "category": "dranima",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "table-of-types",
+            "name": "Table of Types",
+            "category": "dranima",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "moves-families",
+            "name": "Moves' Families",
+            "category": "dranima",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "abilities",
+            "name": "Abilities",
+            "category": "dranima",
+            "icon": null,
+            "image": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null
+        },
+        {
+            "id": "status",
+            "name": "Status",
+            "category": "dranima",
+            "icon": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null,
+            "image": null
+        },
+        {
+            "id": "weather",
+            "name": "Weather",
+            "category": "dranima",
+            "icon": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null,
+            "image": null
+        },
+        {
+            "id": "characters",
+            "name": "Characters",
+            "category": "gameplay",
+            "icon": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null,
+            "image": null
+        },
+        {
+            "id": "friendship",
+            "name": "Friendship",
+            "category": "gameplay",
+            "icon": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null,
+            "image": null
+        },
+        {
+            "id": "trade",
+            "name": "Trade",
+            "category": "gameplay",
+            "icon": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null,
+            "image": null
+        },
+        {
+            "id": "quests",
+            "name": "Quests",
+            "category": "gameplay",
+            "icon": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null,
+            "image": null
+        },
+        {
+            "id": "password",
+            "name": "Password",
+            "category": "gameplay",
+            "icon": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null,
+            "image": null
+        },
+        {
+            "id": "routes",
+            "name": "Routes",
+            "category": "gameplay",
+            "icon": null,
+            "intro": null,
+            "sections": null,
+            "table_data": null,
+            "image": null
+        },
+        {
+            "id": "achievements",
+            "name": "Achievements",
+            "category": "gameplay",
+            "icon": null,
+            "image": null,
+            "sections": null,
+            "table_data": null,
+            "intro": null
+        },
+        {
+            "id": "post-game",
+            "name": "Post-Game",
+            "category": "gameplay",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "modding",
+            "name": "Modding",
+            "category": "gameplay",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "healing",
+            "name": "Healing",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "booster",
+            "name": "Booster",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "ammo",
+            "name": "Ammo",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "dranials",
+            "name": "Dranials",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "ingredients",
+            "name": "Ingredients",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "cooking",
+            "name": "Cooking",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "resources",
+            "name": "Resources",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "accessories",
+            "name": "Accessories",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "learning-scrolls",
+            "name": "Learning Scrolls",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "books",
+            "name": "Books",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "duffles",
+            "name": "Duffles",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        },
+        {
+            "id": "key-items",
+            "name": "Key Items",
+            "category": "bag",
+            "icon": null,
+            "sections": null,
+            "table_data": null,
+            "image": null,
+            "intro": null
+        }
+    ]
+}

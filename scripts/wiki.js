@@ -97,7 +97,7 @@
         const container = document.getElementById('wiki-container');
         if (!container) return;
 
-        const data = normalizeWikiData(await fetch('datas/wiki.json').then(r => r.json()));
+        const data = normalizeWikiData(await fetch('data/wiki.json').then(r => r.json()));
         const { categories, groups: originalGroups, entries } = data;
         const groups = originalGroups || chunkArray(categories.map(c => c.id), 5);
 
@@ -173,7 +173,7 @@
 
         if (!entryId) return renderNotFound('No entry specified');
 
-        const data = normalizeWikiData(await fetch('datas/wiki.json').then(r => r.json()));
+        const data = normalizeWikiData(await fetch('data/wiki.json').then(r => r.json()));
         const entry = data.entries.find(e => e.id === entryId);
 
         if (!entry) return renderNotFound('Entry not found', `The wiki entry "${entryId}" does not exist.`);
