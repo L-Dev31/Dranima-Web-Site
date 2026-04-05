@@ -29,14 +29,22 @@
         overlay.querySelector('.news-popup-desc').textContent = item.description;
         renderNewsPopupContent(item);
         overlay.classList.add('active');
-        document.body.classList.add('body--modal-open');
+        if (typeof window.lockBodyScroll === 'function') {
+            window.lockBodyScroll();
+        } else {
+            document.body.classList.add('body--modal-open');
+        }
     }
 
     function closeNewsPopup() {
         const overlay = document.querySelector('.news-popup-overlay');
         if (!overlay) return;
         overlay.classList.remove('active');
-        document.body.classList.remove('body--modal-open');
+        if (typeof window.unlockBodyScroll === 'function') {
+            window.unlockBodyScroll();
+        } else {
+            document.body.classList.remove('body--modal-open');
+        }
     }
 
     function createNewsCard(item, small = false) {

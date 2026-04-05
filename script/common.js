@@ -186,6 +186,16 @@ function formatDate(iso) {
     return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
 }
 
+function lockBodyScroll() {
+    if (document.body.classList.contains('body--modal-open')) return;
+    document.body.classList.add('body--modal-open');
+}
+
+function unlockBodyScroll() {
+    if (!document.body.classList.contains('body--modal-open')) return;
+    document.body.classList.remove('body--modal-open');
+}
+
 function initBackToTop() {
     const id = 'back-to-top';
     let btn = document.getElementById(id);
@@ -215,3 +225,6 @@ function initBackToTop() {
     });
     updateVisibility();
 }
+
+window.lockBodyScroll = lockBodyScroll;
+window.unlockBodyScroll = unlockBodyScroll;

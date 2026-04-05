@@ -4,17 +4,15 @@
             const entry = entries.find(e => e.id === refId);
             if (!entry) return match;
 
-            const icon = entry.icon;
-            const name = entry.name || refId;
-            const escapedName = escapeHtml(name);
-            const escapedIcon = icon ? escapeHtml(icon) : '';
+            const escapedName = escapeHtml(entry.name || refId);
+            const iconHTML = entry.icon
+                ? `<img class="wiki-ref-icon" src="${escapeHtml(entry.icon)}" alt="${escapedName} icon">`
+                : '';
 
-            const iconHTML = escapedIcon ? `<img class="wiki-ref-icon" src="${escapedIcon}" alt="${escapedName} icon">` : '';
-            const safeId = encodeURIComponent(entry.id);
-
-            return `<a class="wiki-ref-link" href="wiki-page.html?id=${safeId}">${iconHTML}${escapedName}</a>`;
+            return `<a class="wiki-ref-link" href="wiki-page.html?id=${encodeURIComponent(entry.id)}">${iconHTML}${escapedName}</a>`;
         });
     }
+
     function normalizeWikiData(data) {
         return {
             ...data,
@@ -29,17 +27,70 @@
                 image: entry.image || null,
                 intro: entry.intro || entry.preview || null,
                 sections: Array.isArray(entry.sections) ? entry.sections : [],
-                table_data: Array.isArray(entry.table_data) ? entry.table_data : null
+                table_data: Array.isArray(entry.table_data) ? entry.table_data : null,
+                table: entry.table || null
             }))
         };
     }
 
     function chunkArray(arr, size) {
         const out = [];
-        for (let i = 0; i < arr.length; i += size) {
-            out.push(arr.slice(i, i + size));
-        }
+        for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
         return out;
+    }
+
+    // Shared between initWiki and initWikiPage
+    function createEntryLink(entry) {
+        const link = document.createElement('a');
+        link.className = 'wiki-entry-link';
+        link.href = `wiki-page.html?id=${encodeURIComponent(entry.id)}`;
+
+        if (entry.icon) {
+            const img = document.createElement('img');
+            img.className = 'wiki-entry-icon';
+            img.src = entry.icon;
+            img.alt = `${entry.name} icon`;
+            link.appendChild(img);
+        }
+
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = entry.name;
+        link.appendChild(nameSpan);
+        return link;
+    }
+
+    // Shared between initWiki (table categories) and initWikiPage (entry.table)
+    function buildTable(columns, rows, allEntries) {
+        const table = document.createElement('table');
+        table.className = 'wiki-table';
+
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        columns.forEach(colTitle => {
+            const th = document.createElement('th');
+            th.textContent = colTitle;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        rows.forEach(entry => {
+            const row = document.createElement('tr');
+            entry.table_data.forEach(cellValue => {
+                const cell = document.createElement('td');
+                if (typeof cellValue === 'string') {
+                    const refEntry = allEntries.find(e => e.id === cellValue);
+                    cell.appendChild(refEntry ? createEntryLink(refEntry) : document.createTextNode(cellValue));
+                } else {
+                    cell.textContent = cellValue ?? '';
+                }
+                row.appendChild(cell);
+            });
+            tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+        return table;
     }
 
     async function initWiki() {
@@ -48,131 +99,43 @@
 
         const data = normalizeWikiData(await fetch('datas/wiki.json').then(r => r.json()));
         const { categories, groups: originalGroups, entries } = data;
-        const tableCategories = categories.filter(c => c.is_table);
-        const normalCategories = categories.filter(c => !c.is_table);
-        const groups = originalGroups || chunkArray(normalCategories.map(c => c.id), 5);
-
-        function createEntryLink(entry) {
-            const link = document.createElement('a');
-            link.className = 'wiki-entry-link';
-            link.href = `wiki-page.html?id=${encodeURIComponent(entry.id)}`;
-
-            const nameSpan = document.createElement('span');
-            nameSpan.textContent = entry.name;
-
-            if (entry.icon) {
-                const img = document.createElement('img');
-                img.className = 'wiki-entry-icon';
-                img.src = entry.icon;
-                img.alt = `${entry.name} icon`;
-                link.appendChild(img);
-            }
-
-            link.appendChild(nameSpan);
-            return link;
-        }
+        const groups = originalGroups || chunkArray(categories.map(c => c.id), 5);
 
         function renderCategoryGroup(catGroup, groupClass) {
             const groupEl = document.createElement('div');
             groupEl.className = `wiki-group ${groupClass}`;
+
             catGroup.forEach(cat => {
                 const col = document.createElement('div');
                 col.className = 'wiki-column';
+
                 const header = document.createElement('div');
-                header.className = `wiki-category-header${cat.is_table ? ' wiki-table-header' : ''}`;
+                header.className = 'wiki-category-header';
                 const heading = document.createElement('h2');
                 heading.textContent = cat.name;
                 header.appendChild(heading);
                 col.appendChild(header);
 
-                if (cat.is_table) {
-                    const table = document.createElement('table');
-                    table.className = 'wiki-table';
-
-                    const thead = document.createElement('thead');
-                    const headerRow = document.createElement('tr');
-                    (cat.columns || []).forEach(colTitle => {
-                        const th = document.createElement('th');
-                        th.textContent = colTitle;
-                        headerRow.appendChild(th);
-                    });
-                    thead.appendChild(headerRow);
-                    table.appendChild(thead);
-
-                    const tbody = document.createElement('tbody');
-                    entries
-                        .filter(e => e.category === cat.id && Array.isArray(e.table_data))
-                        .forEach(entry => {
-                            const row = document.createElement('tr');
-                            const rowData = entry.table_data;
-
-                            (cat.columns || []).forEach((_, colIndex) => {
-                                const cell = document.createElement('td');
-                                const cellValue = rowData[colIndex];
-
-                                if (colIndex === 1 && typeof cellValue === 'string') {
-                                    const refEntry = entries.find(e => e.id === cellValue);
-                                    if (refEntry) {
-                                        const link = createEntryLink(refEntry);
-                                        cell.appendChild(link);
-                                    } else {
-                                        cell.textContent = cellValue;
-                                    }
-                                } else if (colIndex === 2 && typeof cellValue === 'string') {
-                                    const refEntry = entries.find(e => e.id === cellValue);
-                                    if (refEntry) {
-                                        const link = document.createElement('a');
-                                        link.className = 'wiki-entry-link';
-                                        link.href = `wiki-page.html?id=${refEntry.id}`;
-                                        link.textContent = refEntry.name;
-                                        cell.appendChild(link);
-                                    } else {
-                                        cell.textContent = cellValue;
-                                    }
-                                } else {
-                                    cell.textContent = cellValue ?? '';
-                                }
-
-                                row.appendChild(cell);
-                            });
-
-                            tbody.appendChild(row);
-                        });
-                    table.appendChild(tbody);
-                    col.appendChild(table);
-                } else {
-                    const list = document.createElement('div');
-                    list.className = 'wiki-entries-list';
-                    entries.filter(e => e.category === cat.id).forEach(entry => list.appendChild(createEntryLink(entry)));
-                    col.appendChild(list);
-                }
+                const list = document.createElement('div');
+                list.className = 'wiki-entries-list';
+                entries.filter(e => e.category === cat.id).forEach(e => list.appendChild(createEntryLink(e)));
+                col.appendChild(list);
 
                 groupEl.appendChild(col);
             });
+
             container.appendChild(groupEl);
         }
 
-        function renderWiki() {
-            container.innerHTML = '';
+        container.innerHTML = '';
+        groups.forEach(group => {
+            const groupCats = group.map(id => categories.find(c => c.id === id)).filter(Boolean);
+            if (groupCats.length) renderCategoryGroup(groupCats, groupCats.length > 1 ? 'wiki-group-multi' : 'wiki-group-single');
+        });
 
-            // Render normal categories first
-            (groups || normalCategories.map(c => [c.id])).forEach(group => {
-                const groupCats = group.map(id => normalCategories.find(c => c.id === id)).filter(Boolean);
-                renderCategoryGroup(groupCats, groupCats.length > 1 ? 'wiki-group-multi' : 'wiki-group-single');
-            });
-
-            // Render tables afterwards (e.g. dradeck)
-            if (tableCategories.length) {
-                const tableGroups = chunkArray(tableCategories, 2);
-                tableGroups.forEach(group => renderCategoryGroup(group, 'wiki-group-multi'));
-            }
-
-            if (container.children.length === 0) {
-                container.innerHTML = '<p style="text-align: center; font-size: 1.5rem; color: #fff; text-shadow: var(--shadow);">No results found.</p>';
-            }
+        if (container.children.length === 0) {
+            container.innerHTML = '<p style="text-align: center; font-size: 1.5rem; color: #fff; text-shadow: var(--shadow);">No results found.</p>';
         }
-
-        renderWiki();
     }
 
     async function initWikiPage() {
@@ -182,13 +145,21 @@
         const params = new URLSearchParams(window.location.search);
         const entryId = params.get('id');
 
-        if (!entryId) {
+        function renderNotFound(title, msg) {
             const wrapper = document.createElement('div');
             wrapper.className = 'wiki-page-notfound';
 
             const heading = document.createElement('h2');
-            heading.textContent = 'No entry specified';
+            heading.textContent = title;
             wrapper.appendChild(heading);
+
+            if (msg) {
+                const p = document.createElement('p');
+                p.style.color = '#fff';
+                p.style.marginBottom = '20px';
+                p.textContent = msg;
+                wrapper.appendChild(p);
+            }
 
             const backLink = document.createElement('a');
             backLink.href = 'wiki.html';
@@ -198,114 +169,110 @@
 
             container.innerHTML = '';
             container.appendChild(wrapper);
-            return;
         }
+
+        if (!entryId) return renderNotFound('No entry specified');
 
         const data = normalizeWikiData(await fetch('datas/wiki.json').then(r => r.json()));
         const entry = data.entries.find(e => e.id === entryId);
 
-        if (!entry) {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'wiki-page-notfound';
-
-            const heading = document.createElement('h2');
-            heading.textContent = 'Entry not found';
-            wrapper.appendChild(heading);
-
-            const msg = document.createElement('p');
-            msg.style.color = '#fff';
-            msg.style.marginBottom = '20px';
-            msg.textContent = `The wiki entry "${entryId}" does not exist.`;
-            wrapper.appendChild(msg);
-
-            const backLink = document.createElement('a');
-            backLink.href = 'wiki.html';
-            backLink.className = 'wiki-page-back';
-            backLink.textContent = '← Back to Wiki';
-            wrapper.appendChild(backLink);
-
-            container.innerHTML = '';
-            container.appendChild(wrapper);
-            return;
-        }
+        if (!entry) return renderNotFound('Entry not found', `The wiki entry "${entryId}" does not exist.`);
 
         document.title = `${entry.name} - Wiki - Dranima`;
 
-
-        const tocList = document.createElement('ul');
-        entry.sections.forEach((section, index) => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = `#section-${index}`;
-            a.textContent = section.title;
-            li.appendChild(a);
-            tocList.appendChild(li);
-        });
-
+        // Header
         const pageHeader = document.createElement('div');
         pageHeader.className = 'wiki-page-header';
 
         const titleRow = document.createElement('div');
         titleRow.className = 'wiki-page-title-row';
 
-        const titleIcon = document.createElement('img');
-        titleIcon.className = 'wiki-page-title-icon';
-        titleIcon.src = entry.icon || '';
-        titleIcon.alt = `${entry.name} icon`;
+        if (entry.icon) {
+            const titleIcon = document.createElement('img');
+            titleIcon.className = 'wiki-page-title-icon';
+            titleIcon.src = entry.icon;
+            titleIcon.alt = `${entry.name} icon`;
+            titleRow.appendChild(titleIcon);
+        }
 
         const titleH1 = document.createElement('h1');
         titleH1.textContent = entry.name;
-
-        titleRow.appendChild(titleIcon);
         titleRow.appendChild(titleH1);
-
-        const headerImage = document.createElement('img');
-        headerImage.className = 'wiki-page-image';
-        headerImage.src = entry.image || '';
-        headerImage.alt = entry.name;
-
         pageHeader.appendChild(titleRow);
-        pageHeader.appendChild(headerImage);
 
-        const introP = document.createElement('p');
-        introP.className = 'wiki-page-intro';
-        introP.textContent = entry.intro || '';
+        if (entry.image) {
+            const headerImage = document.createElement('img');
+            headerImage.className = 'wiki-page-image';
+            headerImage.src = entry.image;
+            headerImage.alt = entry.name;
+            pageHeader.appendChild(headerImage);
+        }
 
-        const tocWrapper = document.createElement('div');
-        tocWrapper.className = 'wiki-page-toc';
-        const tocTitle = document.createElement('h3');
-        tocTitle.textContent = 'Summary';
-        tocWrapper.appendChild(tocTitle);
-        tocWrapper.appendChild(tocList);
+        container.innerHTML = '';
+        container.appendChild(pageHeader);
 
-        const sectionsContainer = document.createElement('div');
-        entry.sections.forEach((section, index) => {
-            const sectionEl = document.createElement('div');
-            sectionEl.className = 'wiki-page-section';
-            sectionEl.id = `section-${index}`;
+        // Intro
+        if (entry.intro) {
+            const introP = document.createElement('p');
+            introP.className = 'wiki-page-intro';
+            introP.textContent = entry.intro;
+            container.appendChild(introP);
+        }
 
-            const sectionTitle = document.createElement('h2');
-            sectionTitle.textContent = section.title;
+        // TOC + Sections
+        if (entry.sections.length > 0) {
+            const tocWrapper = document.createElement('div');
+            tocWrapper.className = 'wiki-page-toc';
+            const tocTitle = document.createElement('h3');
+            tocTitle.textContent = 'Summary';
+            tocWrapper.appendChild(tocTitle);
+            const tocList = document.createElement('ul');
+            entry.sections.forEach((section, index) => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#section-${index}`;
+                a.textContent = section.title;
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+            tocWrapper.appendChild(tocList);
+            container.appendChild(tocWrapper);
 
-            const sectionContent = document.createElement('div');
-            sectionContent.className = 'wiki-page-section-content';
-            sectionContent.innerHTML = sanitizeHtml(renderWikiReferences(section.content, data.entries));
+            const sectionsContainer = document.createElement('div');
+            entry.sections.forEach((section, index) => {
+                const sectionEl = document.createElement('div');
+                sectionEl.className = 'wiki-page-section';
+                sectionEl.id = `section-${index}`;
 
-            sectionEl.appendChild(sectionTitle);
-            sectionEl.appendChild(sectionContent);
-            sectionsContainer.appendChild(sectionEl);
-        });
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.textContent = section.title;
+
+                const sectionContent = document.createElement('div');
+                sectionContent.className = 'wiki-page-section-content';
+                sectionContent.innerHTML = sanitizeHtml(renderWikiReferences(section.content, data.entries));
+
+                sectionEl.appendChild(sectionTitle);
+                sectionEl.appendChild(sectionContent);
+                sectionsContainer.appendChild(sectionEl);
+            });
+            container.appendChild(sectionsContainer);
+        }
+
+        // Embedded table (e.g. Dradeck page shows all dradeck entries as a table)
+        if (entry.table) {
+            const rows = data.entries.filter(e => e.category === entry.table.source_category && Array.isArray(e.table_data));
+            if (rows.length > 0) {
+                const tableWrapper = document.createElement('div');
+                tableWrapper.className = 'wiki-page-table';
+                tableWrapper.appendChild(buildTable(entry.table.columns || [], rows, data.entries));
+                container.appendChild(tableWrapper);
+            }
+        }
 
         const backLink = document.createElement('a');
         backLink.href = 'wiki.html';
         backLink.className = 'wiki-page-back';
         backLink.textContent = '← Back to Wiki';
-
-        container.innerHTML = '';
-        container.appendChild(pageHeader);
-        container.appendChild(introP);
-        container.appendChild(tocWrapper);
-        container.appendChild(sectionsContainer);
         container.appendChild(backLink);
     }
 

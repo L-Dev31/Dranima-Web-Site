@@ -21,16 +21,6 @@
             "name": "Bag"
         },
         {
-            "id": "dradeck",
-            "name": "Dradeck",
-            "is_table": true,
-            "columns": [
-                "Hex",
-                "Dranima",
-                "Type"
-            ]
-        },
-        {
             "id": "type",
             "name": "Type"
         }
@@ -477,7 +467,15 @@
             "image": null,
             "intro": null,
             "sections": null,
-            "table_data": null
+            "table_data": null,
+            "table": {
+                "source_category": "dradeck",
+                "columns": [
+                    "Hex",
+                    "Dranima",
+                    "Type"
+                ]
+            }
         },
         {
             "id": "drawing",
@@ -615,7 +613,6 @@
             "category": "gameplay",
             "icon": null,
             "image": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "intro": null
@@ -625,7 +622,6 @@
             "name": "Post-Game",
             "category": "gameplay",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -636,7 +632,6 @@
             "name": "Modding",
             "category": "gameplay",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -647,7 +642,6 @@
             "name": "Healing",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -658,7 +652,6 @@
             "name": "Booster",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -669,7 +662,6 @@
             "name": "Ammo",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -680,7 +672,6 @@
             "name": "Dranials",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -691,7 +682,6 @@
             "name": "Ingredients",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -702,7 +692,6 @@
             "name": "Cooking",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -713,7 +702,6 @@
             "name": "Resources",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -724,7 +712,6 @@
             "name": "Accessories",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -735,7 +722,6 @@
             "name": "Learning Scrolls",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -746,7 +732,6 @@
             "name": "Books",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -757,7 +742,6 @@
             "name": "Duffles",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,
@@ -768,7 +752,6 @@
             "name": "Key Items",
             "category": "bag",
             "icon": null,
-            "preview": null,
             "sections": null,
             "table_data": null,
             "image": null,

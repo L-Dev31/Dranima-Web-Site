@@ -53,12 +53,6 @@
     text-align: right;
 }
 
-.news-card-text h3 {
-    font-size: 1.5rem;
-    color: #000;
-    text-align: right;
-}
-
 .news-card-desc {
     font-size: 0.85rem;
     color: rgba(0, 0, 0, 0.75);
@@ -215,6 +209,8 @@
     justify-content: center;
     opacity: 0;
     pointer-events: none;
+    overflow: hidden;
+    overscroll-behavior: contain;
     transition: opacity 0.3s ease;
     padding: 40px 20px;
 }
@@ -422,14 +418,3 @@
     line-height: 1;
 }
 
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}

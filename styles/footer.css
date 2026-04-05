@@ -59,11 +59,6 @@
     flex: 1;
 }
 
-/* Divider & Logos */
-.footer-divider {
-    display: none;
-}
-
 .footer-brand-zone {
     display: flex;
     flex-direction: column;
