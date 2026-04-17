@@ -227,7 +227,7 @@ h2 {
     position: fixed;
     right: 20px;
     bottom: 20px;
-    width: 6vh;
+    width: clamp(44px, 6vh, 64px);
     cursor: pointer;
     transform: translateY(120%);
     opacity: 0;

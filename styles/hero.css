@@ -98,12 +98,13 @@
 @media (max-width: 720px) {
     .hero {
         min-height: 500px;
+        background-position: center 20%;
     }
 
     .hero-info {        
         left: 50%;
         transform: translate(-50%, -50%);      
-        top: 60%;  
+        top: 65%;  
         width: 100%;
         padding-inline-start: 0;
     }

@@ -103,6 +103,7 @@
 .news-column {
     flex: 1 1 300px;
     max-width: 500px;
+    min-width: 0;
 }
 
 .news-column h2 {
