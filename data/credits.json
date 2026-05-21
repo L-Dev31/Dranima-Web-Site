@@ -158,6 +158,16 @@
                         "English Translator"
                     ]
                 },
+
+                {
+                    "id": "galleom",
+                    "roles": [
+                        "VFX",
+                        "Battle Programmer"
+                    ]
+                },
+
+                
                 {
                     "id": "jollenbell",
                     "roles": [
@@ -179,14 +189,7 @@
                 }
             ]
         },
-        {
-            "title": "VFX",
-            "members": [
-                {
-                    "id": "galleom"
-                }
-            ]
-        },
+        
         {
             "title": "Musicians",
             "members": [
