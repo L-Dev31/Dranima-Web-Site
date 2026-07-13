@@ -48,7 +48,7 @@
         const overlay = document.querySelector('.news-popup-overlay');
         if (!overlay) return;
         lastFocused = document.activeElement;
-        const icon = item.type === 'update' ? 'images/UPD.png' : 'images/NEWS.png';
+        const icon = item.category === 'update' ? 'images/UPD.png' : 'images/NEWS.png';
         const popupImage = overlay.querySelector('.news-popup-image img');
         popupImage.src = item.image;
         popupImage.alt = item.title;
@@ -89,7 +89,7 @@
         const card = template.content.firstElementChild.cloneNode(true);
         if (small) card.classList.add('news-card--small');
 
-        const icon = item.type === 'update' ? 'images/UPD.png' : 'images/NEWS.png';
+        const icon = item.category === 'update' ? 'images/UPD.png' : 'images/NEWS.png';
 
         const img = card.querySelector('.news-card-image img');
         const title = card.querySelector('.news-card-title');
@@ -106,7 +106,7 @@
         if (date) date.textContent = formatDate(item.date);
         if (circleImg) {
             circleImg.src = icon;
-            circleImg.alt = item.type === 'update' ? 'Update icon' : 'Announcement icon';
+            circleImg.alt = item.category === 'update' ? 'Update icon' : 'Announcement icon';
         }
 
         card.setAttribute('aria-label', `Open news item: ${item.title}`);
@@ -155,7 +155,7 @@
 
         const listItems = items.slice(1).map(item => createNewsListItem(item));
         listItems.forEach((li, idx) => {
-            if (idx >= NEWS_LIST_MAX) {
+            if (idx >= 3) {
                 li.style.display = 'none';
             }
             list.appendChild(li);
@@ -165,7 +165,7 @@
             const expanded = showMore.classList.toggle('expanded');
             showMore.textContent = expanded ? 'Show Less' : 'Show More';
             listItems.forEach((li, idx) => {
-                if (idx >= NEWS_LIST_MAX) {
+                if (idx >= 3) {
                     li.style.display = expanded ? '' : 'none';
                 }
             });
@@ -176,7 +176,8 @@
             toggleShowMore();
         });
 
-        if (items.length > 1 + NEWS_LIST_MAX) {
+        // 1 card + 3 list items
+        if (items.length > 1 + 3) {
             showMore.style.display = 'block';
         }
     }
@@ -185,16 +186,20 @@
         const majorContainer = document.getElementById('major-news-container');
         if (!majorContainer) return;
         const news = await fetch('data/news.json').then(r => r.json());
-        news.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const byDateDescending = (a, b) => new Date(b.date) - new Date(a.date);
+        const announcements = (news.announcement || []).map(item => ({ ...item, category: 'announcement' }))
+            .sort(byDateDescending);
+        const updates = (news.update || []).map(item => ({ ...item, category: 'update' }))
+            .sort(byDateDescending);
 
-        news.filter(n => n.important).forEach(n => majorContainer.appendChild(createNewsCard(n)));
+        announcements.forEach(item => majorContainer.appendChild(createNewsCard(item)));
 
         renderNewsColumn(
-            news.filter(n => n.type === 'update'),
+            updates,
             'update-card-container', 'update-list', 'update-show-more'
         );
         renderNewsColumn(
-            news.filter(n => n.type === 'announcement'),
+            announcements,
             'announcement-card-container', 'announcement-list', 'announcement-show-more'
         );
     }

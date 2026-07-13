@@ -1,90 +1,78 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    background-color: transparent;
-    padding: clamp(20px, 2vw, 50px) 0 0 clamp(20px, 2vw, 50px);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    max-width: var(--content-max);
-    margin: 0 auto;
-    z-index: 100;
-    font-family: 'NerkoOne', cursive;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: transparent;
+  padding: clamp(20px,2vw,50px) 0 0 clamp(20px,2vw,50px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  z-index: 100;
+  font-family: NerkoOne,cursive
 }
-
 .navbar-logo {
-    display: flex;
-    align-items: center;
-    width: clamp(180px, 22vw, 400px);
+  display: flex;
+  align-items: center;
+  width: clamp(180px,22vw,400px)
 }
-
 .navbar-logo img {
-    width: 100%;
-    object-fit: contain;
-    filter: drop-shadow(5px 5px 0 #0006);
+  width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(5px 5px 0 #0006)
 }
-
 .navbar-links {
-    display: flex;
-    gap: clamp(10px, 2vw, 24px);
-    align-items: center;
-    padding: clamp(8px, 2vw, 16px) clamp(14px, 2vw, 30px);
-    background-color: #703200;
-    border-radius: var(--radius-pill) 0 0 var(--radius-pill);
-    outline: solid 3px #000;
-    max-height: fit-content;
-    box-shadow: var(--shadow), var(--inset-shadow);
-    flex-wrap: wrap;
+  display: flex;
+  gap: clamp(10px,2vw,24px);
+  align-items: center;
+  padding: clamp(8px,2vw,16px) clamp(14px,2vw,30px);
+  background-color: #703200;
+  border-radius: var(--radius-pill) 0 0 var(--radius-pill);
+  outline: solid 3px #000;
+  max-height: fit-content;
+  box-shadow: var(--shadow),var(--inset-shadow);
+  flex-wrap: wrap
 }
-
 .navbar-toggle {
-    display: none !important;
-    align-items: center;
-    justify-content: center;
-    width: clamp(44px, 10vw, 56px);
-    height: clamp(44px, 10vw, 56px);
-    padding: 0;
-    background-color: var(--light-orange);
-    border-radius: var(--radius-small);
-    outline: solid 2px #000;
-    box-shadow: var(--shadow), var(--inset-shadow);
-    color: #000;
-    z-index: 10003 !important;
+  display: none!important;
+  align-items: center;
+  justify-content: center;
+  width: clamp(44px,10vw,56px);
+  height: clamp(44px,10vw,56px);
+  padding: 0;
+  background-color: var(--light-orange);
+  border-radius: var(--radius-small);
+  outline: solid 2px #000;
+  box-shadow: var(--shadow),var(--inset-shadow);
+  color: #000;
+  z-index: 10003!important
 }
-
 .navbar-toggle i {
-    font-size: clamp(18px, 2.5vw, 24px);
-    color: inherit;
+  font-size: clamp(18px, 2.5vw, 24px);
+  color: inherit
 }
-
-/* Keep hover styling only when the menu is open */
-.navbar-toggle:not([aria-expanded="true"]):hover {
-    background-color: var(--light-orange);
-    color: #000;
-    text-shadow: none;
+.navbar-toggle:not([aria-expanded=true]):hover {
+  background-color: var(--light-orange);
+  color: #000;
+  text-shadow: none
 }
-
 .navbar-menu-mobile {
-  position: fixed !important;
+  position: fixed!important;
   inset: 0;
-  z-index: 10002 !important;
-  height: 100dvh !important;
+  z-index: 10002!important;
+  height: 100dvh!important;
   padding: 0;
   overflow: hidden;
-
-  display: flex !important;
+  display: flex!important;
   flex-direction: column;
-
   background-color: transparent;
-
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity .3s ease,visibility .3s ease
 }
-
 .navbar-menu-mobile__inner {
   width: 100%;
   height: 100%;
@@ -94,67 +82,58 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(16px, 2.5vw, 24px);
-  padding: clamp(80px, 15vh, 120px) var(--section-side-padding) clamp(40px, 8vh, 80px);
+  gap: clamp(16px,2.5vw,24px);
+  padding: clamp(80px,15vh,120px) var(--section-side-padding) clamp(40px,8vh,80px);
   transform: translateY(-100vh);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform .5s cubic-bezier(.16, 1, .3, 1)
 }
-
 .navbar-menu-mobile__inner .btn {
-  width: min(100%, 320px);
-  text-align: center;
+  width: min(100%,320px);
+  text-align: center
 }
-
 .navbar-menu-mobile.open {
   opacity: 1;
   visibility: visible;
-  pointer-events: auto;
+  pointer-events: auto
 }
-
 .navbar-menu-mobile.open .navbar-menu-mobile__inner {
-  transform: translateY(0);
+  transform: translateY(0)
 }
-
-@media (max-width: 720px) {
-    .navbar-menu-mobile__inner a {
-        font-size: 2rem!important;
-    }
-
-    .navbar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: clamp(10px, 4vw, 20px);
-        background-color: transparent;
-        justify-content: flex-start;
-    }
-
-    .navbar-logo {
-        margin-top: 10px;
-        width: clamp(120px, 40vw, 200px);
-    }
-
-    .navbar-toggle {
-        display: inline-flex !important;
-        position: fixed !important;
-        top: 15px !important;
-        right: 15px !important;
-        margin-right: 0 !important;
-        width: clamp(46px, 12vw, 56px) !important;
-        height: clamp(46px, 12vw, 56px) !important;
-        padding: 0;
-        border-radius: var(--radius-small) !important;
-        outline: solid 2px #000 !important;
-        background-color: var(--light-orange);
-        color: #000;
-    }
-
-    .navbar-links {
-        display: none;
-    }
-
-    .navbar-menu-mobile {
-        flex-direction: column;
-    }
+@media (max-width:720px) {
+  .navbar-menu-mobile__inner a {
+    font-size: 2rem!important
+  }
+  .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: clamp(10px,4vw,20px);
+    background-color: transparent;
+    justify-content: flex-start
+  }
+  .navbar-logo {
+    margin-top: 10px;
+    width: clamp(120px,40vw,200px)
+  }
+  .navbar-toggle {
+    display: inline-flex!important;
+    position: fixed!important;
+    top: 15px!important;
+    right: 15px!important;
+    margin-right: 0!important;
+    width: clamp(46px,12vw,56px)!important;
+    height: clamp(46px,12vw,56px)!important;
+    padding: 0;
+    border-radius: var(--radius-small)!important;
+    outline: solid 2px #000!important;
+    background-color: var(--light-orange);
+    color: #000
+  }
+  .navbar-links {
+    display: none
+  }
+  .navbar-menu-mobile {
+    flex-direction: column
+  }
 }

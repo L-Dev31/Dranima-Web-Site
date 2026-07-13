@@ -14,12 +14,20 @@
         });
     }
 
+    function wrapWikiPlainText(html) {
+        const trimmed = (html || '').trim();
+        if (!trimmed) return trimmed;
+        if (/^<(p|ul|ol|table|h[1-6]|div|blockquote|pre)\b/i.test(trimmed)) return trimmed;
+        return `<p>${trimmed}</p>`;
+    }
+
     function renderWikiRichContent(rawHtml, entries) {
         const withRefs = renderWikiReferences(rawHtml || '', entries);
         const sanitized = sanitizeHtml(withRefs);
+        const wrapped = wrapWikiPlainText(sanitized);
 
         const template = document.createElement('template');
-        template.innerHTML = sanitized;
+        template.innerHTML = wrapped;
         template.content.querySelectorAll('table').forEach(table => {
             table.classList.add('wiki-table');
         });
@@ -48,18 +56,20 @@
         setAttr('meta[property="og:title"]', 'content', title);
         setAttr('meta[name="twitter:title"]', 'content', title);
 
-        if (entry.intro) {
-            // intro is rich HTML — reduce to a plain-text ~155-char description.
-            const tmp = document.createElement('div');
-            tmp.innerHTML = sanitizeHtml(entry.intro);
-            const text = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
-            if (text) {
-                const desc = text.length > 155 ? `${text.slice(0, 152)}…` : text;
-                setAttr('meta[name="description"]', 'content', desc);
-                setAttr('meta[property="og:description"]', 'content', desc);
-                setAttr('meta[name="twitter:description"]', 'content', desc);
-            }
+        if (!entry.intro) {
+            return;
         }
+        // intro is rich HTML — reduce to a plain-text ~155-char description.
+        const tmp = document.createElement('div');
+        tmp.innerHTML = sanitizeHtml(entry.intro);
+        const text = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
+        if (!text) {
+            return;
+        }
+        const desc = text.length > 155 ? `${text.slice(0, 152)}…` : text;
+        setAttr('meta[name="description"]', 'content', desc);
+        setAttr('meta[property="og:description"]', 'content', desc);
+        setAttr('meta[name="twitter:description"]', 'content', desc);
     }
 
     function normalizeWikiData(data) {

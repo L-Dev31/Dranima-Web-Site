@@ -1,5 +1,4 @@
 const LOADER_THRESHOLD = 200;
-const NEWS_LIST_MAX = 5;
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 function escapeHtml(str) {
@@ -64,7 +63,7 @@ async function loadNavbar() {
     document.querySelectorAll('.navbar-links a').forEach(link => {
         const href = link.getAttribute('href');
         if (isHomepage && href && href.startsWith('index.html#')) {
-            link.setAttribute('href', '#' + href.split('#')[1]);
+            link.setAttribute('href', `#${href.split('#')[1]}`);
         }
     });
 

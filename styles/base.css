@@ -1,377 +1,304 @@
-/* ====== BASE & VARIABLES ====== */
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
-
+@import url(https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap);
 @font-face {
-    font-family: 'NerkoOne';
-    src: url('../fonts/NerkoOne-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    /* NerkoOne drives the .title elements, which stack background-clip:text +
-       an SVG stroke filter + drop-shadow. `swap` triggers a re-paint when the
-       font loads that mis-composites that stack (shadow paints over the fill),
-       so use `block` to render the titles once, correctly. */
-    font-display: block;
+  font-family: NerkoOne;
+  src: url('../fonts/NerkoOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block
 }
-
 html {
-    scroll-behavior: smooth;
-    overflow-x: clip;
+  scroll-behavior: smooth;
+  overflow-x: clip
 }
-
 :root {
-    /* Colors */
-    --bright-orange: #ffe2c3;
-    --light-orange: #FFC37E;
-    --orange: #EF8D34;
-    --half-orange: #EF8D3440;
-    --bg: #282828;
-    --title-fill: linear-gradient(180deg, #fff 50%, var(--light-orange) 80%, var(--orange) 100%);
-
-    /* Shadows */
-    --shadow-offset: 5px;
-    --shadow-color: #0004;
-    --shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
-    --text-glow: 0 0 4px #000, 0 0 6px #000, 0 0 8px #000;
-    --inset-shadow: inset 0 3px 0 0 rgba(255, 255, 255, 0.2);
-
-    /* Radius */
-    --radius: 18px;
-    --radius-pill: 100px;
-    --radius-small: 10px;
-
-    /* Layout */
-    --content-max: 1920px;
-    --section-side-padding: clamp(20px, 4vw, 80px);
-    --section-max-width: clamp(320px, calc(100vw - 2 * var(--section-side-padding)), var(--content-max));
+  --bright-orange: #ffe2c3;
+  --light-orange: #FFC37E;
+  --orange: #EF8D34;
+  --half-orange: #EF8D3440;
+  --bg: #282828;
+  --title-fill: linear-gradient(180deg, #fff 50%, var(--light-orange) 80%, var(--orange) 100%);
+  --shadow-offset: 5px;
+  --shadow-color: #0004;
+  --shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+  --text-glow: 0 0 4px #000,0 0 6px #000,0 0 8px #000;
+  --inset-shadow: inset 0 3px 0 0 rgba(255, 255, 255, 0.2);
+  --radius: 18px;
+  --radius-pill: 100px;
+  --radius-small: 10px;
+  --content-max: 1920px;
+  --section-side-padding: clamp(20px, 4vw, 80px);
+  --section-max-width: clamp(320px, calc(100vw - 2 * var(--section-side-padding)), var(--content-max))
 }
-
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
 }
-
 body {
-    position: relative;
-    font-family: 'Nunito', sans-serif;
-    color: #fff;
-    background-color: var(--bg);
-    overflow-x: clip;
-    z-index: 0;
+  position: relative;
+  font-family: Nunito,sans-serif;
+  color: #fff;
+  background-color: var(--bg);
+  overflow-x: clip;
+  z-index: 0
 }
-
 body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;
-    height: 100vh;
-    filter: blur(10px) brightness(0.6) saturate(1.2);
-    background-image:  url("../images/bg.jpg");
-    background-size: 100% 100%, 100vw 100vh;
-    background-position: center, center;
-    background-repeat: no-repeat, no-repeat;
-    background-attachment: fixed, fixed;
-    z-index: -1;
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100vh;
+  filter: blur(10px) brightness(.6) saturate(1.2);
+  background-image: url("../images/bg.jpg");
+  background-size: 100% 100%,100vw 100vh;
+  background-position: center,center;
+  background-repeat: no-repeat,no-repeat;
+  background-attachment: fixed,fixed;
+  z-index: -1
 }
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'NerkoOne', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: NerkoOne,sans-serif
 }
-
-p, li, dd, dt, .creator-signature {
-    text-shadow: var(--text-glow);
+.creator-signature,
+dd,
+dt,
+li,
+p {
+  text-shadow: var(--text-glow)
 }
-
 .title {
-    font-family: 'NerkoOne', sans-serif;
-    background: var(--title-fill);
-    
-    /* Text fill*/
-    background-size: 100% 1lh;
-    background-repeat: repeat-y;
-    background-origin: content-box;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-
-    /* Outline and shadow */
-    padding: 10px;
-    filter: 
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='stroke'%3E%3CfeMorphology in='SourceAlpha' operator='dilate' radius='3' result='outline'/%3E%3CfeFlood flood-color='%23261102' result='color'/%3E%3CfeComposite in='color' in2='outline' operator='in' result='stroke'/%3E%3CfeMerge%3E%3CfeMergeNode in='stroke'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/svg%3E#stroke")
-        drop-shadow(var(--shadow));
+  font-family: NerkoOne,sans-serif;
+  background: var(--title-fill);
+  background-size: 100% 1lh;
+  background-repeat: repeat-y;
+  background-origin: content-box;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  padding: 10px;
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='stroke'%3E%3CfeMorphology in='SourceAlpha' operator='dilate' radius='3' result='outline'/%3E%3CfeFlood flood-color='%23261102' result='color'/%3E%3CfeComposite in='color' in2='outline' operator='in' result='stroke'/%3E%3CfeMerge%3E%3CfeMergeNode in='stroke'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/svg%3E#stroke") drop-shadow(var(--shadow))
 }
-
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0
 }
-
 strong {
-    background-color: var(--orange);
-    padding: 0 5px;
-    border-radius: var(--radius-small);
-    outline: 2px solid var(--light-orange);
-    margin: 0 5px;
-    box-shadow: var(--shadow);
-    color: #000;
-    text-shadow: none!important;
-
+  font-weight: bolder;
+  color: var(--light-orange)
 }
-
-em {
-    font-style: italic;
-    opacity: 0.9;
-}
-
 ul {
-    list-style: none;
-    padding-left: 0;
-    display: flex;
-    flex-direction: column;
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column
 }
-
 li {
-    padding-left: 1.25em;
-    position: relative;
+  padding-left: 1.25em;
+  position: relative
 }
-
 li::before {
-    content: "-";
-    position: absolute;
-    left: 0;
-    font-weight: bold;
+  content: "-";
+  position: absolute;
+  left: 0;
+  font-weight: 700
 }
-
 section {
-    padding-inline: var(--section-side-padding);
-    gap: 30px;
+  padding-inline: var(--section-side-padding);
+  gap: 30px
 }
-
 section > * {
-    max-width: var(--section-max-width);
-    margin: 0 auto;
+  max-width: var(--section-max-width);
+  margin: 0 auto
 }
-
 body > section:nth-of-type(2) {
-    margin-top: -80px !important;
+  margin-top: -80px!important
 }
-
 h2 {
-    font-size: clamp(28px, 4vw, 48px);
-    text-align: center;
+  font-size: clamp(28px, 4vw, 48px);
+  text-align: center
 }
-
-/* ====== LAYOUT ====== */
-
 .bg-pattern {
-    background-color: #fff;
-    background-image: url('../images/pattern.png');
-    background-size: 300px 400px;
-    background-repeat: repeat;
-    padding: 80px var(--section-side-padding);
+  background-color: #fff;
+  background-image: url('../images/pattern.png');
+  background-size: 300px 400px;
+  background-repeat: repeat;
+  padding: 80px var(--section-side-padding)
 }
-
-.bg-pattern :is(p, li, dd, dt, span, a, button, input, textarea, label) {
-    color: #000;
-    text-shadow: none;
-    -webkit-text-stroke: 0;
-    text-stroke: 0;
+.bg-pattern :is(p,li,dd,dt,span,a,button,input,textarea,label) {
+  color: #000;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
+  text-stroke: 0
 }
-
-.bg-pattern strong {
-    box-shadow: none!important;
-}
-
-/* Shared style for “info” sections (wiki invite/disclaimer, project closing, etc.) */
 .info-section {
-    padding-block: 60px;
-    text-align: center;
+  padding-block: 60px;
+  text-align: center
 }
-
 .info-section p {
-    max-width: 780px;
-    margin: 20px auto;
-    font-size: clamp(18px, 2vw, 28px);
+  max-width: 780px;
+  margin: 20px auto;
+  font-size: clamp(18px, 2vw, 28px)
 }
-
-
-:is(.spiked, .spiked-top, .spiked-bottom) {
-    position: relative;
-    background: transparent;
+:is(.spiked,.spiked-top,.spiked-bottom) {
+  position: relative;
+  background: 0 0
 }
-
-:is(.spiked, .spiked-top, .spiked-bottom)::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-color: #fff;
-    background-image: url('../images/pattern.png');
-    background-size: 300px 400px;
-    background-repeat: repeat;
+:is(.spiked,.spiked-top,.spiked-bottom)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: #fff;
+  background-image: url('../images/pattern.png');
+  background-size: 300px 400px;
+  background-repeat: repeat
 }
-
 .spiked {
-    filter:
-        drop-shadow(0 var(--shadow-offset) 2px var(--shadow-color))
-        drop-shadow(0 calc(var(--shadow-offset) * -1) 2px var(--shadow-color));
+  filter: drop-shadow(0 var(--shadow-offset) 2px var(--shadow-color)) drop-shadow(0 calc(var(--shadow-offset) * -1) 2px var(--shadow-color))
 }
-
 .spiked::before {
-    -webkit-mask-image: url('../images/spike.svg'), url('../images/spike-bottom.svg'), linear-gradient(black, black);
-    mask-image: url('../images/spike.svg'), url('../images/spike-bottom.svg'), linear-gradient(black, black);
-    -webkit-mask-size: 40px auto, 40px auto, 100% 100%;
-    mask-size: 40px auto, 40px auto, 100% 100%;
-    -webkit-mask-position: top left, bottom left, center;
-    mask-position: top left, bottom left, center;
-    -webkit-mask-repeat: repeat-x, repeat-x, no-repeat;
-    mask-repeat: repeat-x, repeat-x, no-repeat;
-    -webkit-mask-composite: destination-out, destination-out, source-over;
-    mask-composite: exclude;
+  -webkit-mask-image: url('../images/spike.svg'),url('../images/spike-bottom.svg'),linear-gradient(black,black);
+  mask-image: url('../images/spike.svg'),url('../images/spike-bottom.svg'),linear-gradient(black,black);
+  -webkit-mask-size: 40px auto,40px auto,100% 100%;
+  mask-size: 40px auto,40px auto,100% 100%;
+  -webkit-mask-position: top left,bottom left,center;
+  mask-position: top left,bottom left,center;
+  -webkit-mask-repeat: repeat-x,repeat-x,no-repeat;
+  mask-repeat: repeat-x,repeat-x,no-repeat;
+  -webkit-mask-composite: destination-out,destination-out,source-over;
+  mask-composite: exclude
 }
-
 .spiked-top {
-    filter: drop-shadow(0 calc(var(--shadow-offset) * -1) 2px var(--shadow-color));
+  filter: drop-shadow(0 calc(var(--shadow-offset) * -1) 2px var(--shadow-color))
 }
-
 .spiked-top::before {
-    -webkit-mask-image: url('../images/spike.svg'), linear-gradient(black, black);
-    mask-image: url('../images/spike.svg'), linear-gradient(black, black);
-    -webkit-mask-size: 40px auto, 100% 100%;
-    mask-size: 40px auto, 100% 100%;
-    -webkit-mask-position: top left, center;
-    mask-position: top left, center;
-    -webkit-mask-repeat: repeat-x, no-repeat;
-    mask-repeat: repeat-x, no-repeat;
-    -webkit-mask-composite: destination-out, source-over;
-    mask-composite: exclude;
+  -webkit-mask-image: url('../images/spike.svg'),linear-gradient(black,black);
+  mask-image: url('../images/spike.svg'),linear-gradient(black,black);
+  -webkit-mask-size: 40px auto,100% 100%;
+  mask-size: 40px auto,100% 100%;
+  -webkit-mask-position: top left,center;
+  mask-position: top left,center;
+  -webkit-mask-repeat: repeat-x,no-repeat;
+  mask-repeat: repeat-x,no-repeat;
+  -webkit-mask-composite: destination-out,source-over;
+  mask-composite: exclude
 }
-
 .spiked-bottom {
-    filter: drop-shadow(0 var(--shadow-offset) 2px var(--shadow-color));
+  filter: drop-shadow(0 var(--shadow-offset) 2px var(--shadow-color))
 }
-
 .spiked-bottom::before {
-    -webkit-mask-image: url('../images/spike-bottom.svg'), linear-gradient(black, black);
-    mask-image: url('../images/spike-bottom.svg'), linear-gradient(black, black);
-    -webkit-mask-size: 40px auto, 100% 100%;
-    mask-size: 40px auto, 100% 100%;
-    -webkit-mask-position: bottom left, center;
-    mask-position: bottom left, center;
-    -webkit-mask-repeat: repeat-x, no-repeat;
-    mask-repeat: repeat-x, no-repeat;
-    -webkit-mask-composite: destination-out, source-over;
-    mask-composite: exclude;
+  -webkit-mask-image: url('../images/spike-bottom.svg'),linear-gradient(black,black);
+  mask-image: url('../images/spike-bottom.svg'),linear-gradient(black,black);
+  -webkit-mask-size: 40px auto,100% 100%;
+  mask-size: 40px auto,100% 100%;
+  -webkit-mask-position: bottom left,center;
+  mask-position: bottom left,center;
+  -webkit-mask-repeat: repeat-x,no-repeat;
+  mask-repeat: repeat-x,no-repeat;
+  -webkit-mask-composite: destination-out,source-over;
+  mask-composite: exclude
 }
-
 .btn {
-    font-family: 'NerkoOne', cursive;
-    color: #000;
-    background-color: var(--light-orange);
-    box-shadow: var(--shadow), var(--inset-shadow);
-    padding: clamp(6px, 2vw, 10px) clamp(12px, 2vw, 26px);
-    outline: solid 2px #fff;
-    text-decoration: none;
-    font-size: clamp(14px, 2vw, 24px);
-    transition: all 0.2s;
-    border-radius: var(--radius-small);
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  font-family: NerkoOne,cursive;
+  color: #000;
+  background-color: var(--light-orange);
+  box-shadow: var(--shadow),var(--inset-shadow);
+  padding: clamp(6px,2vw,10px) clamp(12px,2vw,26px);
+  outline: solid 2px #fff;
+  text-decoration: none;
+  font-size: clamp(14px, 2vw, 24px);
+  transition: all .2s;
+  border-radius: var(--radius-small);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center
 }
-
-.btn:hover, .btn.active {
-    background-color: var(--orange);
-    color: #fff;
-    text-shadow: 0 0 5px #0006;
+.btn.active,
+.btn:hover {
+  background-color: var(--orange);
+  color: #fff;
+  text-shadow: 0 0 5px #0006
 }
-
 .btn:focus-visible {
-    box-shadow: var(--shadow), var(--inset-shadow), 0 0 0 3px #fff, 0 0 0 6px #000;
-    outline: 2px solid transparent;
-    outline-offset: 2px;
+  box-shadow: var(--shadow),var(--inset-shadow),0 0 0 3px #fff,0 0 0 6px #000;
+  outline: 2px solid transparent;
+  outline-offset: 2px
 }
-
 .btn.disabled {
-    background-color: #b0b0b0;
-    color: #3c3c3c;
-    cursor: not-allowed;
-    pointer-events: none;
-    box-shadow: none;
-    border-color: #888;
+  background-color: #b0b0b0;
+  color: #3c3c3c;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  border-color: #888
 }
-
 .creator-signature {
-    color: var(--light-orange)!important;
+  color: var(--light-orange)!important
 }
-
-/* ====== BACK TO TOP BUTTON ====== */
 #back-to-top {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: clamp(44px, 6vh, 64px);
-    cursor: pointer;
-    transform: translateY(120%);
-    opacity: 0;
-    z-index: 999;
-    transition: transform 0.3s, opacity 0.3s;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: clamp(44px,6vh,64px);
+  cursor: pointer;
+  transform: translateY(120%);
+  opacity: 0;
+  z-index: 999;
+  transition: transform .3s,opacity .3s
 }
 #back-to-top.show {
-    transform: translateY(0);
-    opacity: 1;
+  transform: translateY(0);
+  opacity: 1
 }
-
 #back-to-top:focus-visible {
-    outline: 3px solid #fff;
-    outline-offset: 2px;
+  outline: 3px solid #fff;
+  outline-offset: 2px
 }
-
-
 .content-img {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin: 8px 0 32px;
-    width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 12px;
+  margin: 8px 0 32px;
+  width: 100%
 }
-
 .content-img:has(> img:only-child) {
-    grid-template-columns: 1fr;
+  grid-template-columns: 1fr
 }
-
 .content-img img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+  width: 100%;
+  height: auto;
+  object-fit: cover
 }
-
-/* When a modal/popup is active, prevent the body from scrolling */
 .body--modal-open {
-    overflow: hidden;
+  overflow: hidden
 }
-
-/* ====== REDUCED MOTION ====== */
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+@media (prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior: auto
+  }
+  *,
+  ::after,
+  ::before {
+    animation-duration: 0s!important;
+    animation-iteration-count: 1!important;
+    transition-duration: 0s!important
+  }
 }
