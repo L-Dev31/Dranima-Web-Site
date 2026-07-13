@@ -15,24 +15,21 @@ function sanitizeHtml(html) {
     const template = document.createElement('template');
     template.innerHTML = String(html);
 
-    const disallowedTags = new Set(['script', 'style', 'iframe', 'object', 'embed', 'link']);
-    const walker = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT, null);
+    // Two static-NodeList passes. A live TreeWalker would break here: removing
+    // its current node detaches the walker and skips the disallowed node's
+    // following siblings, leaving them unsanitized.
+    template.content.querySelectorAll('script, style, iframe, object, embed, link')
+        .forEach(node => node.remove());
 
-    while (walker.nextNode()) {
-        const node = walker.currentNode;
-        if (disallowedTags.has(node.nodeName.toLowerCase())) {
-            node.remove();
-            continue;
-        }
-
+    template.content.querySelectorAll('*').forEach(node => {
         for (const attr of Array.from(node.attributes)) {
             const name = attr.name.toLowerCase();
-            const value = (attr.value || '').trim();
-            if (name.startsWith('on') || value.toLowerCase().startsWith('javascript:') || value.toLowerCase().startsWith('vbscript:')) {
+            const value = (attr.value || '').trim().toLowerCase();
+            if (name.startsWith('on') || value.startsWith('javascript:') || value.startsWith('vbscript:')) {
                 node.removeAttribute(attr.name);
             }
         }
-    }
+    });
 
     return template.innerHTML;
 }
@@ -193,6 +190,7 @@ function unlockBodyScroll() {
     document.body.classList.remove('body--modal-open');
 }
 
+//Back to top button
 function initBackToTop() {
     const id = 'back-to-top';
     let btn = document.getElementById(id);

@@ -6,11 +6,12 @@
 .footer-disclaimer {
     padding: 30px 20px;
     color: #fff;
+    background-color: var(--bg);
 }
 
 .footer-disclaimer p {
     text-align: center;
-    font-size: 11px;
+    font-size: 14px;
     opacity: 0.8;
     margin: 0;
 }
@@ -128,10 +129,4 @@
 
 .footer-legal a:hover {
     text-decoration: underline;
-}
-
-.footer-copyright {
-    text-align: center;
-    font-size: 11px;
-    opacity: 0.8;
 }

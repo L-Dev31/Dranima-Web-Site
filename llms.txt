@@ -1,0 +1,33 @@
+# Dranima
+
+> Dranima is an upcoming indie monster-tamer RPG inspired by classic late-1990s
+> and early-2000s JRPGs. Players explore the original world of Conwind, collect
+> and bond with ("drame") 200 unique creatures called Dranimae, and build teams
+> of up to 8 for strategic turn-based battles. Developed by Dranima Studio in
+> Godot. Currently in prototype phase; release date TBA; planned for PC via Steam.
+
+## Key facts
+
+- Genre: monster-tamer / creature-collector JRPG, turn-based combat
+- Creatures: 200 unique Dranimae across 18 elemental types (rarest: Rainbow)
+- Party: up to 8 Dranimae, 4 active in battle; actions are Act, Switch, Drame, Run
+- Signature mechanic: Dranimae Synergy (type-matched party leader boosts allies)
+- Platform: PC (Steam planned); languages: English, French, Portuguese, Spanish
+- Studio: Dranima Studio, founded by Alex C. Bourbon; independent, self-funded
+- Engine: Godot 4.4.1; status: prototype (battle system ~50% implemented)
+
+## Pages
+
+- [Home](https://dranima.com/): overview, development news, updates, and FAQ
+- [Project](https://dranima.com/project.html): gameplay systems, development progress, roadmap
+- [Wiki](https://dranima.com/wiki.html): lore, characters, creatures, and worldbuilding
+- [Credits](https://dranima.com/credits.html): team and guest contributors
+
+## Community
+
+- X (Twitter): https://x.com/booksofdranima
+- Instagram: https://www.instagram.com/booksofdranima/
+- Discord: https://discord.gg/xfxqWYWuS2
+- YouTube: https://www.youtube.com/@DranimaGames
+- Bluesky: https://bsky.app/profile/dranima.bsky.social
+- Contact: booksofdranima@gmail.com

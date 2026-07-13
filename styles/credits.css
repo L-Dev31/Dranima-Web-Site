@@ -31,6 +31,13 @@
     flex-direction: column;
     align-items: center;
     gap: 6px;
+    /* Card may render as an <a> when the member has a link */
+    text-decoration: none;
+    color: inherit;
+}
+
+.credit-card:visited {
+    color: inherit;
 }
 
 .credit-role {
@@ -85,9 +92,15 @@
     text-align: left;
 }
 
-.guest-item a {
+.guest-item a,
+.guest-item a:visited {
     text-decoration: none;
     color: #fff;
+    /* Set explicitly (not inherited from .credits-guest-list span) so the
+       browser's privacy-preserving :visited override can't swap in a
+       mismatched stroke color and create a ghosted/doubled text look. */
+    -webkit-text-stroke: 3px #000;
+    paint-order: stroke fill;
 }
 
 .guest-item a:hover {

@@ -1,8 +1,27 @@
 (() => {
+    let lastFocused = null;
+
     function renderNewsPopupContent(item) {
         const contentEl = document.querySelector('.news-popup-content');
         if (!contentEl) return;
         contentEl.innerHTML = sanitizeHtml(item.content || '');
+    }
+
+    function trapFocus(e, container) {
+        if (!container) return;
+        const focusables = container.querySelectorAll(
+            'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
     }
 
     function initNewsPopup() {
@@ -14,15 +33,25 @@
 
         overlay.querySelector('.news-popup-close').addEventListener('click', closeNewsPopup);
         overlay.addEventListener('click', e => { if (e.target === overlay) closeNewsPopup(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNewsPopup(); });
+
+        document.addEventListener('keydown', e => {
+            if (!overlay.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                closeNewsPopup();
+            } else if (e.key === 'Tab') {
+                trapFocus(e, overlay.querySelector('.news-popup'));
+            }
+        });
     }
 
     function openNewsPopup(item) {
         const overlay = document.querySelector('.news-popup-overlay');
         if (!overlay) return;
+        lastFocused = document.activeElement;
         const icon = item.type === 'update' ? 'images/UPD.png' : 'images/NEWS.png';
-        overlay.querySelector('.news-popup-image img').src = item.image;
-        overlay.querySelector('.news-popup-image img').alt = item.title;
+        const popupImage = overlay.querySelector('.news-popup-image img');
+        popupImage.src = item.image;
+        popupImage.alt = item.title;
         overlay.querySelector('.news-popup-icon img').src = icon;
         overlay.querySelector('.news-popup-title').textContent = item.title;
         overlay.querySelector('.news-popup-date').textContent = formatDate(item.date);
@@ -34,6 +63,8 @@
         } else {
             document.body.classList.add('body--modal-open');
         }
+        const popup = overlay.querySelector('.news-popup');
+        if (popup) popup.focus();
     }
 
     function closeNewsPopup() {
@@ -45,6 +76,10 @@
         } else {
             document.body.classList.remove('body--modal-open');
         }
+        if (lastFocused && typeof lastFocused.focus === 'function') {
+            lastFocused.focus();
+        }
+        lastFocused = null;
     }
 
     function createNewsCard(item, small = false) {

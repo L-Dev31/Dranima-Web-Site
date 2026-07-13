@@ -5,7 +5,7 @@
         if (!container && !guestContainer) return;
 
         const creditsData = await fetch('data/credits.json').then(r => r.json());
-        const { categories, guests, team } = creditsData;
+        const { categories = [], guests = [], team } = creditsData;
 
         const teamMap = new Map((team || []).map(member => [member.id, member]));
 
@@ -15,6 +15,7 @@
                 category.className = 'credits-category';
 
                 const heading = document.createElement('h2');
+                heading.className = 'title';
                 heading.textContent = title;
                 category.appendChild(heading);
 
@@ -35,8 +36,7 @@
                     if (link) {
                         card.href = link;
                         card.target = '_blank';
-                        card.style.textDecoration = 'none';
-                        card.style.color = 'inherit';
+                        card.rel = 'noopener noreferrer';
                     }
 
                     const img = document.createElement('img');

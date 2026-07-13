@@ -99,7 +99,11 @@
 }
 
 /* ====== STEAM SECTION ====== */
-.steam-section {
+.section-steam {
+    padding-block: 60px;
+}
+
+.steam-box {
     position: relative;
     overflow: hidden;
     background: linear-gradient(to top left, #050f1a, #17304e, #0d1b2a);
@@ -111,11 +115,11 @@
     gap: 8px;
     padding: 40px clamp(20px, 4vw, 60px);
     width: clamp(320px, 95vw, 1200px);
-    margin: 100px auto;
+    margin: 32px auto 0;
     border-radius: var(--radius);
 }
 
-.steam-section::before {
+.steam-box::before {
     content: "";
     position: absolute;
     inset: 0;

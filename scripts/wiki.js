@@ -27,6 +27,41 @@
         return template.innerHTML;
     }
 
+    /**
+     * Per-entry SEO meta for the client-rendered wiki template. Without this,
+     * every ?id=X entry inherits the static canonical/og:url of the bare
+     * wiki-page.html, so search engines would consolidate all entries onto one
+     * contentless URL. Point them at their own ?id= URL and refresh the snippet.
+     * @param {{id:string,name:string,intro?:string|null}} entry
+     */
+    function updateWikiPageSeoMeta(entry) {
+        const url = `https://dranima.com/wiki-page.html?id=${encodeURIComponent(entry.id)}`;
+        const setAttr = (selector, attr, value) => {
+            const el = document.querySelector(selector);
+            if (el) el.setAttribute(attr, value);
+        };
+
+        setAttr('link[rel="canonical"]', 'href', url);
+        setAttr('meta[property="og:url"]', 'content', url);
+
+        const title = `${entry.name} — Dranima Wiki`;
+        setAttr('meta[property="og:title"]', 'content', title);
+        setAttr('meta[name="twitter:title"]', 'content', title);
+
+        if (entry.intro) {
+            // intro is rich HTML — reduce to a plain-text ~155-char description.
+            const tmp = document.createElement('div');
+            tmp.innerHTML = sanitizeHtml(entry.intro);
+            const text = (tmp.textContent || '').replace(/\s+/g, ' ').trim();
+            if (text) {
+                const desc = text.length > 155 ? `${text.slice(0, 152)}…` : text;
+                setAttr('meta[name="description"]', 'content', desc);
+                setAttr('meta[property="og:description"]', 'content', desc);
+                setAttr('meta[name="twitter:description"]', 'content', desc);
+            }
+        }
+    }
+
     function normalizeWikiData(data) {
         return {
             ...data,
@@ -90,6 +125,7 @@
                 const header = document.createElement('div');
                 header.className = 'wiki-category-header';
                 const heading = document.createElement('h2');
+                heading.className = 'title';
                 heading.textContent = cat.name;
                 header.appendChild(heading);
                 col.appendChild(header);
@@ -112,7 +148,7 @@
         });
 
         if (container.children.length === 0) {
-            container.innerHTML = '<p style="text-align: center; font-size: 1.5rem; color: #fff; text-shadow: var(--shadow);">No results found.</p>';
+            container.innerHTML = '<p class="wiki-no-results">No results found.</p>';
         }
     }
 
@@ -128,13 +164,13 @@
             wrapper.className = 'wiki-page-notfound';
 
             const heading = document.createElement('h2');
+            heading.className = 'title';
             heading.textContent = title;
             wrapper.appendChild(heading);
 
             if (msg) {
                 const p = document.createElement('p');
-                p.style.color = '#fff';
-                p.style.marginBottom = '20px';
+                p.className = 'wiki-page-notfound-msg';
                 p.textContent = msg;
                 wrapper.appendChild(p);
             }
@@ -157,6 +193,7 @@
         if (!entry) return renderNotFound('Entry not found', `The wiki entry "${entryId}" does not exist.`);
 
         document.title = `${entry.name} - Wiki - Dranima`;
+        updateWikiPageSeoMeta(entry);
 
         // Header
         const pageHeader = document.createElement('div');
@@ -174,6 +211,7 @@
         }
 
         const titleH1 = document.createElement('h1');
+        titleH1.className = 'title';
         titleH1.textContent = entry.name;
         titleRow.appendChild(titleH1);
         pageHeader.appendChild(titleRow);
@@ -223,6 +261,7 @@
                 sectionEl.id = `section-${index}`;
 
                 const sectionTitle = document.createElement('h2');
+                sectionTitle.className = 'title';
                 sectionTitle.textContent = section.title;
 
                 const sectionContent = document.createElement('div');

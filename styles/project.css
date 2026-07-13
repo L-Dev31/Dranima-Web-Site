@@ -5,38 +5,29 @@
 
 .section-project article {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: stretch;
     gap: clamp(30px, 5vw, 80px);
     max-width: 1200px;
     margin: 0 auto;
-    flex-wrap: wrap;
-}
-
-.section-project article.reverse {
-    flex-direction: row-reverse;
 }
 
 .section-project article > div {
     flex: 1 1 400px;
     display: flex;
     flex-direction: column;
-    gap: 14px; 
+    gap: 14px;
     font-size: clamp(16px, 1.5vw, 20px);
     color: #fff;
-    text-shadow: var(--shadow);
     line-height: 1.55;
 }
 
 .section-project article h2 {
     text-align: left;
-    margin-bottom: 6px; 
 }
 
 .section-project article > img {
-    flex: 0 0 clamp(260px, 35%, 480px);
     align-self: flex-start;
-    position: sticky;
-    top: 30px;
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
@@ -45,6 +36,25 @@
     box-shadow: var(--shadow);
     background-color: var(--light-orange);
     display: block;
+}
+
+/* Two-column mode: text and image side by side.
+   The image is sticky so it visually follows the text along the reading. */
+@media (min-width: 768px) {
+    .section-project article {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .section-project article.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .section-project article > img {
+        flex: 0 0 clamp(260px, 35%, 480px);
+        position: sticky;
+        top: 30px;
+    }
 }
 
 /* What to expect section */

@@ -23,23 +23,6 @@
     pointer-events: auto;
 }
 
-#loader .loader-bg {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 50%;
-    transform: translateY(-75%);
-    will-change: transform;
-    backface-visibility: hidden;
-}
-
-#loader .loader-bg img {
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 10px 0 #0006);
-}
-
 #loader.loader-exit {
     animation: loader-fade-out 0.9s ease forwards;
 }

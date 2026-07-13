@@ -12,12 +12,19 @@
     <meta property="og:title" content="Dranima — Indie monster-tamer RPG">
     <meta property="og:description" content="Discover Dranima: a retro-inspired monster-tamer RPG in development. Follow the project updates, explore the world, and join the community.">
     <meta property="og:url" content="https://dranima.com/">
-    <meta property="og:image" content="https://dranima.com/images/bg.png">
+    <meta property="og:image" content="https://dranima.com/images/bg.jpg">
     <meta property="og:image:alt" content="Dranima character artwork and game world preview">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dranima — Indie monster-tamer RPG">
     <meta name="twitter:description" content="Discover Dranima: a retro-inspired monster-tamer RPG in development. Follow the project updates, explore the world, and join the community.">
-    <meta name="twitter:image" content="https://dranima.com/images/bg.png">
+    <meta name="twitter:image" content="https://dranima.com/images/bg.jpg">
+    <meta property="og:site_name" content="Dranima">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1667">
+    <meta property="og:image:height" content="938">
+    <meta name="twitter:site" content="@booksofdranima">
+    <meta name="twitter:creator" content="@booksofdranima">
 
     <script type="application/ld+json">
     {
@@ -53,7 +60,7 @@
           "inLanguage": "en",
           "genre": "Role-playing game",
           "gamePlatform": "PC",
-          "image": "https://dranima.com/images/bg.png",
+          "image": "https://dranima.com/images/bg.jpg",
           "publisher": { "@id": "https://dranima.com/#organization" }
         }
       ]
@@ -68,13 +75,18 @@
     <link rel="stylesheet" href="styles/news.css">
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <meta name="theme-color" content="#EF8D34">
     <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
     <script src="scripts/common.js" defer></script>
     <script src="scripts/news.js" defer></script>
     <script src="scripts/faq.js" defer></script>
     <script src="scripts/main.js" defer></script>
 </head>
-<body>
+<body class="page-home">
 
     <h1 class="sr-only">Dranima — Indie monster-tamer role-playing game</h1>
 
@@ -93,19 +105,18 @@
             <span class="hero-label">Release Date:</span>
             <span class="hero-value">TBA</span>
         </div>
-        <!--<img class="hero-icon" src="images/character.png" alt="">-->
     </section>
 
     <!-- ====== NEWS ====== -->
     <section class="section-news bg-pattern spiked" id="news">
-        <h2>Major Announcements</h2>
+        <h2 class="title">Major Announcements</h2>
         <div id="major-news-container"></div>
 
         <!-- Two columns: Updates & Announcements -->
         <div class="news-columns">
             <!-- Left: Updates -->
             <div class="news-column">
-                <h2>Updates</h2>
+                <h2 class="title">Updates</h2>
                 <div id="update-card-container"></div>
                 <div class="news-list-card">
                     <h3 class="news-list-title">Other Updates</h3>
@@ -115,7 +126,7 @@
             </div>
             <!-- Right: Announcements -->
             <div class="news-column">
-                <h2>Announcements</h2>
+                <h2 class="title">Announcements</h2>
                 <div id="announcement-card-container"></div>
                 <div class="news-list-card">
                     <h3 class="news-list-title">Other Announcements</h3>
@@ -129,69 +140,71 @@
     <!-- ====== SCREENSHOTS ====== -->
     <section class="section-screenshots" id="screenshots">
         <article class="screenshot-showcase">
-            <h2 class="screenshot-title">Discover the mysterious world of Conwind!</h2>
+            <h2 class="title screenshot-title">Discover the mysterious world of Conwind!</h2>
             <div class="screenshot-content">
                 <div class="screenshot-character-wrap">
-                    <img class="screenshot-character" src="images/character1.png" alt="Dranima character companion">
+                    <img class="screenshot-character" src="images/character1.png" alt="Dranima character companion" loading="lazy" decoding="async">
                 </div>
                 <div class="screenshot-card">
-                    <img src="images/world.png" alt="Gameplay screenshot showing the world of Conwind">
+                    <img src="images/world.png" alt="Gameplay screenshot showing the world of Conwind" loading="lazy" decoding="async">
                 </div>
             </div>
         </article>
 
         <article class="screenshot-showcase screenshot-showcase--reverse">
-            <h2 class="screenshot-title">Meet and Drame all Dranimae! <br> Create a powerful party of up to 8 team members.</h2>
+            <h2 class="title screenshot-title">Meet and Drame all Dranimae! <br> Create a powerful party of up to 8 team members.</h2>
             <div class="screenshot-content">
                 <div class="screenshot-character-wrap">
-                    <img class="screenshot-character screenshot-character--flip" src="images/character2.png" alt="Dranima character artwork">
+                    <img class="screenshot-character screenshot-character--flip" src="images/character2.png" alt="Dranima character artwork" loading="lazy" decoding="async">
                 </div>
                 <div class="screenshot-card">
-                    <img src="images/team.png" alt="Gameplay screenshot featuring a Dranimoe party">
+                    <img src="images/team.png" alt="Gameplay screenshot featuring a Dranimoe party" loading="lazy" decoding="async">
                 </div>
             </div>
         </article>
 
         <article class="screenshot-showcase">
-            <h2 class="screenshot-title">Befriend the world and learn more about each character!</h2>
+            <h2 class="title screenshot-title">Befriend the world and learn more about each character!</h2>
             <div class="screenshot-content">
                 <div class="screenshot-character-wrap">
-                    <img class="screenshot-character" src="images/character3.png" alt="Friendly Dranima character portrait">
+                    <img class="screenshot-character" src="images/character3.png" alt="Friendly Dranima character portrait" loading="lazy" decoding="async">
                 </div>
                 <div class="screenshot-card">
-                    <img src="images/template.png" alt="Screenshot highlighting characters and exploration">
+                    <img src="images/template.png" alt="Screenshot highlighting characters and exploration" loading="lazy" decoding="async">
                 </div>
             </div>
         </article>
 
         <article class="screenshot-showcase screenshot-showcase--reverse">
-            <h2 class="screenshot-title">Construct the Drealm of your Dreams!</h2>
+            <h2 class="title screenshot-title">Construct the Drealm of your Dreams!</h2>
             <div class="screenshot-content">
                 <div class="screenshot-character-wrap">
-                    <img class="screenshot-character screenshot-character--flip" src="images/character4.png" alt="Dranima builder character artwork">
+                    <img class="screenshot-character screenshot-character--flip" src="images/character4.png" alt="Dranima builder character artwork" loading="lazy" decoding="async">
                 </div>
                 <div class="screenshot-card">
-                    <img src="images/template.png" alt="Screenshot showing building and customization features">
+                    <img src="images/template.png" alt="Screenshot showing building and customization features" loading="lazy" decoding="async">
                 </div>
             </div>
         </article>
     </section>
 
     <!-- ====== STEAM SECTION ====== -->
-    <section class="steam-section" id="steam">
-        <h2>It will be playable on</h2>
-        <img class="steam-section-logo" src="images/steam.png" alt="Steam">
-        <div class="steam-section-flags">
-            <img class="steam-section-flag" src="images/flags/en.png" alt="English" title="English">
-            <img class="steam-section-flag" src="images/flags/fr.png" alt="French" title="French">
-            <img class="steam-section-flag" src="images/flags/pt.png" alt="Portuguese" title="Portuguese">
-            <img class="steam-section-flag" src="images/flags/es.png" alt="Spanish" title="Spanish">
+    <section class="section-steam" id="steam">
+        <h2 class="title">It will be playable on</h2>
+        <div class="steam-box">
+            <img class="steam-section-logo" src="images/steam.png" alt="Steam">
+            <div class="steam-section-flags">
+                <img class="steam-section-flag" src="images/flags/en.png" alt="English" title="English">
+                <img class="steam-section-flag" src="images/flags/fr.png" alt="French" title="French">
+                <img class="steam-section-flag" src="images/flags/pt.png" alt="Portuguese" title="Portuguese">
+                <img class="steam-section-flag" src="images/flags/es.png" alt="Spanish" title="Spanish">
+            </div>
         </div>
     </section>
 
     <!-- ====== FAQ ====== -->
     <section class="section-faq bg-pattern spiked" id="faq">
-        <h2>FAQ</h2>
+        <h2 class="title">FAQ</h2>
         <div class="faq-list" id="faq-list"></div>
         <h3 class="faq-signature creator-signature">— Alex C. Bourbon, creator of Dranima</h3>
     </section>
@@ -206,13 +219,13 @@
 
     <template id="news-popup-template">
         <div class="news-popup-overlay">
-            <div class="news-popup">
-                <button class="news-popup-close"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span class="sr-only">Close</span></button>
+            <div class="news-popup" role="dialog" aria-modal="true" aria-labelledby="news-popup-title" tabindex="-1">
+                <button class="news-popup-close" type="button" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span class="sr-only">Close</span></button>
                 <div class="news-popup-image"><img src="" alt="" aria-hidden="true"></div>
                 <div class="news-popup-body">
                     <div class="news-popup-header">
                         <div class="news-popup-icon"><img src="" alt="" aria-hidden="true"></div>
-                        <h2 class="news-popup-title"></h2>
+                        <h2 class="news-popup-title" id="news-popup-title"></h2>
                     </div>
                     <p class="news-popup-date"></p>
                     <p class="news-popup-desc"></p>
@@ -245,7 +258,7 @@
 
     <!-- ====== CONTACT INVITE ====== -->
     <section class="section-wiki-invite info-section" id="wiki-invite">
-        <h2>Want to collaborate or stream Dranima?</h2>
+        <h2 class="title">Want to collaborate or stream Dranima?</h2>
         <p>If you’re a streamer, creator, or just want to get in touch, send us an email and we’ll get back to you.</p>
         <a href="mailto:booksofdranima@gmail.com" class="btn">Email Us</a>
     </section>

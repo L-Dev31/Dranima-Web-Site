@@ -6,27 +6,43 @@
     src: url('../fonts/NerkoOne-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    /* NerkoOne drives the .title elements, which stack background-clip:text +
+       an SVG stroke filter + drop-shadow. `swap` triggers a re-paint when the
+       font loads that mis-composites that stack (shadow paints over the fill),
+       so use `block` to render the titles once, correctly. */
+    font-display: block;
 }
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 :root {
+    /* Colors */
     --bright-orange: #ffe2c3;
     --light-orange: #FFC37E;
     --orange: #EF8D34;
     --half-orange: #EF8D3440;
-    --shadow: 5px 5px 0 #0004;
+    --bg: #282828;
+    --title-fill: linear-gradient(180deg, #fff 50%, var(--light-orange) 80%, var(--orange) 100%);
+
+    /* Shadows */
+    --shadow-offset: 5px;
+    --shadow-color: #0004;
+    --shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--shadow-color);
+    --text-glow: 0 0 4px #000, 0 0 6px #000, 0 0 8px #000;
     --inset-shadow: inset 0 3px 0 0 rgba(255, 255, 255, 0.2);
+
+    /* Radius */
     --radius: 18px;
     --radius-pill: 100px;
     --radius-small: 10px;
+
+    /* Layout */
     --content-max: 1920px;
     --section-side-padding: clamp(20px, 4vw, 80px);
     --section-max-width: clamp(320px, calc(100vw - 2 * var(--section-side-padding)), var(--content-max));
-    --bg: #282828;
 }
 
 *, *::before, *::after {
@@ -40,12 +56,53 @@ body {
     font-family: 'Nunito', sans-serif;
     color: #fff;
     background-color: var(--bg);
-    overflow-x: hidden;
+    overflow-x: clip;
     z-index: 0;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100vh;
+    filter: blur(10px) brightness(0.6) saturate(1.2);
+    background-image:  url("../images/bg.jpg");
+    background-size: 100% 100%, 100vw 100vh;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: fixed, fixed;
+    z-index: -1;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'NerkoOne', sans-serif;
+}
+
+p, li, dd, dt, .creator-signature {
+    text-shadow: var(--text-glow);
+}
+
+.title {
+    font-family: 'NerkoOne', sans-serif;
+    background: var(--title-fill);
+    
+    /* Text fill*/
+    background-size: 100% 1lh;
+    background-repeat: repeat-y;
+    background-origin: content-box;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+    /* Outline and shadow */
+    padding: 10px;
+    filter: 
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='stroke'%3E%3CfeMorphology in='SourceAlpha' operator='dilate' radius='3' result='outline'/%3E%3CfeFlood flood-color='%23261102' result='color'/%3E%3CfeComposite in='color' in2='outline' operator='in' result='stroke'/%3E%3CfeMerge%3E%3CfeMergeNode in='stroke'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/svg%3E#stroke")
+        drop-shadow(var(--shadow));
 }
 
 .sr-only {
@@ -67,7 +124,7 @@ strong {
     outline: 2px solid var(--light-orange);
     margin: 0 5px;
     box-shadow: var(--shadow);
-    color: #fff;
+    color: #000;
     text-shadow: none!important;
 
 }
@@ -96,24 +153,6 @@ li::before {
     font-weight: bold;
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: var(--content-max);
-    height: 100vh;
-    filter: blur(5px);
-    background-image: url("../images/bg.png");
-    background-size: min(100%, var(--content-max)) auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: -1;
-}
-
 section {
     padding-inline: var(--section-side-padding);
     gap: 30px;
@@ -130,11 +169,7 @@ body > section:nth-of-type(2) {
 
 h2 {
     font-size: clamp(28px, 4vw, 48px);
-    color: #fff;
     text-align: center;
-    -webkit-text-stroke: 5px #000;
-    paint-order: stroke fill;
-    text-shadow: var(--shadow);
 }
 
 /* ====== LAYOUT ====== */
@@ -171,13 +206,72 @@ h2 {
 }
 
 
+:is(.spiked, .spiked-top, .spiked-bottom) {
+    position: relative;
+    background: transparent;
+}
+
+:is(.spiked, .spiked-top, .spiked-bottom)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: #fff;
+    background-image: url('../images/pattern.png');
+    background-size: 300px 400px;
+    background-repeat: repeat;
+}
+
 .spiked {
+    filter:
+        drop-shadow(0 var(--shadow-offset) 2px var(--shadow-color))
+        drop-shadow(0 calc(var(--shadow-offset) * -1) 2px var(--shadow-color));
+}
+
+.spiked::before {
     -webkit-mask-image: url('../images/spike.svg'), url('../images/spike-bottom.svg'), linear-gradient(black, black);
+    mask-image: url('../images/spike.svg'), url('../images/spike-bottom.svg'), linear-gradient(black, black);
     -webkit-mask-size: 40px auto, 40px auto, 100% 100%;
     mask-size: 40px auto, 40px auto, 100% 100%;
     -webkit-mask-position: top left, bottom left, center;
+    mask-position: top left, bottom left, center;
     -webkit-mask-repeat: repeat-x, repeat-x, no-repeat;
+    mask-repeat: repeat-x, repeat-x, no-repeat;
     -webkit-mask-composite: destination-out, destination-out, source-over;
+    mask-composite: exclude;
+}
+
+.spiked-top {
+    filter: drop-shadow(0 calc(var(--shadow-offset) * -1) 2px var(--shadow-color));
+}
+
+.spiked-top::before {
+    -webkit-mask-image: url('../images/spike.svg'), linear-gradient(black, black);
+    mask-image: url('../images/spike.svg'), linear-gradient(black, black);
+    -webkit-mask-size: 40px auto, 100% 100%;
+    mask-size: 40px auto, 100% 100%;
+    -webkit-mask-position: top left, center;
+    mask-position: top left, center;
+    -webkit-mask-repeat: repeat-x, no-repeat;
+    mask-repeat: repeat-x, no-repeat;
+    -webkit-mask-composite: destination-out, source-over;
+    mask-composite: exclude;
+}
+
+.spiked-bottom {
+    filter: drop-shadow(0 var(--shadow-offset) 2px var(--shadow-color));
+}
+
+.spiked-bottom::before {
+    -webkit-mask-image: url('../images/spike-bottom.svg'), linear-gradient(black, black);
+    mask-image: url('../images/spike-bottom.svg'), linear-gradient(black, black);
+    -webkit-mask-size: 40px auto, 100% 100%;
+    mask-size: 40px auto, 100% 100%;
+    -webkit-mask-position: bottom left, center;
+    mask-position: bottom left, center;
+    -webkit-mask-repeat: repeat-x, no-repeat;
+    mask-repeat: repeat-x, no-repeat;
+    -webkit-mask-composite: destination-out, source-over;
     mask-composite: exclude;
 }
 
@@ -204,6 +298,12 @@ h2 {
     text-shadow: 0 0 5px #0006;
 }
 
+.btn:focus-visible {
+    box-shadow: var(--shadow), var(--inset-shadow), 0 0 0 3px #fff, 0 0 0 6px #000;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
 .btn.disabled {
     background-color: #b0b0b0;
     color: #3c3c3c;
@@ -214,12 +314,7 @@ h2 {
 }
 
 .creator-signature {
-    font-family: 'NerkoOne', cursive!important;
-    font-size: clamp(18px, 2vw, 28px)!important;
     color: var(--light-orange)!important;
-    text-shadow: var(--shadow)!important;
-    -webkit-text-stroke: 2px #000!important;
-    paint-order: stroke fill!important;
 }
 
 /* ====== BACK TO TOP BUTTON ====== */
@@ -266,4 +361,17 @@ h2 {
 /* When a modal/popup is active, prevent the body from scrolling */
 .body--modal-open {
     overflow: hidden;
+}
+
+/* ====== REDUCED MOTION ====== */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

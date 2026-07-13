@@ -1,10 +1,10 @@
 /* ====== HERO ====== */
 .hero {
-    min-height: 850px;
+    min-height: 860px;
     width: 100%;
-    max-width: var(--content-max);
     margin: 0 auto;
-    background: url('../images/bg.png') no-repeat center center / cover;
+    background: radial-gradient( transparent 30%, rgba(8, 17, 26, 0.6)),
+                url('../images/bg.jpg') no-repeat center center / cover;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -21,7 +21,7 @@
 
 .hero-info {
     position: absolute;
-    left: 0;
+    right: max(0px, calc((100% - var(--content-max)) / 2));
     top: 50%;
     transform: translateY(-50%);
     display: flex;
@@ -33,22 +33,22 @@
     max-width: 100%;
     color: #fff;
     text-align: center;
-    padding-inline-start: var(--section-side-padding);
+    padding-inline-end: var(--section-side-padding);
     z-index: 2;
 }
 
 .hero-label {
     font-size: clamp(0.75rem, 2.2vw, 1.1rem);
     letter-spacing: 0.25em;
-    opacity: 0.75;
-    text-shadow: var(--shadow);
+    text-shadow: var(--text-glow);
+    color: lightgray;
 }
 
 .hero-value {
     font-family: 'NerkoOne', cursive;
     font-size: clamp(1.75rem, 5vw, 2.4rem);
     margin-bottom: 8px;
-    text-shadow: var(--shadow);
+    text-shadow: var(--text-glow);
 }
 
 .hero-divider {
@@ -73,14 +73,12 @@
     filter: drop-shadow(var(--shadow));
 }
 
-.title-box h1 {
+.title-box h1.title {
     position: relative;
     z-index: 1;
-    color: #fff;
-    -webkit-text-stroke: 5px #000;
-    paint-order: stroke fill;
     margin: 0;
     font-size: clamp(75px, 8vw, 104px);
+    background-image: linear-gradient(white, white);
 }
 
 .title-star {
@@ -98,7 +96,7 @@
 @media (max-width: 720px) {
     .hero {
         min-height: 500px;
-        background-position: center 20%;
+        background-position: center center;
     }
 
     .hero-info {        
