@@ -7,7 +7,11 @@ from html import escape, unescape
 from datetime import datetime
 from collections import OrderedDict
 
-from PIL import Image, ImageTk
+try:
+    from PIL import Image, ImageTk
+except ImportError:
+    # Pillow is optional: without it the app still opens, image previews just show a hint.
+    Image = ImageTk = None
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
@@ -23,8 +27,8 @@ COLORS = {
     "field": "#1f1f1f",
     "fg": "#e4e4e4",
     "muted": "#8a8a8a",
-    "accent": "#3b82f6",
-    "accent_fg": "#ffffff",
+    "accent": "#EF8D34",        # matches the website's --orange
+    "accent_fg": "#1a1a1a",     # dark text stays readable on the orange accent
     "danger": "#ef4444",
     "border": "#2a2a2a",
 }
@@ -102,12 +106,16 @@ class DranimaContentManager(tk.Tk):
         style.configure("TLabel", background=COLORS["bg"], foreground=COLORS["fg"])
         style.configure("Muted.TLabel", foreground=COLORS["muted"])
         style.configure("Header.TLabel", font=("Segoe UI", 12, "bold"))
+        style.configure("CardTitle.TLabel", font=("Segoe UI", 10, "bold"), foreground=COLORS["accent"])
         style.configure("Status.TLabel", font=("Segoe UI", 9), foreground=COLORS["muted"])
-        style.configure("TButton", background=COLORS["field"], foreground=COLORS["fg"],
-                        bordercolor=COLORS["border"], padding=6, relief="flat")
+        style.configure("TButton", background="#2c2c2c", foreground=COLORS["fg"],
+                        bordercolor="#3a3a3a", padding=(10, 6), relief="flat")
         style.map("TButton",
-                  background=[("active", COLORS["accent"]), ("pressed", COLORS["accent"])],
-                  foreground=[("active", COLORS["accent_fg"]), ("pressed", COLORS["accent_fg"])])
+                  background=[("active", COLORS["accent"]), ("pressed", COLORS["accent"]),
+                              ("disabled", COLORS["surface"])],
+                  foreground=[("active", COLORS["accent_fg"]), ("pressed", COLORS["accent_fg"]),
+                              ("disabled", COLORS["muted"])],
+                  bordercolor=[("active", COLORS["accent"])])
         style.configure("TEntry", fieldbackground=COLORS["field"], foreground=COLORS["fg"],
                         bordercolor=COLORS["border"], insertcolor=COLORS["fg"])
         style.configure("TCombobox", fieldbackground=COLORS["field"], background=COLORS["field"],
@@ -126,6 +134,8 @@ class DranimaContentManager(tk.Tk):
         style.map("Treeview",
                   background=[("selected", COLORS["accent"])],
                   foreground=[("selected", COLORS["accent_fg"])])
+        style.configure("Card.TFrame", background=COLORS["bg"], bordercolor=COLORS["border"],
+                        relief="solid", borderwidth=1)
         style.configure("TSeparator", background=COLORS["border"])
         style.configure("TPanedwindow", background=COLORS["bg"])
         for orient in ("Vertical", "Horizontal"):
@@ -160,7 +170,7 @@ class DranimaContentManager(tk.Tk):
             tree.bind("<ButtonPress-1>", lambda e, f=fname: self._dnd_press(e, f))
             tree.bind("<B1-Motion>", lambda e, f=fname: self._dnd_motion(e, f))
             tree.bind("<ButtonRelease-1>", lambda e, f=fname: self._dnd_release(e, f))
-            tree.tag_configure("drop-target", foreground="#60a5fa")
+            tree.tag_configure("drop-target", foreground="#f6b17a")
             tree.tag_configure("drop-hover", background=COLORS["accent"], foreground=COLORS["accent_fg"])
             tree.tag_configure("drop-disabled", foreground=COLORS["muted"])
             tree.tag_configure("dragging", foreground="#fbbf24")
@@ -179,7 +189,7 @@ class DranimaContentManager(tk.Tk):
         editor_scrollbar = ttk.Scrollbar(right, orient=tk.VERTICAL, command=self.editor_canvas.yview)
         self.editor_canvas.configure(yscrollcommand=editor_scrollbar.set)
         editor_scrollbar.pack(side=tk.RIGHT, fill=tk.Y, pady=10)
-        self.editor_canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(14, 0), pady=10)
+        self.editor_canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(18, 12), pady=10)
         self.editor = ttk.Frame(self.editor_canvas)
         self._editor_window = self.editor_canvas.create_window((0, 0), window=self.editor, anchor=tk.NW)
         self.editor.bind("<Configure>", self._update_editor_scroll_region)
@@ -363,21 +373,32 @@ class DranimaContentManager(tk.Tk):
 
     # form helpers — every field applies instantly (no save buttons, no popups)
     def _header(self, text):
-        ttk.Label(self.editor, text=text, style="Header.TLabel").pack(anchor=tk.W, pady=(0, 12))
+        ttk.Label(self.editor, text=text, style="Header.TLabel").pack(anchor=tk.W, pady=(0, 16))
+
+    def _editor_notebook(self, *names):
+        """Split a record editor into top-level tabs so bulky content gets its own space."""
+        nb = ttk.Notebook(self.editor)
+        nb.pack(fill=tk.BOTH, expand=True)
+        frames = []
+        for name in names:
+            fr = ttk.Frame(nb, padding=(4, 14, 6, 4))
+            nb.add(fr, text=name)
+            frames.append(fr)
+        return [nb] + frames
 
     def field(self, parent, label, value, setter, browse=False):
-        ttk.Label(parent, text=label, style="Muted.TLabel").pack(anchor=tk.W)
+        ttk.Label(parent, text=label, style="Muted.TLabel").pack(anchor=tk.W, pady=(0, 3))
         wrap = ttk.Frame(parent)
-        wrap.pack(fill=tk.X, pady=(0, 8))
+        wrap.pack(fill=tk.X, pady=(0, 12))
         var = tk.StringVar(value=value or "")
         ent = ttk.Entry(wrap, textvariable=var)
-        ent.pack(side=tk.LEFT, fill=tk.X, expand=True)
+        ent.pack(side=tk.LEFT, fill=tk.X, expand=True, ipady=3)
         if browse:
             ttk.Button(wrap, text="…", width=3, command=lambda: self._browse(var)).pack(side=tk.LEFT, padx=(6, 0))
         var.trace_add("write", lambda *a: (setter(var.get().strip()), self.mark_unsaved()))
         if browse:
             preview = ttk.Label(parent, style="Muted.TLabel")
-            preview.pack(anchor=tk.W, pady=(0, 8))
+            preview.pack(anchor=tk.W, pady=(0, 12))
             var.trace_add("write", lambda *a: self._update_image_preview(preview, var.get()))
             self._update_image_preview(preview, var.get())
         if self._first_field is None:
@@ -385,8 +406,9 @@ class DranimaContentManager(tk.Tk):
         return ent
 
     def text_field(self, parent, label, value, setter, height=6, expand=False):
-        ttk.Label(parent, text=label, style="Muted.TLabel").pack(anchor=tk.W)
-        txt = make_dark_text(parent, height=height, font=("Segoe UI", 10), wrap=tk.WORD)
+        ttk.Label(parent, text=label, style="Muted.TLabel").pack(anchor=tk.W, pady=(0, 3))
+        txt = make_dark_text(parent, height=height, width=1, font=("Segoe UI", 10), wrap=tk.WORD,
+                             padx=8, pady=6)
         txt.insert("1.0", value or "")
         txt.edit_modified(False)
 
@@ -397,27 +419,30 @@ class DranimaContentManager(tk.Tk):
                 txt.edit_modified(False)
 
         txt.bind("<<Modified>>", on_mod)
-        txt.pack(fill=tk.BOTH if expand else tk.X, expand=expand, pady=(0, 8))
+        txt.pack(fill=tk.BOTH if expand else tk.X, expand=expand, pady=(0, 12))
         if self._first_field is None:
             self._first_field = txt
         return txt
 
     def html_field(self, parent, label, value, setter, height=8, expand=False):
         """Offer common content blocks without hiding the original HTML escape hatch."""
-        ttk.Label(parent, text=label, style="Muted.TLabel").pack(anchor=tk.W)
+        if label:
+            ttk.Label(parent, text=label, style="Muted.TLabel").pack(anchor=tk.W, pady=(0, 3))
         tabs = ttk.Notebook(parent)
-        tabs.pack(fill=tk.BOTH if expand else tk.X, expand=expand, pady=(0, 8))
-        easy = ttk.Frame(tabs)
-        raw = ttk.Frame(tabs)
+        tabs.pack(fill=tk.BOTH if expand else tk.X, expand=expand, pady=(0, 12))
+        easy = ttk.Frame(tabs, padding=12)
+        raw = ttk.Frame(tabs, padding=12)
         tabs.add(easy, text="Easy editor")
         tabs.add(raw, text="Raw HTML")
 
-        raw_text = make_dark_text(raw, height=height, font=("Consolas", 10), wrap=tk.WORD)
+        raw_text = make_dark_text(raw, height=height, width=1, font=("Consolas", 10), wrap=tk.WORD,
+                                  padx=8, pady=6)
         raw_text.insert("1.0", value or "")
         raw_text.edit_modified(False)
         raw_text.pack(fill=tk.BOTH, expand=True)
         blocks = self._html_to_blocks(value or "")
         last_raw = [value or ""]
+        focus_last = [False]   # set when a freshly added block should grab focus
 
         def update_raw(html_value):
             raw_text.delete("1.0", tk.END)
@@ -431,8 +456,8 @@ class DranimaContentManager(tk.Tk):
             for widget in easy.winfo_children():
                 widget.destroy()
 
-            toolbar = ttk.Frame(easy)
-            toolbar.pack(fill=tk.X, pady=(0, 6))
+            def save_blocks():
+                update_raw(self._blocks_to_html(blocks))
 
             def add_block(kind):
                 defaults = {
@@ -444,51 +469,69 @@ class DranimaContentManager(tk.Tk):
                 save_blocks()
                 render_easy()
 
-            ttk.Button(toolbar, text="Add paragraph", command=lambda: add_block("paragraph")).pack(side=tk.LEFT)
-            ttk.Button(toolbar, text="Add list", command=lambda: add_block("list")).pack(side=tk.LEFT, padx=(6, 0))
-            ttk.Button(toolbar, text="Add image", command=lambda: add_block("image")).pack(side=tk.LEFT, padx=(6, 0))
-
-            def save_blocks():
-                update_raw(self._blocks_to_html(blocks))
-
-            for index, block in enumerate(blocks):
-                block_frame = ttk.Frame(easy)
-                block_frame.pack(fill=tk.X, pady=(0, 8))
-                controls = ttk.Frame(block_frame)
-                controls.pack(fill=tk.X)
-                labels = {"paragraph": "Paragraph", "list": "Bullet list", "image": "Image", "raw": "Advanced HTML"}
-                ttk.Label(controls, text=labels[block["kind"]], style="Muted.TLabel").pack(side=tk.LEFT)
-
-                def move(offset, i=index):
-                    target = i + offset
-                    if 0 <= target < len(blocks):
-                        blocks[i], blocks[target] = blocks[target], blocks[i]
-                        save_blocks()
-                        render_easy()
-
-                def remove(i=index):
-                    del blocks[i]
+            def swap(i, j):
+                if 0 <= i < len(blocks) and 0 <= j < len(blocks):
+                    blocks[i], blocks[j] = blocks[j], blocks[i]
                     save_blocks()
                     render_easy()
 
-                ttk.Button(controls, text="Up", width=5, command=lambda: move(-1)).pack(side=tk.RIGHT)
-                ttk.Button(controls, text="Down", width=5, command=lambda: move(1)).pack(side=tk.RIGHT, padx=(0, 4))
-                ttk.Button(controls, text="Remove", command=remove).pack(side=tk.RIGHT, padx=(0, 4))
+            def remove_at(i):
+                del blocks[i]
+                save_blocks()
+                render_easy()
+
+            toolbar = ttk.Frame(easy)
+            toolbar.pack(fill=tk.X, pady=(0, 12))
+            ttk.Label(toolbar, text="Add block:", style="Muted.TLabel").pack(side=tk.LEFT, padx=(0, 8))
+            ttk.Button(toolbar, text="Paragraph", command=lambda: add_block("paragraph")).pack(side=tk.LEFT)
+            ttk.Button(toolbar, text="Bullet list", command=lambda: add_block("list")).pack(side=tk.LEFT, padx=(6, 0))
+            ttk.Button(toolbar, text="Image", command=lambda: add_block("image")).pack(side=tk.LEFT, padx=(6, 0))
+
+            names = {"paragraph": "Paragraph", "list": "Bullet list", "image": "Image", "raw": "Advanced HTML"}
+
+            if not blocks:
+                ttk.Label(easy, text="Empty — use the buttons above to add your first block.",
+                          style="Muted.TLabel").pack(anchor=tk.W, pady=(4, 0))
+                return
+
+            last = len(blocks) - 1
+            for index, block in enumerate(blocks):
+                # Each block is a bordered card so it reads as one self-contained unit.
+                card = tk.Frame(easy, bg=COLORS["bg"], highlightbackground=COLORS["border"],
+                                highlightcolor=COLORS["border"], highlightthickness=1, bd=0)
+                card.pack(fill=tk.X, pady=(0, 12))
+                body = ttk.Frame(card, padding=(16, 12, 16, 14))
+                body.pack(fill=tk.X)
+
+                head = ttk.Frame(body)
+                head.pack(fill=tk.X, pady=(0, 10))
+                ttk.Label(head, text=names[block["kind"]], style="CardTitle.TLabel").pack(side=tk.LEFT)
+                ttk.Button(head, text="Remove", width=8, command=lambda i=index: remove_at(i)).pack(side=tk.RIGHT)
+                down = ttk.Button(head, text="Down", width=6, command=lambda i=index: swap(i, i + 1))
+                down.pack(side=tk.RIGHT, padx=(0, 6))
+                up = ttk.Button(head, text="Up", width=6, command=lambda i=index: swap(i, i - 1))
+                up.pack(side=tk.RIGHT, padx=(0, 6))
+                if index == 0:
+                    up.state(["disabled"])
+                if index == last:
+                    down.state(["disabled"])
 
                 if block["kind"] == "paragraph":
-                    self.text_field(block_frame, "Text", block["text"],
+                    self.text_field(body, "Text", block["text"],
                                     lambda text, b=block: (b.update(text=text), save_blocks()), height=4)
                 elif block["kind"] == "list":
-                    self.text_field(block_frame, "One item per line", "\n".join(block["items"]),
+                    self.text_field(body, "One item per line", "\n".join(block["items"]),
                                     lambda text, b=block: (b.update(items=[line for line in text.splitlines() if line]),
                                                            save_blocks()), height=5)
                 elif block["kind"] == "image":
-                    self.field(block_frame, "Image", block["src"],
+                    self.field(body, "File", block["src"],
                                lambda text, b=block: (b.update(src=text), save_blocks()), browse=True)
-                    self.field(block_frame, "Description", block["alt"],
+                    self.field(body, "Description (alt text)", block["alt"],
                                lambda text, b=block: (b.update(alt=text), save_blocks()))
+                    ttk.Label(body, text="Tip: images next to each other show side by side as one gallery.",
+                              style="Muted.TLabel").pack(anchor=tk.W)
                 else:
-                    ttk.Label(block_frame, text="This advanced block is preserved. Edit it in Raw HTML.",
+                    ttk.Label(body, text="This advanced block is preserved. Edit it in the Raw HTML tab.",
                               style="Muted.TLabel").pack(anchor=tk.W, pady=(4, 0))
 
         def on_raw_modified(_event):
@@ -547,33 +590,49 @@ class DranimaContentManager(tk.Tk):
     @staticmethod
     def _blocks_to_html(blocks):
         output = []
-        for block in blocks:
+        i = 0
+        while i < len(blocks):
+            block = blocks[i]
             if block["kind"] == "paragraph":
                 text = escape(block["text"]).replace("\n", "<br>\n")
                 if text:
                     output.append(f"<p>{text}</p>")
+                i += 1
             elif block["kind"] == "list":
                 items = [f"  <li>{escape(item)}</li>" for item in block["items"] if item]
                 if items:
                     output.append("<ul>\n" + "\n".join(items) + "\n</ul>")
-            elif block["kind"] == "image" and block["src"]:
-                output.append('<div class="news-update-images">\n  <img src="{}" alt="{}" />\n</div>'.format(
-                    escape(block["src"], quote=True), escape(block["alt"], quote=True)))
+                i += 1
+            elif block["kind"] == "image":
+                # Consecutive image blocks share one .news-update-images div so the
+                # site renders them as a single side-by-side gallery, not separated.
+                imgs = []
+                while i < len(blocks) and blocks[i]["kind"] == "image":
+                    src = blocks[i].get("src")
+                    if src:
+                        imgs.append('  <img src="{}" alt="{}" />'.format(
+                            escape(src, quote=True), escape(blocks[i].get("alt", ""), quote=True)))
+                    i += 1
+                if imgs:
+                    output.append('<div class="news-update-images">\n' + "\n".join(imgs) + "\n</div>")
             elif block["kind"] == "raw":
                 output.append(block["html"])
+                i += 1
+            else:
+                i += 1
         return "\n".join(output)
 
     def combo(self, parent, label, value, values, setter):
-        ttk.Label(parent, text=label, style="Muted.TLabel").pack(anchor=tk.W)
+        ttk.Label(parent, text=label, style="Muted.TLabel").pack(anchor=tk.W, pady=(0, 3))
         var = tk.StringVar(value=value)
         cb = ttk.Combobox(parent, textvariable=var, values=values, state="readonly", width=18)
-        cb.pack(anchor=tk.W, pady=(0, 8))
+        cb.pack(anchor=tk.W, pady=(0, 12))
         var.trace_add("write", lambda *a: (setter(var.get()), self.mark_unsaved()))
 
     def check(self, parent, label, value, setter):
         var = tk.BooleanVar(value=bool(value))
         ttk.Checkbutton(parent, text=label, variable=var,
-                        command=lambda: (setter(var.get()), self.mark_unsaved())).pack(anchor=tk.W, pady=(0, 8))
+                        command=lambda: (setter(var.get()), self.mark_unsaved())).pack(anchor=tk.W, pady=(0, 12))
 
     def _browse(self, var):
         p = filedialog.askopenfilename(initialdir=os.path.join(BASE_DIR, "images"),
@@ -591,6 +650,10 @@ class DranimaContentManager(tk.Tk):
         path = path.strip()
         if not path:
             preview.configure(image="", text="")
+            preview.image = None
+            return
+        if Image is None:
+            preview.configure(image="", text="Install Pillow (py -m pip install pillow) to see image previews")
             preview.image = None
             return
         absolute_path = path if os.path.isabs(path) else os.path.join(BASE_DIR, path)
@@ -667,15 +730,14 @@ class DranimaContentManager(tk.Tk):
         item = self.data_store["news.json"][category][i]
         tree = self.trees["news.json"]
         self._header("Article")
-        f = ttk.Frame(self.editor)
-        f.pack(fill=tk.BOTH, expand=True)
-        self.field(f, "Title", item.get("title"),
+        _, details, content = self._editor_notebook("Details", "Content")
+        self.field(details, "Title", item.get("title"),
                    lambda v: (item.update(title=v), tree.item(iid, text=v or "(untitled)")))
-        self.field(f, "Description", item.get("description"), lambda v: item.update(description=v))
-        self.field(f, "Image", item.get("image"), lambda v: item.update(image=v or None), browse=True)
-        self.field(f, "Date (YYYY-MM-DD)", item.get("date"), lambda v: item.update(date=v))
-        self.html_field(f, "Content", item.get("content"),
-                        lambda v: item.update(content=v or None), height=12, expand=True)
+        self.field(details, "Description", item.get("description"), lambda v: item.update(description=v))
+        self.field(details, "Image", item.get("image"), lambda v: item.update(image=v or None), browse=True)
+        self.field(details, "Date (YYYY-MM-DD)", item.get("date"), lambda v: item.update(date=v))
+        self.html_field(content, "", item.get("content"),
+                        lambda v: item.update(content=v or None), height=16, expand=True)
 
     def edit_wiki_category(self, cid, iid):
         cat = next((c for c in self.data_store["wiki.json"]["categories"] if c.get("id") == cid), None)
@@ -694,12 +756,11 @@ class DranimaContentManager(tk.Tk):
         entry = self.data_store["wiki.json"]["entries"][ei]
         tree = self.trees["wiki.json"]
         self._header("Wiki entry")
-        f = ttk.Frame(self.editor)
-        f.pack(fill=tk.BOTH, expand=True)
-        self.field(f, "Name", entry.get("name"),
+        _, details, sections_tab = self._editor_notebook("Details", "Sections")
+        self.field(details, "Name", entry.get("name"),
                    lambda v: (entry.update(name=v), tree.item(iid, text=v or "(untitled)")))
-        self.field(f, "ID", entry.get("id"), lambda v: entry.update(id=v))
-        row = ttk.Frame(f)
+        self.field(details, "ID", entry.get("id"), lambda v: entry.update(id=v))
+        row = ttk.Frame(details)
         row.pack(fill=tk.X)
         col1 = ttk.Frame(row)
         col1.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 10))
@@ -707,7 +768,7 @@ class DranimaContentManager(tk.Tk):
         col2 = ttk.Frame(row)
         col2.pack(side=tk.LEFT, fill=tk.X, expand=True)
         self.field(col2, "Image", entry.get("image"), lambda v: entry.update(image=v or None), browse=True)
-        self.html_field(f, "Intro", entry.get("intro") or entry.get("preview"),
+        self.html_field(details, "Intro", entry.get("intro") or entry.get("preview"),
                         lambda v: entry.update(intro=v or None), height=5)
 
         # sections
@@ -715,10 +776,8 @@ class DranimaContentManager(tk.Tk):
             entry["sections"] = []
             self.mark_unsaved()
         sections = entry["sections"]
-        ttk.Label(f, text="Sections", style="Muted.TLabel").pack(anchor=tk.W)
-        wrap = ttk.Frame(f, height=480)
+        wrap = ttk.Frame(sections_tab)
         wrap.pack(fill=tk.BOTH, expand=True)
-        wrap.pack_propagate(False)
         left = ttk.Frame(wrap)
         left.pack(side=tk.LEFT, fill=tk.Y)
         lb = make_dark_listbox(left, width=26, exportselection=False)
@@ -1090,4 +1149,20 @@ class DranimaContentManager(tk.Tk):
 
 
 if __name__ == "__main__":
-    DranimaContentManager().mainloop()
+    try:
+        DranimaContentManager().mainloop()
+    except Exception:
+        # Never close silently: leave a log and, if possible, a dialog explaining why.
+        import traceback
+        report = traceback.format_exc()
+        try:
+            with open(os.path.join(BASE_DIR, "editor_error.log"), "w", encoding="utf-8") as _fh:
+                _fh.write(report)
+        except Exception:
+            pass
+        try:
+            from tkinter import messagebox
+            messagebox.showerror("Dranima Content Manager failed to start", report)
+        except Exception:
+            pass
+        raise

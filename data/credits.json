@@ -1,420 +1,414 @@
 {
-    "team": [
+  "categories": [
+    {
+      "members": [
         {
-            "id": "alexcbourbon",
-            "name": "Alex C. Bourbon",
-            "image": "images/image_users/credit_alex.png",
-            "link": null,
-            "alias": null
-        },
-        {
-            "id": "veldanveylan",
-            "name": "Veldan Veylan",
-            "image": "images/image_users/credit_veylan.png",
-            "link": null,
-            "alias": null
-        },
-        {
-            "id": "jollenbell",
-            "name": "Jollenbell",
-            "image": "images/image_users/credit_jollenbell.png",
-            "link": null,
-            "alias": null
-        },
-        {
-            "id": "andr",
-            "name": "ANDR",
-            "image": "images/image_users/credit_andr.png",
-            "link": "https://andrewharn.carrd.co/",
-            "alias": null
-        },
-        {
-            "id": "leo",
-            "name": "Léo Tosku (L-Dev)",
-            "image": "images/image_users/credit_leo.png",
-            "link": "https://l-dev31.github.io/",
-            "alias": null
-        },
-        {
-            "id": "bastionphoenix",
-            "name": "BastionPhoenix",
-            "image": "images/image_users/credit_bastion.png",
-            "link": "https://x.com/BastionPhoenix",
-            "alias": null
-        },
-        {
-            "id": "carnekvt",
-            "name": "CarnekVT",
-            "image": "images/image_users/credit_carnek.png",
-            "link": "https://x.com/CarnekVT",
-            "alias": null
-        },
-        {
-            "id": "galleom",
-            "name": "Galleom",
-            "image": "images/image_users/credit_galleom.png",
-            "link": "https://www.fiverr.com/galleom",
-            "alias": null
-        },
-        {
-            "id": "charliemckenzie",
-            "name": "Charlie McKenzie",
-            "image": "images/image_users/credit_solargress.png",
-            "link": "https://www.charliemckenziemusic.com/",
-            "alias": "Solargress"
-        },
-        {
-            "id": "ethanbillet",
-            "name": "Ethan Billet",
-            "image": "images/image_users/credit_ethan.png",
-            "link": "https://www.youtube.com/@TheSmilingNoob",
-            "alias": "TheSmillingNoob"
-        },
-        {
-            "id": "lxnnabxss",
-            "name": "Jake Thurston",
-            "image": "images/image_users/credit_lxna.png",
-            "link": "https://www.instagram.com/lxnaabxss",
-            "alias": "LxnnaBxss"
-        },
-        {
-            "id": "pedro",
-            "name": "Pedro",
-            "image": "images/image_users/credit_pedro.png",
-            "link": "https://www.instagram.com/pedrofakemons/",
-            "alias": null
-        },
-        {
-            "id": "tirochocco",
-            "name": "Tirochocco",
-            "image": "images/image_users/credit_tirochocco.png",
-            "link": "https://tirochocco.carrd.co/",
-            "alias": null
-        },
-         {
-            "id": "karel",
-            "name": "Karel Barreau",
-            "image": "images/image_users/credit_karel.png",
-            "link": "https://allmylinks.com/karelbsl",
-            "alias": null
-        },
-        {
-            "id": "faebae",
-            "name": "Faebae",
-            "image": "images/image_users/credit_faebae.png",
-            "link": "https://www.instagram.com/faekmon/",
-            "alias": null
-        },
-        {
-            "id": "formiga",
-            "name": "Formigaartz",
-            "image": "images/image_users/credit_formiga.png",
-            "link": "https://www.instagram.com/formigamonz/",
-            "alias": null
-        },
-        {
-            "id": "mazenta",
-            "name": "Mazenta",
-            "image": "images/image_users/credit_mazenta.png",
-            "link": "https://www.instagram.com/mazenta_inku/",
-            "alias": null
-        },
-        {
-            "id": "yorudwn",
-            "name": "Yorudwn",
-            "image": "images/image_users/credit_yorudwn.png",
-            "link": "https://www.instagram.com/yorudwn/",
-            "alias": null
+          "id": "alexcbourbon",
+          "roles": [
+            "2D Battle Spriter",
+            "2D Overworld Spriter",
+            "Gameplay Designer",
+            "Story / Side Quest Designer",
+            "UI / UX Designer",
+            "Level Design",
+            "World Designer",
+            "Dranimae Artist",
+            "French Translator"
+          ]
         }
-    ],
-    "categories": [
+      ],
+      "title": "Founder"
+    },
+    {
+      "members": [
         {
-            "title": "Founder",
-            "members": [
-                {
-                    "id": "alexcbourbon",
-                    "roles": [
-                        "2D Battle Spriter",
-                        "2D Overworld Spriter",
-                        "Gameplay Designer",
-                        "Story / Side Quest Designer",
-                        "UI / UX Designer",
-                        "Level Design",
-                        "World Designer",
-                        "Dranimae Artist",
-                        "French Translator"
-                    ]
-                }
-            ]
+          "id": "veldanveylan",
+          "roles": [
+            "Battle Programmer",
+            "3D Artist",
+            "English Translator"
+          ]
         },
         {
-            "title": "Programmers",
-            "members": [
-                {
-                    "id": "veldanveylan",
-                    "roles": [
-                        "Battle Programmer",
-                        "3D Artist",
-                        "English Translator"
-                    ]
-                },
-
-                {
-                    "id": "galleom",
-                    "roles": [
-                        "VFX",
-                        "Battle Programmer"
-                    ]
-                },
-
-                
-                {
-                    "id": "jollenbell",
-                    "roles": [
-                        "Overworld Programmer",
-                        "Spanish - Latin America Translator"
-                    ]
-                },
-                {
-                    "id": "andr",
-                    "roles": [
-                        "Overworld Programmer"
-                    ]
-                },
-                {
-                    "id": "leo",
-                    "roles": [
-                        "Web Designer"
-                    ]
-                }
-            ]
-        },
-        
-        {
-            "title": "Musicians",
-            "members": [
-                {
-                    "id": "charliemckenzie"
-                },
-                {
-                    "id": "ethanbillet"
-                },
-                {
-                    "id": "lxnnabxss"
-                }
-            ]
+          "id": "galleom",
+          "roles": [
+            "VFX",
+            "Battle Programmer"
+          ]
         },
         {
-            "title": "General Artists",
-            "members": [
-                {
-                    "id": "pedro",
-                    "roles": [
-                        "Artwork Artist",
-                        "Character Artist",
-                        "Dranimae Artist"
-                    ]
-                    
-                },
-                {
-                    "id": "bastionphoenix",
-                    "roles": [
-                        "Character Artist",
-                        "Dranimae Artist",
-                        "World Designer"
-                    ]
-                },
-                {
-                    "id": "tirochocco",
-                    "roles": [
-                        "Character Artist",
-                        "Dranimae Artist",
-                        "Logo Artist"
-                    ]
-                },
-                {
-                    "id": "carnekvt",
-                    "roles": [
-                        "Dranimae Artist",
-                        "2D Battle Spriter"
-                    ]
-                    
-                },
-                {
-                    "id": "karel",
-                    "roles": [
-                        "Dranimae Artist",
-                        "Artwork Artist"
-                    ]
-                }
-            ]
+          "id": "jollenbell",
+          "roles": [
+            "Overworld Programmer",
+            "Spanish - Latin America Translator"
+          ]
         },
         {
-            "title": "Dranimae Artists",
-            "members": [
-                {
-                    "id": "faebae"
-                },
-                {
-                    "id": "mazenta"
-                },
-                {
-                    "id": "formiga"
-                },
-                {
-                    "id": "yorudwn"
-                }
-            ]
+          "id": "andr",
+          "roles": [
+            "Overworld Programmer"
+          ]
+        },
+        {
+          "id": "leo",
+          "roles": [
+            "Web Designer"
+          ]
         }
-    ],
-    "guests": [
+      ],
+      "title": "Programmers"
+    },
+    {
+      "members": [
         {
-            "name": "Devesa_Illustration",
-            "link": "https://linktr.ee/devesa_illustrations"
+          "id": "charliemckenzie"
         },
         {
-            "name": "Allef Alexandre",
-            "link": "https://linktr.ee/doctorfakemon"
+          "id": "ethanbillet"
         },
         {
-            "name": "Saltyringpops",
-            "link": "none"
-        },
-        {
-            "name": "DualDragons",
-            "link": "https://www.instagram.com/dual__dragons/"
-        },
-        {
-            "name": "Crisdotpng",
-            "link": "https://www.crisleyfarias.com/media"
-        },
-        {
-            "name": "Ed Ferreira",
-            "link": "https://linktr.ee/_ferred"
-        },
-        {
-            "name": "Le_fimbo",
-            "link": "https://www.instagram.com/le_fimbo_/"
-        },
-        {
-            "name": "Pirestro_mons",
-            "link": "https://www.instagram.com/pirestro_mons/"
-        },
-        {
-            "name": "Kipio_u",
-            "link": "none"
-        },
-        {
-            "name": "Giovanni Flores",
-            "link": "https://www.instagram.com/moo_moo_milk/"
-        },
-        {
-            "name": "Mimilytical",
-            "link": "https://www.instagram.com/mimilytical/"
-        },
-        {
-            "name": "Beelzeart",
-            "link": "https://beelzebobblezzz.carrd.co/"
-        },
-        {
-            "name": "ItoSilva",
-            "link": "https://linktr.ee/itosilva"
-        },
-        {
-            "name": "MasutaKanary",
-            "link": "https://www.youtube.com/channel/UCMjioKGRQ_vSg8WWWPphNEw"
-        },
-        {
-            "name": "Goldmills",
-            "link": "https://linktr.ee/goldmills"
-        },
-        {
-            "name": "Okoma",
-            "link": "https://www.instagram.com/okoma_region/"
-        },
-        {
-            "name": "Thesterminator_art",
-            "link": "https://linktr.ee/thesterninator"
-        },
-        {
-            "name": "Hydra_Trainer",
-            "link": "https://x.com/Hydra_Trainer"
-        },
-        {
-            "name": "An_artist_astray",
-            "link": "https://www.instagram.com/an_artist_astray/"
-        },
-        {
-            "name": "Mathdex12",
-            "link": "https://www.instagram.com/mathdex12/"
-        },
-        {
-            "name": "Luan Alves Pires",
-            "link": "https://linktr.ee/luan13yuki"
-        },
-        {
-            "name": "luis.brain",
-            "link": "https://www.instagram.com/luis.brain/"
-        },
-        {
-            "name": "theartistfromspace",
-            "link": "https://www.instagram.com/theartistfromspace_/"
-        },
-        {
-            "name": "Zoro_ofc",
-            "link": "none"
-        },
-        {
-            "name": "Zitto_dex",
-            "link": "https://www.instagram.com/zitto_dex/"
-        },
-        {
-            "name": "Maumesart",
-            "link": "https://linktr.ee/maumesart"
-        },
-        {
-            "name": "lepetit.arts",
-            "link": "https://www.instagram.com/lepetit.arts/"
-        },
-        {
-            "name": "KlareLovesHam",
-            "link": "https://x.com/KlareLovesHam"
-        },
-        {
-            "name": "Pigeon_Chop",
-            "link": "https://www.instagram.com/pigeon_chop/"
-        },
-        {
-            "name": "Doktop_TaXa",
-            "link": "https://x.com/Doktop_TaXa"
-        },
-        {
-            "name": "_prime_entity_",
-            "link": "https://www.instagram.com/_prime_entity_/"
-        },
-        {
-            "name": "rjamez.the.v",
-            "link": "https://www.instagram.com/rjamez.the.v/"
-        },
-        {
-            "name": "sparts_23",
-            "link": "https://www.instagram.com/sparts_23/"
-        },
-        {
-            "name": "hikoku",
-            "link": "https://www.fiverr.com/hikoku"
-        },
-        {
-            "name": "Miranjii",
-            "link": "https://x.com/miranjii"
-        },
-        {
-            "name": "abitmoreofryo",
-            "link": "https://www.instagram.com/braskon.region/"
-        },
-        {
-            "name": "zfer.draw",
-            "link": "https://www.instagram.com/zfer.draw/"
+          "id": "lxnnabxss"
         }
-    ]
+      ],
+      "title": "Musicians"
+    },
+    {
+      "members": [
+        {
+          "id": "pedro",
+          "roles": [
+            "Artwork Artist",
+            "Character Artist",
+            "Dranimae Artist"
+          ]
+        },
+        {
+          "id": "bastionphoenix",
+          "roles": [
+            "Character Artist",
+            "Dranimae Artist",
+            "World Designer"
+          ]
+        },
+        {
+          "id": "tirochocco",
+          "roles": [
+            "Character Artist",
+            "Dranimae Artist",
+            "Logo Artist"
+          ]
+        },
+        {
+          "id": "carnekvt",
+          "roles": [
+            "Dranimae Artist",
+            "2D Battle Spriter"
+          ]
+        },
+        {
+          "id": "karel",
+          "roles": [
+            "Dranimae Artist",
+            "Artwork Artist"
+          ]
+        }
+      ],
+      "title": "General Artists"
+    },
+    {
+      "members": [
+        {
+          "id": "faebae"
+        },
+        {
+          "id": "mazenta"
+        },
+        {
+          "id": "formiga"
+        },
+        {
+          "id": "yorudwn"
+        }
+      ],
+      "title": "Dranimae Artists"
+    }
+  ],
+  "guests": [
+    {
+      "link": "https://linktr.ee/devesa_illustrations",
+      "name": "Devesa_Illustration"
+    },
+    {
+      "link": "https://linktr.ee/doctorfakemon",
+      "name": "Allef Alexandre"
+    },
+    {
+      "link": "none",
+      "name": "Saltyringpops"
+    },
+    {
+      "link": "https://www.instagram.com/dual__dragons/",
+      "name": "DualDragons"
+    },
+    {
+      "link": "https://www.crisleyfarias.com/media",
+      "name": "Crisdotpng"
+    },
+    {
+      "link": "https://linktr.ee/_ferred",
+      "name": "Ed Ferreira"
+    },
+    {
+      "link": "https://www.instagram.com/le_fimbo_/",
+      "name": "Le_fimbo"
+    },
+    {
+      "link": "https://www.instagram.com/pirestro_mons/",
+      "name": "Pirestro_mons"
+    },
+    {
+      "link": "none",
+      "name": "Kipio_u"
+    },
+    {
+      "link": "https://www.instagram.com/moo_moo_milk/",
+      "name": "Giovanni Flores"
+    },
+    {
+      "link": "https://www.instagram.com/mimilytical/",
+      "name": "Mimilytical"
+    },
+    {
+      "link": "https://beelzebobblezzz.carrd.co/",
+      "name": "Beelzeart"
+    },
+    {
+      "link": "https://linktr.ee/itosilva",
+      "name": "ItoSilva"
+    },
+    {
+      "link": "https://www.youtube.com/channel/UCMjioKGRQ_vSg8WWWPphNEw",
+      "name": "MasutaKanary"
+    },
+    {
+      "link": "https://linktr.ee/goldmills",
+      "name": "Goldmills"
+    },
+    {
+      "link": "https://www.instagram.com/okoma_region/",
+      "name": "Okoma"
+    },
+    {
+      "link": "https://linktr.ee/thesterninator",
+      "name": "Thesterminator_art"
+    },
+    {
+      "link": "https://x.com/Hydra_Trainer",
+      "name": "Hydra_Trainer"
+    },
+    {
+      "link": "https://www.instagram.com/an_artist_astray/",
+      "name": "An_artist_astray"
+    },
+    {
+      "link": "https://www.instagram.com/mathdex12/",
+      "name": "Mathdex12"
+    },
+    {
+      "link": "https://linktr.ee/luan13yuki",
+      "name": "Luan Alves Pires"
+    },
+    {
+      "link": "https://www.instagram.com/luis.brain/",
+      "name": "luis.brain"
+    },
+    {
+      "link": "https://www.instagram.com/theartistfromspace_/",
+      "name": "theartistfromspace"
+    },
+    {
+      "link": "none",
+      "name": "Zoro_ofc"
+    },
+    {
+      "link": "https://www.instagram.com/zitto_dex/",
+      "name": "Zitto_dex"
+    },
+    {
+      "link": "https://linktr.ee/maumesart",
+      "name": "Maumesart"
+    },
+    {
+      "link": "https://www.instagram.com/lepetit.arts/",
+      "name": "lepetit.arts"
+    },
+    {
+      "link": "https://x.com/KlareLovesHam",
+      "name": "KlareLovesHam"
+    },
+    {
+      "link": "https://www.instagram.com/pigeon_chop/",
+      "name": "Pigeon_Chop"
+    },
+    {
+      "link": "https://x.com/Doktop_TaXa",
+      "name": "Doktop_TaXa"
+    },
+    {
+      "link": "https://www.instagram.com/_prime_entity_/",
+      "name": "_prime_entity_"
+    },
+    {
+      "link": "https://www.instagram.com/rjamez.the.v/",
+      "name": "rjamez.the.v"
+    },
+    {
+      "link": "https://www.instagram.com/sparts_23/",
+      "name": "sparts_23"
+    },
+    {
+      "link": "https://www.fiverr.com/hikoku",
+      "name": "hikoku"
+    },
+    {
+      "link": "https://x.com/miranjii",
+      "name": "Miranjii"
+    },
+    {
+      "link": "https://www.instagram.com/braskon.region/",
+      "name": "abitmoreofryo"
+    },
+    {
+      "link": "https://www.instagram.com/zfer.draw/",
+      "name": "zfer.draw"
+    }
+  ],
+  "team": [
+    {
+      "alias": null,
+      "id": "alexcbourbon",
+      "image": "images/image_users/credit_alex.png",
+      "link": null,
+      "name": "Alex C. Bourbon"
+    },
+    {
+      "alias": null,
+      "id": "veldanveylan",
+      "image": "images/image_users/credit_veylan.png",
+      "link": null,
+      "name": "Veldan Veylan"
+    },
+    {
+      "alias": null,
+      "id": "jollenbell",
+      "image": "images/image_users/credit_jollenbell.png",
+      "link": null,
+      "name": "Jollenbell"
+    },
+    {
+      "alias": null,
+      "id": "andr",
+      "image": "images/image_users/credit_andr.png",
+      "link": "https://andrewharn.carrd.co/",
+      "name": "ANDR"
+    },
+    {
+      "alias": null,
+      "id": "leo",
+      "image": "images/image_users/credit_leo.png",
+      "link": "https://l-dev31.github.io/",
+      "name": "Léo Tosku (L-Dev)"
+    },
+    {
+      "alias": null,
+      "id": "bastionphoenix",
+      "image": "images/image_users/credit_bastion.png",
+      "link": "https://x.com/BastionPhoenix",
+      "name": "BastionPhoenix"
+    },
+    {
+      "alias": null,
+      "id": "carnekvt",
+      "image": "images/image_users/credit_carnek.png",
+      "link": "https://x.com/CarnekVT",
+      "name": "CarnekVT"
+    },
+    {
+      "alias": null,
+      "id": "galleom",
+      "image": "images/image_users/credit_galleom.png",
+      "link": "https://www.fiverr.com/galleom",
+      "name": "Galleom"
+    },
+    {
+      "alias": "Solargress",
+      "id": "charliemckenzie",
+      "image": "images/image_users/credit_solargress.png",
+      "link": "https://www.charliemckenziemusic.com/",
+      "name": "Charlie McKenzie"
+    },
+    {
+      "alias": "TheSmillingNoob",
+      "id": "ethanbillet",
+      "image": "images/image_users/credit_ethan.png",
+      "link": "https://www.youtube.com/@TheSmilingNoob",
+      "name": "Ethan Billet"
+    },
+    {
+      "alias": "LxnnaBxss",
+      "id": "lxnnabxss",
+      "image": "images/image_users/credit_lxna.png",
+      "link": "https://www.instagram.com/lxnaabxss",
+      "name": "Jake Thurston"
+    },
+    {
+      "alias": null,
+      "id": "pedro",
+      "image": "images/image_users/credit_pedro.png",
+      "link": "https://www.instagram.com/pedrofakemons/",
+      "name": "Pedro"
+    },
+    {
+      "alias": null,
+      "id": "tirochocco",
+      "image": "images/image_users/credit_tirochocco.png",
+      "link": "https://tirochocco.carrd.co/",
+      "name": "Tirochocco"
+    },
+    {
+      "alias": null,
+      "id": "karel",
+      "image": "images/image_users/credit_karel.png",
+      "link": "https://allmylinks.com/karelbsl",
+      "name": "Karel Barreau"
+    },
+    {
+      "alias": null,
+      "id": "faebae",
+      "image": "images/image_users/credit_faebae.png",
+      "link": "https://www.instagram.com/faekmon/",
+      "name": "Faebae"
+    },
+    {
+      "alias": null,
+      "id": "formiga",
+      "image": "images/image_users/credit_formiga.png",
+      "link": "https://www.instagram.com/formigamonz/",
+      "name": "Formigaartz"
+    },
+    {
+      "alias": null,
+      "id": "mazenta",
+      "image": "images/image_users/credit_mazenta.png",
+      "link": "https://www.instagram.com/mazenta_inku/",
+      "name": "Mazenta"
+    },
+    {
+      "alias": null,
+      "id": "yorudwn",
+      "image": "images/image_users/credit_yorudwn.png",
+      "link": "https://www.instagram.com/yorudwn/",
+      "name": "Yorudwn"
+    }
+  ]
 }
