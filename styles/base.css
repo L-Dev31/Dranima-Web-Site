@@ -141,17 +141,18 @@ h2 {
   background-repeat: repeat;
   padding: 80px var(--section-side-padding)
 }
-.bg-pattern :is(p,li,dd,dt,span,a,button,input,textarea,label) {
+.bg-pattern :is(p,li,dd,dt) {
   color: #000;
-  text-shadow: 
-  0 0 4px var(--bright-orange),
-  0 0 12px var(--bright-orange),
-  0 0 30px var(--bright-orange);
+  text-shadow: none;
   -webkit-text-stroke: 0;
   text-stroke: 0
 }
 .bg-pattern :is(strong) {
   color: var(--orange);
+  text-shadow: 
+  0 0 4px var(--bright-orange),
+  0 0 12px var(--bright-orange),
+  0 0 30px var(--bright-orange);
 }
 
 .info-section {
