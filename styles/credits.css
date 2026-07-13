@@ -54,7 +54,7 @@
 .credit-name {
   font-family: NerkoOne,sans-serif;
   font-size: clamp(20px, 1.5vw, 26px);
-  color: #000;
+  color: #fff;
   text-align: center;
   -webkit-text-stroke: 3px #000;
   paint-order: stroke fill;
