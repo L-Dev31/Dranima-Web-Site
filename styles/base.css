@@ -143,10 +143,17 @@ h2 {
 }
 .bg-pattern :is(p,li,dd,dt,span,a,button,input,textarea,label) {
   color: #000;
-  text-shadow: none;
+  text-shadow: 
+  0 0 4px var(--bright-orange),
+  0 0 12px var(--bright-orange),
+  0 0 30px var(--bright-orange);
   -webkit-text-stroke: 0;
   text-stroke: 0
 }
+.bg-pattern :is(strong) {
+  color: var(--orange);
+}
+
 .info-section {
   padding-block: 60px;
   text-align: center
