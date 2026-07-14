@@ -240,7 +240,7 @@
         // Intro
         if (entry.intro) {
             const introBlock = document.createElement('div');
-            introBlock.className = 'wiki-page-intro';
+            introBlock.className = 'wiki-page-intro rich-content';
             introBlock.innerHTML = renderWikiRichContent(entry.intro, data.entries);
             container.appendChild(introBlock);
         }
@@ -275,7 +275,7 @@
                 sectionTitle.textContent = section.title;
 
                 const sectionContent = document.createElement('div');
-                sectionContent.className = 'wiki-page-section-content';
+                sectionContent.className = 'wiki-page-section-content rich-content';
                 sectionContent.innerHTML = renderWikiRichContent(section.content, data.entries);
 
                 sectionEl.appendChild(sectionTitle);

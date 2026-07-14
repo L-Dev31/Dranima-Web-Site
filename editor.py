@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
+import copy
 import json
 import os
 import re
@@ -20,6 +21,13 @@ TAB_LABELS = {"credits.json": "Team", "faq.json": "FAQ", "news.json": "News", "w
 
 HINT = "Select an item — New: Ctrl+N · Save: Ctrl+S · Delete: Del · Drag items to move or reorder"
 
+# System / fixed categories: marked with an icon so they read differently from
+# the user-created ones. The pseudo-categories are also always pinned to the bottom.
+GUESTS_LABEL = "\N{BUSTS IN SILHOUETTE}  Guests"
+UNCAT_LABEL = "\N{CARD INDEX DIVIDERS}  Uncategorized"
+NEWS_LABELS = {"announcement": "\N{PUBLIC ADDRESS LOUDSPEAKER}  Announcement",
+               "update": "\N{ANTICLOCKWISE DOWNWARDS AND UPWARDS OPEN CIRCLE ARROWS}  Update"}
+
 # Flat dark palette
 COLORS = {
     "bg": "#121212",
@@ -27,8 +35,8 @@ COLORS = {
     "field": "#1f1f1f",
     "fg": "#e4e4e4",
     "muted": "#8a8a8a",
-    "accent": "#EF8D34",        # matches the website's --orange
-    "accent_fg": "#1a1a1a",     # dark text stays readable on the orange accent
+    "accent": "#EF8D34",        
+    "accent_fg": "#1a1a1a",     
     "danger": "#ef4444",
     "border": "#2a2a2a",
 }
@@ -79,9 +87,18 @@ class DranimaContentManager(tk.Tk):
         self._status_msg = ""
         self.status_var = tk.StringVar(value="")
 
+        # Undo/redo: snapshot the whole data_store. Rapid edits (typing) are
+        # coalesced into one step via a short debounce so undo stays useful.
+        self._undo, self._redo = [], []
+        self._snapshot = None
+        self._commit_job = None
+        self._restoring = False
+        self._history_limit = 200
+
         self.setup_styles()
         self.setup_ui()
         self.load_all()
+        self._snapshot = copy.deepcopy(self.data_store)
         self.after_idle(self._maximize_window)
         self.protocol("WM_DELETE_WINDOW", self.on_close)
 
@@ -148,6 +165,20 @@ class DranimaContentManager(tk.Tk):
         root = ttk.Frame(self)
         root.pack(fill=tk.BOTH, expand=True)
 
+        # native menu bar: Action ▸ item actions · undo/redo · save
+        menubar = tk.Menu(self)
+        action = tk.Menu(menubar, tearoff=0)
+        action.add_command(label="New", accelerator="Ctrl+N", command=self.create_item)
+        action.add_command(label="New Category", accelerator="Ctrl+Shift+N", command=self.create_category)
+        action.add_command(label="Delete", accelerator="Del", command=self.delete_item)
+        action.add_separator()
+        action.add_command(label="Undo", accelerator="Ctrl+Z", command=self.undo)
+        action.add_command(label="Redo", accelerator="Ctrl+Shift+Z", command=self.redo)
+        action.add_separator()
+        action.add_command(label="Save All", accelerator="Ctrl+S", command=self.save_all)
+        menubar.add_cascade(label="Action", menu=action)
+        self.config(menu=menubar)
+
         paned = ttk.PanedWindow(root, orient=tk.HORIZONTAL)
         paned.pack(fill=tk.BOTH, expand=True, padx=6, pady=6)
 
@@ -179,8 +210,9 @@ class DranimaContentManager(tk.Tk):
         btns = ttk.Frame(left)
         btns.pack(fill=tk.X, pady=(6, 0))
         ttk.Button(btns, text="New", command=self.create_item).pack(side=tk.LEFT, fill=tk.X, expand=True)
-        ttk.Button(btns, text="Delete", command=self.delete_item).pack(side=tk.LEFT, fill=tk.X, expand=True, padx=6)
-        ttk.Button(btns, text="Save", command=self.save_all).pack(side=tk.LEFT, fill=tk.X, expand=True)
+        ttk.Button(btns, text="New Category", command=self.create_category).pack(side=tk.LEFT, fill=tk.X, expand=True, padx=6)
+        ttk.Button(btns, text="Delete", command=self.delete_item).pack(side=tk.LEFT, fill=tk.X, expand=True)
+        ttk.Button(btns, text="Save", command=self.save_all).pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(6, 0))
 
         # editor panel
         right = ttk.Frame(paned)
@@ -206,7 +238,12 @@ class DranimaContentManager(tk.Tk):
         # shortcuts — New/Delete only when the tree has focus (not while typing)
         self.bind("<Control-s>", lambda e: self.save_all())
         self.bind("<Control-n>", lambda e: self._tree_focused() and self.create_item())
+        self.bind("<Control-N>", lambda e: self._tree_focused() and self.create_category())
         self.bind("<Delete>", lambda e: self._tree_focused() and self.delete_item())
+        # Undo/redo work everywhere, including while editing a field.
+        self.bind_all("<Control-z>", lambda e: (self.undo(), "break")[1])
+        self.bind_all("<Control-y>", lambda e: (self.redo(), "break")[1])
+        self.bind_all("<Control-Z>", lambda e: (self.redo(), "break")[1])  # Ctrl+Shift+Z
         self.file_tabs.bind("<<NotebookTabChanged>>", lambda e: self._on_tab_change())
 
         self.clear_editor(HINT)
@@ -265,6 +302,65 @@ class DranimaContentManager(tk.Tk):
     def mark_unsaved(self):
         self.unsaved = True
         self.unsaved_label.config(text="● Unsaved")
+        self._touch_history()
+
+    # ---------- undo / redo ----------
+    def _touch_history(self):
+        """Debounce a history commit so a burst of edits collapses into one step."""
+        if self._restoring or self._snapshot is None:
+            return
+        if self._commit_job is not None:
+            self.after_cancel(self._commit_job)
+        self._commit_job = self.after(500, self._commit_history)
+
+    def _commit_history(self):
+        self._commit_job = None
+        if self._snapshot is None:
+            return
+        if self.data_store != self._snapshot:
+            self._undo.append(self._snapshot)
+            del self._undo[:-self._history_limit]
+            self._redo.clear()
+            self._snapshot = copy.deepcopy(self.data_store)
+
+    def _flush_history(self):
+        if self._commit_job is not None:
+            self.after_cancel(self._commit_job)
+            self._commit_job = None
+        self._commit_history()
+
+    def undo(self):
+        self._flush_history()
+        if not self._undo:
+            self.set_status("Nothing to undo")
+            return
+        self._redo.append(copy.deepcopy(self.data_store))
+        self._apply_state(self._undo.pop())
+        self.set_status("Undo")
+
+    def redo(self):
+        self._flush_history()
+        if not self._redo:
+            self.set_status("Nothing to redo")
+            return
+        self._undo.append(copy.deepcopy(self.data_store))
+        self._apply_state(self._redo.pop())
+        self.set_status("Redo")
+
+    def _apply_state(self, state):
+        """Replace the data and rebuild every view; editors hold stale object refs."""
+        self._restoring = True
+        try:
+            self.data_store = copy.deepcopy(state)
+            self._snapshot = copy.deepcopy(state)
+            self.current = None
+            for fname in FILES:
+                self.refresh_tree(fname)
+            self.clear_editor(HINT)
+            self.unsaved = True
+            self.unsaved_label.config(text="● Unsaved")
+        finally:
+            self._restoring = False
 
     def set_status(self, msg):
         self._status_msg = msg
@@ -290,7 +386,7 @@ class DranimaContentManager(tk.Tk):
                 for mi, m in enumerate(cat.get("members", [])):
                     name = team.get(m.get("id"), {}).get("name", m.get("id", ""))
                     tree.insert(node, "end", iid=f"mem_{ci}_{mi}", text=name)
-            gnode = tree.insert("", "end", iid="guests", text="Guests", open=True)
+            gnode = tree.insert("", "end", iid="guests", text=GUESTS_LABEL, open=True)
             for gi, g in enumerate(data["guests"]):
                 tree.insert(gnode, "end", iid=f"guest_{gi}", text=g.get("name", ""))
 
@@ -303,7 +399,7 @@ class DranimaContentManager(tk.Tk):
                         tree.insert(node, "end", iid=f"ent_{ei}", text=e.get("name", ""))
             orphans = [ei for ei, e in enumerate(entries) if not e.get("category")]
             if orphans:
-                node = tree.insert("", "end", iid="uncat", text="Uncategorized", open=False)
+                node = tree.insert("", "end", iid="uncat", text=UNCAT_LABEL, open=False)
                 for ei in orphans:
                     tree.insert(node, "end", iid=f"ent_{ei}", text=entries[ei].get("name", ""))
 
@@ -313,7 +409,7 @@ class DranimaContentManager(tk.Tk):
 
         elif fname == "news.json":
             for category in ("announcement", "update"):
-                node = tree.insert("", "end", iid=f"news_{category}", text=category.title(), open=True)
+                node = tree.insert("", "end", iid=f"news_{category}", text=NEWS_LABELS[category], open=True)
                 for i, item in enumerate(data.get(category, [])):
                     tree.insert(node, "end", iid=f"news_{category}_{i}", text=item.get("title", "") or "(untitled)")
 
@@ -374,6 +470,21 @@ class DranimaContentManager(tk.Tk):
     # form helpers — every field applies instantly (no save buttons, no popups)
     def _header(self, text):
         ttk.Label(self.editor, text=text, style="Header.TLabel").pack(anchor=tk.W, pady=(0, 16))
+
+    def _focus_new_block(self, widget):
+        """Reveal a just-added block and place the cursor in its first input."""
+        try:
+            self.editor_canvas.update_idletasks()
+            self.editor.update_idletasks()
+            widget.focus_set()
+            # Bring the freshly added block (always appended at the end) into view.
+            bbox = self.editor_canvas.bbox(self._editor_window)
+            if bbox:
+                wy = widget.winfo_rooty() - self.editor.winfo_rooty()
+                total = max(bbox[3], 1)
+                self.editor_canvas.yview_moveto(max(0.0, (wy - 40) / total))
+        except tk.TclError:
+            pass
 
     def _editor_notebook(self, *names):
         """Split a record editor into top-level tabs so bulky content gets its own space."""
@@ -464,8 +575,10 @@ class DranimaContentManager(tk.Tk):
                     "paragraph": {"kind": "paragraph", "text": ""},
                     "list": {"kind": "list", "items": []},
                     "image": {"kind": "image", "src": "", "alt": ""},
+                    "table": {"kind": "table", "rows": [["Column 1", "Column 2"], ["", ""]]},
                 }
                 blocks.append(defaults[kind])
+                focus_last[0] = True   # jump straight into the new block
                 save_blocks()
                 render_easy()
 
@@ -486,8 +599,10 @@ class DranimaContentManager(tk.Tk):
             ttk.Button(toolbar, text="Paragraph", command=lambda: add_block("paragraph")).pack(side=tk.LEFT)
             ttk.Button(toolbar, text="Bullet list", command=lambda: add_block("list")).pack(side=tk.LEFT, padx=(6, 0))
             ttk.Button(toolbar, text="Image", command=lambda: add_block("image")).pack(side=tk.LEFT, padx=(6, 0))
+            ttk.Button(toolbar, text="Table", command=lambda: add_block("table")).pack(side=tk.LEFT, padx=(6, 0))
 
-            names = {"paragraph": "Paragraph", "list": "Bullet list", "image": "Image", "raw": "Advanced HTML"}
+            names = {"paragraph": "Paragraph", "list": "Bullet list", "image": "Image",
+                     "table": "Table", "raw": "Advanced HTML"}
 
             if not blocks:
                 ttk.Label(easy, text="Empty — use the buttons above to add your first block.",
@@ -497,42 +612,53 @@ class DranimaContentManager(tk.Tk):
             last = len(blocks) - 1
             for index, block in enumerate(blocks):
                 # Each block is a bordered card so it reads as one self-contained unit.
-                card = tk.Frame(easy, bg=COLORS["bg"], highlightbackground=COLORS["border"],
-                                highlightcolor=COLORS["border"], highlightthickness=1, bd=0)
+                card = ttk.Frame(easy, style="Card.TFrame", padding=(16, 12, 16, 14))
                 card.pack(fill=tk.X, pady=(0, 12))
-                body = ttk.Frame(card, padding=(16, 12, 16, 14))
-                body.pack(fill=tk.X)
 
-                head = ttk.Frame(body)
+                head = ttk.Frame(card)
                 head.pack(fill=tk.X, pady=(0, 10))
-                ttk.Label(head, text=names[block["kind"]], style="CardTitle.TLabel").pack(side=tk.LEFT)
-                ttk.Button(head, text="Remove", width=8, command=lambda i=index: remove_at(i)).pack(side=tk.RIGHT)
+                head.columnconfigure(0, weight=1)
+                ttk.Label(head, text=names[block["kind"]], style="CardTitle.TLabel").grid(row=0, column=0, sticky="w")
+                up = ttk.Button(head, text="Up", width=5, command=lambda i=index: swap(i, i - 1))
+                up.grid(row=0, column=1, padx=(0, 6))
                 down = ttk.Button(head, text="Down", width=6, command=lambda i=index: swap(i, i + 1))
-                down.pack(side=tk.RIGHT, padx=(0, 6))
-                up = ttk.Button(head, text="Up", width=6, command=lambda i=index: swap(i, i - 1))
-                up.pack(side=tk.RIGHT, padx=(0, 6))
+                down.grid(row=0, column=2, padx=(0, 6))
+                ttk.Button(head, text="Remove", width=8, command=lambda i=index: remove_at(i)).grid(row=0, column=3)
                 if index == 0:
                     up.state(["disabled"])
                 if index == last:
                     down.state(["disabled"])
 
+                first_input = None
                 if block["kind"] == "paragraph":
-                    self.text_field(body, "Text", block["text"],
+                    first_input = self.text_field(card, "Text", block["text"],
                                     lambda text, b=block: (b.update(text=text), save_blocks()), height=4)
                 elif block["kind"] == "list":
-                    self.text_field(body, "One item per line", "\n".join(block["items"]),
+                    first_input = self.text_field(card, "One item per line", "\n".join(block["items"]),
                                     lambda text, b=block: (b.update(items=[line for line in text.splitlines() if line]),
                                                            save_blocks()), height=5)
                 elif block["kind"] == "image":
-                    self.field(body, "File", block["src"],
+                    first_input = self.field(card, "File", block["src"],
                                lambda text, b=block: (b.update(src=text), save_blocks()), browse=True)
-                    self.field(body, "Description (alt text)", block["alt"],
+                    self.field(card, "Description (alt text)", block["alt"],
                                lambda text, b=block: (b.update(alt=text), save_blocks()))
-                    ttk.Label(body, text="Tip: images next to each other show side by side as one gallery.",
+                    ttk.Label(card, text="Tip: images next to each other show side by side as one gallery.",
+                              style="Muted.TLabel").pack(anchor=tk.W)
+                elif block["kind"] == "table":
+                    rows_text = "\n".join(" | ".join(cell for cell in row) for row in block.get("rows", []))
+                    first_input = self.text_field(card, "One row per line · separate cells with  |", rows_text,
+                                    lambda text, b=block: (b.update(rows=[[c.strip() for c in line.split("|")]
+                                                                          for line in text.splitlines() if line.strip()]),
+                                                           save_blocks()), height=5)
+                    ttk.Label(card, text="Tip: the first row is the header.",
                               style="Muted.TLabel").pack(anchor=tk.W)
                 else:
-                    ttk.Label(body, text="This advanced block is preserved. Edit it in the Raw HTML tab.",
+                    ttk.Label(card, text="This advanced block is preserved. Edit it in the Raw HTML tab.",
                               style="Muted.TLabel").pack(anchor=tk.W, pady=(4, 0))
+
+                if index == last and focus_last[0] and first_input is not None:
+                    focus_last[0] = False
+                    self.after(60, lambda w=first_input: self._focus_new_block(w))
 
         def on_raw_modified(_event):
             if raw_text.edit_modified():
@@ -579,6 +705,14 @@ class DranimaContentManager(tk.Tk):
                 for index, src in enumerate(images):
                     blocks.append({"kind": "image", "src": unescape(src),
                                    "alt": unescape(alt_values[index]) if index < len(alt_values) else ""})
+            elif lower.startswith("<table"):
+                rows = []
+                for tr in re.findall(r"<tr\b[^>]*>(.*?)</tr>", chunk, re.I | re.S):
+                    cells = [unescape(re.sub(r"<[^>]+>", "", cell)).strip()
+                             for cell in re.findall(r"<t[hd]\b[^>]*>(.*?)</t[hd]>", tr, re.I | re.S)]
+                    if cells:
+                        rows.append(cells)
+                blocks.append({"kind": "table", "rows": rows})
             else:
                 blocks.append({"kind": "raw", "html": chunk})
             position = match.end()
@@ -615,6 +749,16 @@ class DranimaContentManager(tk.Tk):
                     i += 1
                 if imgs:
                     output.append('<div class="news-update-images">\n' + "\n".join(imgs) + "\n</div>")
+            elif block["kind"] == "table":
+                rows = block.get("rows", [])
+                if any(any(cell for cell in row) for row in rows):
+                    html_rows = []
+                    for ri, row in enumerate(rows):
+                        tag = "th" if ri == 0 else "td"
+                        cells = "".join("<{0}>{1}</{0}>".format(tag, escape(cell)) for cell in row)
+                        html_rows.append("  <tr>{}</tr>".format(cells))
+                    output.append("<table>\n" + "\n".join(html_rows) + "\n</table>")
+                i += 1
             elif block["kind"] == "raw":
                 output.append(block["html"])
                 i += 1
@@ -780,7 +924,7 @@ class DranimaContentManager(tk.Tk):
         wrap.pack(fill=tk.BOTH, expand=True)
         left = ttk.Frame(wrap)
         left.pack(side=tk.LEFT, fill=tk.Y)
-        lb = make_dark_listbox(left, width=26, exportselection=False)
+        lb = make_dark_listbox(left, width=26, height=18, exportselection=False)
         lb.pack(fill=tk.Y, expand=True)
         lbtns = ttk.Frame(left)
         lbtns.pack(fill=tk.X, pady=(4, 0))
@@ -852,6 +996,25 @@ class DranimaContentManager(tk.Tk):
             show_empty_state()
 
     # ---------- create (in place, straight into editing) ----------
+    def create_category(self):
+        """Add a real category (Team or Wiki). System pseudo-categories stay pinned below."""
+        fname = self._current_fname()
+        data = self.data_store[fname]
+        if fname == "credits.json":
+            data.setdefault("categories", []).append({"title": "New Category", "members": []})
+            new_iid = f"cat_{len(data['categories']) - 1}"
+        elif fname == "wiki.json":
+            cid = self._unique_id("new-category", [c.get("id") for c in data["categories"]])
+            data["categories"].append({"id": cid, "name": "New Category"})
+            new_iid = f"wcat_{cid}"
+        else:
+            self.set_status("Categories exist only for Team and Wiki")
+            return
+        self.mark_unsaved()
+        self.refresh_tree(fname)
+        self._select(fname, new_iid)
+        self.after(80, lambda: self._first_field.focus_set() if self._first_field else None)
+
     def create_item(self):
         fname = self._current_fname()
         tree = self.trees[fname]
@@ -933,12 +1096,30 @@ class DranimaContentManager(tk.Tk):
         label = tree.item(iid, "text")
         data = self.data_store[fname]
 
-        if fname == "credits.json" and iid.startswith("cat_"):
-            if data["categories"][int(iid[4:])].get("members"):
-                self.set_status("Category not empty — move or delete its members first")
-                return
-        if not messagebox.askyesno("Delete", f'Delete "{label}"?'):
+        # Built-in categories aren't user data and can't be deleted.
+        if iid in ("guests", "uncat") or (iid.startswith("news_") and iid.count("_") == 1):
+            self.set_status("This category is built in and cannot be deleted")
             return
+
+        # Deleting a category takes its children with it — say so up front.
+        child_note = ""
+        if fname == "credits.json" and iid.startswith("cat_"):
+            n = len(data["categories"][int(iid[4:])].get("members", []))
+            if n:
+                child_note = f"\n\nThis also deletes its {n} member(s)."
+        elif fname == "wiki.json" and iid.startswith("wcat_"):
+            n = sum(1 for e in data["entries"] if e.get("category") == iid[5:])
+            if n:
+                child_note = f"\n\nThis also deletes its {n} entr{'y' if n == 1 else 'ies'}."
+        if not messagebox.askyesno("Delete", f'Delete "{label}"?{child_note}'):
+            return
+
+        def _prune_team(members):
+            """Drop team records whose only membership was in the removed category."""
+            for m in members:
+                mid = m.get("id")
+                if not any(mm.get("id") == mid for c in data["categories"] for mm in c.get("members", [])):
+                    data["team"][:] = [t for t in data["team"] if t.get("id") != mid]
 
         if fname == "faq.json":
             del data[int(iid[5:])]
@@ -948,21 +1129,18 @@ class DranimaContentManager(tk.Tk):
         elif fname == "credits.json":
             if iid.startswith("mem_"):
                 ci, mi = map(int, iid[4:].split("_"))
-                mid = data["categories"][ci]["members"].pop(mi).get("id")
-                if not any(m.get("id") == mid for c in data["categories"] for m in c.get("members", [])):
-                    data["team"][:] = [t for t in data["team"] if t.get("id") != mid]
+                _prune_team([data["categories"][ci]["members"].pop(mi)])
             elif iid.startswith("guest_"):
                 del data["guests"][int(iid[6:])]
             elif iid.startswith("cat_"):
-                del data["categories"][int(iid[4:])]
+                cat = data["categories"].pop(int(iid[4:]))
+                _prune_team(cat.get("members", []))
         elif fname == "wiki.json":
             if iid.startswith("ent_"):
                 del data["entries"][int(iid[4:])]
             elif iid.startswith("wcat_"):
                 cid = iid[5:]
-                for e in data["entries"]:
-                    if e.get("category") == cid:
-                        e["category"] = None
+                data["entries"][:] = [e for e in data["entries"] if e.get("category") != cid]
                 data["categories"][:] = [c for c in data["categories"] if c.get("id") != cid]
                 if isinstance(data.get("groups"), list):
                     data["groups"] = [[g for g in grp if g != cid] for grp in data["groups"]]

@@ -308,22 +308,6 @@
   text-stroke: 0;
   text-shadow: none
 }
-.news-update-images {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 12px;
-  margin: 8px 0 32px;
-  width: 100%
-}
-.news-update-images:has(> img:only-child) {
-  grid-template-columns: 1fr
-}
-.news-update-images img {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-small);
-  object-fit: cover
-}
 .news-popup-content {
   font-size: clamp(14px, 1.5vw, 18px);
   color: #000;

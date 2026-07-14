@@ -408,7 +408,7 @@
       "name": "Dradeck",
       "sections": [
         {
-          "content": "<table><thead><tr><th>Hex</th><th>Dranima</th><th>Type</th></tr></thead><tbody><tr><td>no.0001</td><td>@{vinny}</td><td>@{earth}</td></tr><tr><td>no.0002</td><td>@{birdage}</td><td>@{wind}</td></tr><tr><td>no.0003</td><td>@{snassic}</td><td>@{water}</td></tr><tr><td>no.0004</td><td>@{embamb}</td><td>@{fire}</td></tr></tbody></table>",
+          "content": "<table>\n  <tr><th>Hex</th><th>Dranima</th><th>Type</th></tr>\n  <tr><td>no.0001</td><td>@{vinny}</td><td>@{earth}</td></tr>\n  <tr><td>no.0002</td><td>@{birdage}</td><td>@{wind}</td></tr>\n  <tr><td>no.0003</td><td>@{snassic}</td><td>@{water}</td></tr>\n  <tr><td>no.0004</td><td>@{embamb}</td><td>@{fire}</td></tr>\n</table>",
           "title": "Dradeck List"
         }
       ]

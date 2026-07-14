@@ -1,32 +1,5 @@
-.wiki-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: 0 0 20px 0;
-  font-size: clamp(14px, 1.5vw, 18px);
-  border: 2px solid #000;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: none
-}
-.wiki-table td,
-.wiki-table th {
-  padding: 10px 12px;
-  text-align: left;
-  border-right: 2px solid #000;
-  border-bottom: 2px solid #000
-}
-.wiki-table th {
-  background: var(--bg);
-  color: #fff
-}
-.wiki-table tbody tr {
-  background: 0 0
-}
-.wiki-table td {
-  color: #000
-}
+/* Core table geometry/colors now live in base.css (.rich-content table), shared by
+   news + wiki. Only the wiki-specific reference-link styling stays here. */
 .wiki-table .wiki-ref-link {
   color: var(--orange)!important;
   text-decoration: none!important;

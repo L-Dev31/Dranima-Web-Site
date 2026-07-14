@@ -280,20 +280,47 @@ h2 {
   outline: 3px solid #fff;
   outline-offset: 2px
 }
-.content-img {
+/* ---------- Block-editor (rich) content: shared by news popups, wiki pages, and anything else that renders managed content ---------- */
+.news-update-images {
   display: grid;
   grid-template-columns: repeat(2,1fr);
   gap: 12px;
   margin: 8px 0 32px;
   width: 100%
 }
-.content-img:has(> img:only-child) {
+.news-update-images:has(> img:only-child) {
   grid-template-columns: 1fr
 }
-.content-img img {
+.news-update-images img {
   width: 100%;
   height: auto;
+  border-radius: var(--radius-small);
   object-fit: cover
+}
+.rich-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0 0 20px;
+  font-size: clamp(14px, 1.5vw, 18px);
+  border: 2px solid #000;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff
+}
+.rich-content th,
+.rich-content td {
+  padding: 10px 12px;
+  text-align: left;
+  border-right: 2px solid #000;
+  border-bottom: 2px solid #000
+}
+.rich-content th {
+  background: var(--bg);
+  color: #fff
+}
+.rich-content td {
+  color: #000
 }
 .body--modal-open {
   overflow: hidden
